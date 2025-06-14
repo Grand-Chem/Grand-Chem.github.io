@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand-Chem Limited - Your Packaging Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#0033A0',
+                        'brand-red': '#D42E12',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1567099322837-a1a7957a2624?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Modal Styles */
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-brand-blue">
+                <span class="text-brand-red">GRAND</span>-CHEM
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-brand-blue transition">About Us</a>
+                <a href="#services" class="text-gray-600 hover:text-brand-blue transition">Services</a>
+                <a href="#products" class="text-gray-600 hover:text-brand-blue transition">Products</a>
+                <a href="#sustainability" class="text-gray-600 hover:text-brand-blue transition">Sustainability</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-blue transition">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-lucide="menu" class="w-6 h-6 text-gray-600"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
+            <a href="#about" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">About Us</a>
+            <a href="#services" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Services</a>
+            <a href="#products" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Products</a>
+            <a href="#sustainability" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Sustainability</a>
+            <a href="#contact" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg h-[60vh] flex items-center justify-center text-white text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Your Trusted Packaging Partner <br> in Ghana and West Africa</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Delivering premier packaging solutions with a commitment to quality, efficiency, and a sustainable future.</p>
+                <a href="#products" class="bg-brand-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition text-lg">Our Products</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-brand-blue mb-4">About Grand-Chem LTD</h2>
+                        <p class="text-gray-600 mb-4">Since 2006, Grand-Chem LTD has been a driving force in providing premier packaging solutions to businesses throughout Ghana and neighboring West African countries. We were founded on a single, powerful mission: to deliver the absolute best in quality and innovation, helping our clients' products shine.</p>
+                        <p class="text-gray-600">Quality isn't just a word for us; it's our promise. We invest in state-of-the-art technology and foster a culture of teamwork and commitment, ensuring we can meet any challenge and deliver exceptional results.</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1621992129385-a7b3c6b84172?q=80&w=1974&auto=format&fit=crop" alt="Our Team" class="rounded-lg shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0033A0/ffffff?text=Our+Team';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us / Services Section -->
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-brand-blue mb-2">Why Choose Us?</h2>
+                <p class="text-gray-600 mb-12 max-w-2xl mx-auto">You need a partner you can rely on for quality, efficiency, and a commitment to a better future. Here's why Grand-Chem LTD stands out.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="recycle" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">In-House Recycling</h3></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="cpu" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Modern Technology</h3></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="globe" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Regional & Export Reach</h3></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="fast-forward" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Quick Turnaround</h3></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="shield-check" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Guaranteed Quality</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-brand-blue mb-12 text-center">Our Products</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="https://images.unsplash.com/photo-1611532919395-071a53956463?q=80&w=1964&auto=format&fit=crop,https://images.unsplash.com/photo-1581646835235-e45f8a0a86c6?q=80&w=2070&auto=format&fit=crop,https://images.unsplash.com/photo-1629227848529-a1d2b5170f03?q=80&w=1974&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1611532919395-071a53956463?q=80&w=1964&auto=format&fit=crop" alt="Injection Moulding" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D42E12/ffffff?text=Injection+Moulding';">
+                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Injection Moulding</h3><p class="text-gray-600">High-precision caps and PET preforms for various applications.</p></div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="https://images.unsplash.com/photo-1628537452441-2b9983984d72?q=80&w=2070&auto=format&fit=crop,https://images.unsplash.com/photo-1542384992-a162923707a0?q=80&w=2070&auto=format&fit=crop,https://images.unsplash.com/photo-1617105522055-520c64390a37?q=80&w=2070&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1628537452441-2b9983984d72?q=80&w=2070&auto=format&fit=crop" alt="Blown Film" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D42E12/ffffff?text=Blown+Film';">
+                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Blown Film</h3><p class="text-gray-600">Durable printed pure water rolls and shrink films.</p></div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="https://images.unsplash.com/photo-1602143407151-247413f17a89?q=80&w=1974&auto=format&fit=crop,https://images.unsplash.com/photo-1622201946028-5e438c82a24a?q=80&w=1974&auto=format&fit=crop,https://images.unsplash.com/photo-1624552184280-9e96037b51f9?q=80&w=1974&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1602143407151-247413f17a89?q=80&w=1974&auto=format&fit=crop" alt="Blown Moulding" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D42E12/ffffff?text=Blown+Moulding';">
+                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Blown Moulding</h3><p class="text-gray-600">PET water bottles, pharma bottles, and cosmetic containers.</p></div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="https://images.unsplash.com/photo-1622430079038-DB8d7755f13c?q=80&w=1974&auto=format&fit=crop,https://images.unsplash.com/photo-1549492423-400212a6e189?q=80&w=1965&auto=format&fit=crop,https://images.unsplash.com/photo-1606791402321-4623c2a0210a?q=80&w=1932&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1622430079038-DB8d7755f13c?q=80&w=1974&auto=format&fit=crop" alt="Lamination" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D42E12/ffffff?text=Lamination';">
+                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Lamination</h3><p class="text-gray-600">High-quality printed films, pouches, and wrappers.</p></div>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="https://images.unsplash.com/photo-1595201416825-67f7079c68a4?q=80&w=1974&auto=format&fit=crop,https://images.unsplash.com/photo-1589985902437-568114a84a6c?q=80&w=1974&auto=format&fit=crop,https://images.unsplash.com/photo-1603036034030-63e52fecb53a?q=80&w=1974&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1595201416825-67f7079c68a4?q=80&w=1974&auto=format&fit=crop" alt="Cutting" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D42E12/ffffff?text=Cutting';">
+                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Cutting</h3><p class="text-gray-600">Plain & colored shopping bags and garbage bags.</p></div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="https://images.unsplash.com/photo-1560251149-24d5718a38a9?q=80&w=1974&auto=format&fit=crop,https://images.unsplash.com/photo-1508344319035-75890b07e8e8?q=80&w=2070&auto=format&fit=crop,https://images.unsplash.com/photo-1588122041238-d6756b1a7894?q=80&w=1974&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1560251149-24d5718a38a9?q=80&w=1974&auto=format&fit=crop" alt="Custom Orders" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D42E12/ffffff?text=Custom+Orders';">
+                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Custom Orders</h3><p class="text-gray-600">Your vision is our mission. We create standout custom packaging.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Section -->
+        <section id="sustainability" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="grid md:grid-cols-2 gap-12 items-center">
+                     <div><img src="https://images.unsplash.com/photo-1591183299742-7e5a739c3629?q=80&w=1974&auto=format&fit=crop" alt="Sustainability" class="rounded-lg shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/22c55e/ffffff?text=Sustainability';"></div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-brand-blue mb-4">Our Commitment to Sustainability</h2>
+                        <div class="flex items-center text-green-600 mb-4"><i data-lucide="leaf" class="w-8 h-8 mr-2"></i><p class="text-xl font-semibold">Reduce, Reuse, Recycle</p></div>
+                        <p class="text-gray-600 mb-4">At Grand-Chem LTD, we believe that responsible business practices go hand-in-hand with delivering exceptional packaging. Our in-house recycling plant is a testament to this commitment, allowing us to process plastic waste and reuse it responsibly.</p>
+                        <p class="text-gray-600">By embracing a circular economy, we are actively working to reduce our environmental impact and contribute to a cleaner, healthier Ghana and West Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-brand-blue text-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
+                        <p class="mb-4">We are here to help with all your packaging needs. Reach out to us for quotes, custom orders, or any questions.</p>
+                        <div class="space-y-4">
+                            <p class="flex items-center"><i data-lucide="map-pin" class="w-5 h-5 mr-3 text-brand-red"></i> Hebron, Adjacent to Hebron Prayer Camp, Nsawam Adoagyiri, Ghana</p>
+                            <p class="flex items-center"><i data-lucide="phone" class="w-5 h-5 mr-3 text-brand-red"></i> +233 30 397 3205 / +233 30 397 3206</p>
+                            <p class="flex items-center"><i data-lucide="mail" class="w-5 h-5 mr-3 text-brand-red"></i> info@grand-chem.net</p>
+                            <p class="flex items-center"><i data-lucide="globe" class="w-5 h-5 mr-3 text-brand-red"></i> www.grand-chem.net</p>
+                        </div>
+                    </div>
+                    <div>
+                        <form action="#" method="POST" class="bg-white p-8 rounded-lg shadow-lg text-gray-800">
+                            <h3 class="text-xl font-semibold mb-4 text-brand-blue">Send us a Message</h3>
+                            <div class="mb-4"><label for="name" class="block mb-2 font-medium">Name</label><input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none"></div>
+                            <div class="mb-4"><label for="email" class="block mb-2 font-medium">Email</label><input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none"></div>
+                            <div class="mb-4"><label for="message" class="block mb-2 font-medium">Message</label><textarea id="message" name="message" rows="4" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none"></textarea></div>
+                            <button type="submit" class="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6"><div class="container mx-auto px-6 text-center"><p>&copy; <span id="year"></span> Grand-Chem Limited. All Rights Reserved.</p></div></footer>
+
+    <!-- Modal -->
+    <div id="image-modal" class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0">
+        <div id="modal-overlay" class="absolute w-full h-full bg-gray-900 opacity-50"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-3xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+            <div class="relative">
+                <!-- Close Button -->
+                <button id="modal-close" class="absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50 bg-black/50 rounded-full p-2 hover:bg-black/75">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Image Slider -->
+                <div id="slider-container" class="relative">
+                    <img id="slider-image" src="" alt="Product Image" class="w-full h-auto max-h-[80vh] object-contain rounded-t-lg">
+                </div>
+
+                <!-- Prev/Next Buttons -->
+                <button id="slider-prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/75"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                <button id="slider-next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/75"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement){
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Image Modal/Slider Logic
+        const productCards = document.querySelectorAll('.product-card');
+        const modal = document.getElementById('image-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalCloseBtn = document.getElementById('modal-close');
+        const sliderImage = document.getElementById('slider-image');
+        const prevBtn = document.getElementById('slider-prev');
+        const nextBtn = document.getElementById('slider-next');
+        let currentImages = [];
+        let currentIndex = 0;
+
+        const openModal = () => {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.classList.add('modal-active');
+        };
+
+        const closeModal = () => {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('modal-active');
+        };
+
+        const updateSliderImage = () => {
+            sliderImage.src = currentImages[currentIndex];
+        };
+
+        productCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const images = card.dataset.images.split(',');
+                currentImages = images;
+                currentIndex = 0;
+                updateSliderImage();
+                openModal();
+            });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            updateSliderImage();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            updateSliderImage();
+        });
+
+        modalOverlay.addEventListener('click', closeModal);
+        modalCloseBtn.addEventListener('click', closeModal);
+        
+        // Keyboard navigation for slider
+        document.addEventListener('keydown', e => {
+            if (!document.body.classList.contains('modal-active')) return;
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            } else if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            }
+        });
+
+    </script>
+</body>
+</html>
