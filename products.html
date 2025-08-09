@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grand‑Chem Products</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    
+  tailwind = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#2e3091',   // Button blue
+          accent: '#ed2724',  // Red accents
+          bodytext: '#5658a7' // Body text
+        }
+      }
+    }
+  }
+  
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#2e3091',   // Button blue
+          accent: '#ed2724',  // Red accents
+          bodytext: '#5658a7' // Body text
+        }
+      }
+    }
+  }
+</script>
+ <style>
+  /* Gradient + caps to echo the logo */
+  .logo-text{
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    /* gradient sampled from the logo: deep/navy → royal → light blue */
+    background: linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 0 rgba(0,0,0,.12); /* subtle depth like the mark */
+    white-space: nowrap;
+  }
+
+  /* Fallback if background-clip:text isn’t supported */
+  @supports not (-webkit-background-clip: text) {
+    .logo-text { color: #2e3091; }
+  }
+</style> 
+<script src="https://unpkg.com/lucide@latest"></script>
+  <style>html{scroll-behavior:smooth}</style>
+
+  
+  
+
+
+<style>
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,0.06), transparent 60%),
+      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,0.06), transparent 60%),
+      linear-gradient(180deg, rgba(46,48,145,0.03), rgba(237,39,36,0.03));
+  }
+</style>
+
+</head>
+<body class="bg-white text-neutral-900 font-sans">
+  <header class="border-b">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2"><img src="images/logo.png" alt="Grand‑Chem" class="h-8 w-auto"><span class="logo-text">Grand‑Chem Limited</span></a>
+      <a class="text-sm underline" href="index.html#contact">Contact</a>
+    </div>
+  </header>
+
+  
+
+  <script>lucide.createIcons();</script>
+
+<section id="gallery" class="mx-auto max-w-7xl px-4 py-16">
+  <div class="flex items-end justify-between gap-6">
+    <div>
+      <h2 class="text-3xl md:text-4xl font-semibold">Product gallery</h2>
+
+    </div>
+  </div>
+
+  <div id="galleryChips" class="mt-6 flex flex-wrap gap-2"></div>
+  <div id="galleryGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+<style>
+  .chip{border-radius:9999px;border:1px solid rgba(0,0,0,.08);padding:6px 12px;font-size:.875rem;background:#fff;cursor:pointer}
+  .chip.active{background:#2e3091;color:#fff;border-color:#2e3091}
+  .float-card{background:linear-gradient(180deg,#f3f5f9,#f9faff);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;box-shadow:0 6px 24px rgba(0,0,0,.06);transition:transform .25s ease,box-shadow .25s ease;animation:floatY 6s ease-in-out infinite}
+  .float-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 10px 32px rgba(0,0,0,.10)}
+  .float-card img{border-radius:12px;display:block;width:100%;height:auto}
+  @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+</style>
+<script>
+  const RAW_FILES = [ "2liter gallon.png", "180 ml-gc.png", "200ml-gc.png", "250ml-gc.png", "1000ml-gc.png", "grand-chem-bars.avif", "grand-chem-biscut-pack.png", "grand-chem-bottle.png", "grand-chem-caps.png", "grand-chem-Chemicals-storage.png", "grand-chem-cholate-wrapper.png", "grand-chem-coffe-pouch.png", "grand-chem-cosmetics.avif", "grand-chem-detergent.png", "grand-chem-garbage.png", "grand-chem-gummy-bear.png", "grand-chem-palm-oil.png", "grand-chem-pet-3.png", "grand-chem-pharma.png", "grand-chem-potato-chips.png", "grand-chem-pure-water rolls.png", "grand-chem-push-pull-cap.png", "grand-chem-shampoo.png", "grand-chem-shopping bags.png", "grand-chem-shrink.png", "grand-chem-spices.png", "grand-chem-standing-pouch.png", "grand-chem-take-away-bag.png", "gc-toilet-liquid.png", "grand-chem-yougrt.png", "grand-chem-yougurt-gallom.png", "plain-shrink-roll-2.png", "plain-shrink-roll.png", "pure-water-roll.png" ];
+
+  function categorize(nm){
+    const n = nm.toLowerCase();
+    if (n.includes('cap')) return 'Caps & Closures';
+    if (n.includes('pet') || n.includes('bottle')|| n.includes('ml-gc')) return 'PET & Bottles';
+    if (n.includes('gallon') || n.includes('liter') || n.includes('toilet') ) return 'Gallons & HDPE';
+    if (n.includes('pouch') || n.includes('bag')) return 'Pouches & Bags';
+    if (n.includes('shrink') || n.includes('wrapper') || n.includes('roll')) return 'Wraps & Shrink';
+    if (n.includes('cosmetics') || n.includes('shampoo')) return 'Home & Personal Care';
+    if (n.includes('pharma') ) return 'Chemicals & Pharma';
+    if (n.includes('oil') || n.includes('chips') || n.includes('chem') || n.includes('biscut') || n.includes('bars') || n.includes('gummy') || n.includes('spices') || n.includes('yog')) return 'Food & Beverage';
+    if (n.includes('factory') || n.includes('floor') || n.includes('garbage')) return 'Factory & Process';
+    return 'Other';
+  }
+
+  const ITEMS = RAW_FILES.map(fn => ({ file: fn, cat: categorize(fn), src: 'images/gallery/' + encodeURIComponent(fn) }));
+  const CATS = ['All', ...Array.from(new Set(ITEMS.map(i=>i.cat)))];
+
+  const chips = document.getElementById('galleryChips');
+  const grid = document.getElementById('galleryGrid');
+
+  function renderChips(active='All'){
+    chips.innerHTML = '';
+    CATS.forEach(cat => {
+      const b = document.createElement('button');
+      b.className = 'chip' + (cat===active ? ' active' : '');
+      b.textContent = cat;
+      b.onclick = () => { renderChips(cat); renderGrid(cat); };
+      chips.appendChild(b);
+    });
+  }
+
+  function renderGrid(active='All'){
+    grid.innerHTML = '';
+    const list = active==='All' ? ITEMS : ITEMS.filter(i=>i.cat===active);
+    list.forEach((item, idx)=>{
+      const card = document.createElement('div');
+      card.className = 'float-card';
+      card.style.animationDelay = (idx%5)*0.15 + 's';
+      card.innerHTML = `
+        <img src="${item.src}" alt="${item.file}" loading="lazy">
+        <div class="mt-2 text-sm"><span class="text-bodytext">${item.cat}</span></div>
+
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  renderChips();
+  renderGrid();
+</script>
+
+
+<script>
+  // Remove duplicated images inside product cards (keeps the first image only)
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.rounded-2xl.border.p-6').forEach(card => {
+      const imgs = card.querySelectorAll('img');
+      for (let i = 1; i < imgs.length; i++) imgs[i].remove();
+    });
+  });
+</script>
+
+</body>
+<footer class="border-t mt-16">
+    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
+      <div>© 2025 Grand‑Chem Limited — SEDEX Certified • Your Packaging Partner</div>
+      <div class="md:text-right">Privacy • Terms</div>
+    </div>
+  </footer>
+</html>
