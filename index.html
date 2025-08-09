@@ -1,309 +1,468 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand-Chem Limited - Your Packaging Partner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'brand-blue': '#0033A0',
-                        'brand-red': '#D42E12',
-                    }
-                }
-            }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grand‑Chem Limited — Your Packaging Partner</title>
+  <meta name="description" content="Grand‑Chem Limited manufactures PET preforms, printed films, custom bags, and HDPE/PP containers in Ghana and West Africa." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+  tailwind = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#2e3091',   // Button blue
+          accent: '#ed2724',  // Red accents
+          bodytext: '#5658a7' // Body text
         }
-    </script>
-    <style>
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/uploads/grand-chem-warehouse.jpeg?q=80&w=2070&h=1080&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+      }
+    }
+  }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#2e3091',   // Button blue
+          accent: '#ed2724',  // Red accents
+          bodytext: '#5658a7' // Body text
         }
-        /* Modal Styles */
-        .modal {
-            transition: opacity 0.25s ease;
-        }
-        body.modal-active {
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
-    </style>
+      }
+    }
+  }
+</script>
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>html{scroll-behavior:smooth}</style>
+
+  
+  
+
+
+<style>
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,0.06), transparent 60%),
+      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,0.06), transparent 60%),
+      linear-gradient(180deg, rgba(46,48,145,0.03), rgba(237,39,36,0.03));
+  }
+</style>
+<style>
+  /* Gradient + caps to echo the logo */
+  .logo-text{
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    /* gradient sampled from the logo: deep/navy → royal → light blue */
+    background: linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 0 rgba(0,0,0,.12); /* subtle depth like the mark */
+    white-space: nowrap;
+  }
+
+  /* Fallback if background-clip:text isn’t supported */
+  @supports not (-webkit-background-clip: text) {
+    .logo-text { color: #2e3091; }
+  }
+</style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-white text-neutral-900 font-sans">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2">
+        <img src="images/logo.png" alt="Grand‑Chem" class="h-8 w-auto">
+        <span class="logo-text">Grand‑Chem Limited</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#how" class="hover:opacity-70">How it works</a>
+        <a href="products.html" class="hover:opacity-70">Products</a>
+        <a href="#sustain" class="hover:opacity-70">Sustainability</a>
+        <a href="#faq" class="hover:opacity-70">FAQ</a>
+      </nav>
+      <a href="#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">
+        Contact Sales <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </header>
 
-    <!-- Header & Navigation -->
-    <header id="header" class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" ><img src="/uploads/GRAND_CHEM-removebg-preview.png" alt="Grand-chem" width="80" height="80">
-        
-            </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-gray-600 hover:text-brand-blue transition">About Us</a>
-                <a href="#sustainability" class="text-gray-600 hover:text-brand-blue transition">Sustainability</a>
-                <a href="#whyus" class="text-gray-600 hover:text-brand-blue transition">Why Us?</a>
-                <a href="#products" class="text-gray-600 hover:text-brand-blue transition">Products</a>
-                <a href="#contact" class="text-gray-600 hover:text-brand-blue transition">Contact</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden">
-                <i data-lucide="menu" class="w-6 h-6 text-gray-600"></i>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
-            <a href="#about" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">About Us</a>
-            <a href="#sustainability" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Sustainability</a>
-            <a href="#Why Us?" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Why Us?</a>
-            <a href="#products" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Products</a>
-            <a href="#contact" class="block px-6 py-2 text-gray-600 hover:bg-gray-100">Contact</a>
+  <!-- Hero -->
+  <section id="top" class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl md:text-6xl font-semibold leading-tight">
+          Packaging you can trust, made with <span class="text-accent">responsibility</span>.
+        </h1>
+        <p class="mt-5 text-lg text-bodytext max-w-xl">
+          Since 2006, we’ve delivered PET preforms, printed films, custom bags, and HDPE/PP containers across Ghana and West Africa—
+          combining modern tech, strict QA, and quick turnarounds.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#products" class="inline-flex justify-center rounded-xl px-5 py-3 bg-brand text-white">Explore products</a>
+          <a href="#how" class="inline-flex justify-center rounded-xl px-5 py-3 border">See how it works</a>
         </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero-bg h-[60vh] flex items-center justify-center text-white text-center">
-            <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Your Trusted Packaging Partner <br> in Ghana and West Africa</h1>
-                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Delivering premier packaging solutions with a commitment to quality, efficiency, and a sustainable future.</p>
-                <a href="#products" class="bg-brand-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition text-lg">Our Products</a>
-            </div>
-        </section>
-
-        <!-- Sustainability Section -->
-        <section id="sustainability" class="py-20">
-            <div class="container mx-auto px-6">
-                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                     <div><img src="/uploads/grand-chem-sus.jpg?q=80&w=1974&auto=format&fit=crop" alt="Sustainability" class="rounded-lg shadow-lg";"></div>
-                    <div>
-                        <h2 class="text-3xl font-bold text-brand-blue mb-4">Our Commitment to Sustainability</h2>
-                        <div class="flex items-center text-green-600 mb-4"><i data-lucide="leaf" class="w-8 h-8 mr-2"></i><p class="text-xl font-semibold">Reduce, Reuse, Recycle</p></div>
-                        <p class="text-gray-600 mb-4">At Grand-Chem LTD, we believe that responsible business practices go hand-in-hand with delivering exceptional packaging. Our in-house recycling plant is a testament to this commitment, allowing us to process plastic waste and reuse it responsibly.</p>
-                        <p class="text-gray-600">By embracing a circular economy, we are actively working to reduce our environmental impact and contribute to a cleaner, healthier Ghana and West Africa.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- About Us Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-3xl font-bold text-brand-blue mb-4">About Grand-Chem LTD</h2>
-                        <p class="text-gray-600 mb-4">Since 2006, Grand-Chem LTD has been a driving force in providing premier packaging solutions to businesses throughout Ghana and neighboring West African countries. We were founded on a single, powerful mission: to deliver the absolute best in quality and innovation, helping our clients' products shine.</p>
-                        <p class="text-gray-600">Quality isn't just a word for us; it's our promise. We invest in state-of-the-art technology and foster a culture of teamwork and commitment, ensuring we can meet any challenge and deliver exceptional results.</p>
-                    </div>
-                    <div>
-                        <img src="/uploads/factory-pic.png?q=80&w=1974&auto=format&fit=crop" alt="Our Team" class="rounded-lg shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0033A0/ffffff?text=Our+Team';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Us / Services Section -->
-        <section id="whyus" class="py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold text-brand-blue mb-2">Why Choose Us?</h2>
-                <p class="text-gray-600 mb-12 max-w-2xl mx-auto">You need a partner you can rely on for quality, efficiency, and a commitment to a better future. Here's why Grand-Chem LTD stands out.</p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="recycle" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">In-House Recycling</h3></div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="cpu" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Modern Technology</h3></div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="globe" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Regional & Export Reach</h3></div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="fast-forward" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Quick Turnaround</h3></div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300"><i data-lucide="shield-check" class="w-12 h-12 mx-auto text-brand-blue mb-4"></i><h3 class="text-lg font-semibold mb-2">Guaranteed Quality</h3></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section id="products" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-brand-blue mb-12 text-center">Our Products</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Product Card 1 -->
-                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="/uploads/grand-chem-caps.png,/uploads/grand-chem-push-pull-cap.png">
-                        <img src="/uploads/grand-chem-pet-3.png?q=80&w=1964&auto=format&fit=crop" alt="Injection Moulding" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" ;">
-                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Injection Moulding</h3><p class="text-gray-600">High-precision caps and PET preforms for various applications.</p></div>
-                    </div>
-                    <!-- Product Card 2 -->
-                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="/uploads/plain-shrink-roll.png,/uploads/grand-chem-pure-water rolls.png">
-                        <img src="/uploads/grand-chem-blowflim.jpg?q=80&w=2070&auto=format&fit=crop" alt="Blown Film" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" ;">
-                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Blown Film</h3><p class="text-gray-600">Durable printed pure water rolls and shrink films.</p></div>
-                    </div>
-                    <!-- Product Card 3 -->
-                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="/uploads/grand-chem-cosmetics.png,/uploads/grand-chem-bottle.png,/uploads/grand-chem-pharma.png">
-                        <img src="/uploads/grand-chem-blow-moulding.png?q=80&w=1974&auto=format&fit=crop" alt="Blown Moulding" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" ;">
-                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Blown Moulding</h3><p class="text-gray-600">PET water bottles, Pharma bottles, and Cosmetic containers.</p></div>
-                    </div>
-                    <!-- Product Card 4 -->
-                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="/uploads/grand-chem-coffe-pouch.png,/uploads/grand-chem-yougrt.png,/uploads/grand-chem-potato-chips.png,/uploads/grand-chem-cholate-wrapper.png,/uploads/grand-chem-biscut-pack.png">
-                        <img src="/uploads/grand-chem-lamination.jpg?q=80&w=1974&auto=format&fit=crop" alt="Lamination" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" ;">
-                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Lamination</h3><p class="text-gray-600">Upto 10 colors , High-quality printed films, pouches, and wrappers.</p></div>
-                    </div>
-                    <!-- Product Card 5 -->
-                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="/uploads/grand-chem-shopping bags.png,/uploads/grand-chem-take-away-bag.png,/uploads/grand-chem-garbage.png">
-                        <img src="/uploads/grand-chem-factory-bag-making.png?q=80&w=1974&auto=format&fit=crop" alt="Cutting" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" ;">
-                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Cutting</h3><p class="text-gray-600">Plain & colored shopping bags and garbage bags.</p></div>
-                    </div>
-                    <!-- Product Card 6 -->
-                    <div class="product-card bg-gray-100 rounded-lg shadow-lg overflow-hidden group cursor-pointer" data-images="/uploads/grand-chem-Chemicals-storage.png,/uploads/grand-chem-toilet-liquid.png,/uploads/grand-chem-yougurt-gallom.png,/uloads/grand-chem-gallons.png">
-                        <img src="/uploads/grand-chem-shampoo.png?q=80&w=1974&auto=format&fit=crop" alt="Custom Orders" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" ;">
-                        <div class="p-6"><h3 class="text-xl font-semibold mb-2">Gallon Moulding</h3><p class="text-gray-600">Gallons of all sizes and shapes.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-brand-white text-blue">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
-                <div class="grid lg:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
-                        <p class="mb-4">We are here to help with all your packaging needs. Reach out to us for quotes, custom orders, or any questions.</p>
-                        <div class="space-y-4">
-                            <p class="flex items-center"><i data-lucide="map-pin" class="w-5 h-5 mr-3 text-brand-red"></i> Hebron, Adjacent to Hebron Prayer Camp, Nsawam Adoagyiri, Ghana</p>
-                            <p class="flex items-center"><i data-lucide="phone" class="w-5 h-5 mr-3 text-brand-red"></i> +233 30 397 3205 / +233 30 397 3206</p>
-                            <p class="flex items-center"><i data-lucide="mail" class="w-5 h-5 mr-3 text-brand-red"></i> info@grand-chem.net</p>
-                            <p class="flex items-center"><i data-lucide="globe" class="w-5 h-5 mr-3 text-brand-red"></i> www.grand-chem.net</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div><img src="/uploads/ghana-vector-map.png"></div>
-                    
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6"><div class="container mx-auto px-6 text-center"><p>&copy; <span id="year"></span> Grand-Chem Limited. All Rights Reserved.</p></div></footer>
-
-    <!-- Modal -->
-    <div id="image-modal" class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0">
-        <div id="modal-overlay" class="absolute w-full h-full bg-gray-900 opacity-50"></div>
-        
-        <div class="modal-container bg-white w-11/12 md:max-w-3xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
-            <div class="relative">
-                <!-- Close Button -->
-                <button id="modal-close" class="absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50 bg-black/50 rounded-full p-2 hover:bg-black/75">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-
-                <!-- Image Slider -->
-                <div id="slider-container" class="relative">
-                    <img id="slider-image" src="" alt="Product Image" class="w-full h-auto max-h-[80vh] object-contain rounded-t-lg">
-                </div>
-
-                <!-- Prev/Next Buttons -->
-                <button id="slider-prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/75"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
-                <button id="slider-next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/75"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
-            </div>
+        <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
+          <i data-lucide="shield" class="w-4 h-4"></i> SEDEX certified
+          <span class="mx-1">•</span>
+          <i data-lucide="recycle" class="w-4 h-4"></i> In‑house recycling
+          <span class="mx-1">•</span>
+          <i data-lucide="truck" class="w-4 h-4"></i> Regional & export reach
         </div>
+      </div>
+      <div class="rounded-3xl border shadow-sm p-4">
+        <img src="images/hero.JPG" alt="Grand‑Chem production" class="w-full h-64 object-cover rounded-2xl mb-4">
+      <div class="text-sm text-bodytext mb-3">Our scale</div>
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="rounded-xl border p-3">
+          <div class="text-3xl font-semibold"><span class="odometer" data-target="300">0</span>+</div>
+          <div class="text-xs text-bodytext">Customers</div>
+        </div>
+        <div class="rounded-xl border p-3">
+          <div class="text-3xl font-semibold"><span class="odometer" data-target="5">0</span>+</div>
+          <div class="text-xs text-bodytext">Countries</div>
+        </div>
+        <div class="rounded-xl border p-3">
+          <div class="text-3xl font-semibold"><span class="odometer" data-target="26890">0</span>+</div>
+          <div class="text-xs text-bodytext">Deliveries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+            
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-neutral-50 border-y">
+    <div class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl bg-white border p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="package-2" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
+        <h3 class="mt-2 text-xl font-semibold">Share specs or request help</h3>
+        <p class="mt-2 text-bodytext">Send a dieline, sketch, or sample. We validate dimensions, resin choice, and strength.</p>
+      </div>
+      <div class="rounded-2xl bg-white border p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="wrench" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
+        <h3 class="mt-2 text-xl font-semibold">We engineer & prototype</h3>
+        <p class="mt-2 text-bodytext">Tooling guidance, artwork proofing, and pilot runs to de-risk full production.</p>
+      </div>
+      <div class="rounded-2xl bg-white border p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="truck" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
+        <h3 class="mt-2 text-xl font-semibold">Manufacture & deliver</h3>
+        <p class="mt-2 text-bodytext">Real-time updates from print to dispatch. Export-ready packing on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+    <div class="mt-100 grid md:grid-cols-2 gap-6">
+      <!-- Injection Moulding -->
+      <div class="rounded-2xl border p-6">
+        <img src="images/injection-moulding.jpg" alt="Injection Moulding" class="w-full h-80 object-cover rounded-lg mb-3">
+              <h3 class="mt-2 text-2xl font-semibold">Injection Moulding</h3>
+        <p class="mt-2 text-bodytext">High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance.</p>
+        <div class="mt-4 grid sm:grid-cols-2 gap-3">
+          <div class="rounded-xl border p-4"><div class="font-medium">Caps</div><div class="text-sm text-bodytext">Food-grade, tamper-evident options</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Push &amp; Pull Caps</div><div class="text-sm text-bodytext">Smooth actuation, leak-tested</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">PET Preforms</div><div class="text-sm text-bodytext">Multiple neck finishes & weights</div></div>
+        </div>
+        <div class="mt-4 flex items-center gap-3 text-sm text-bodytext">
+          <i data-lucide="flask-conical" class="w-4 h-4"></i> Food‑contact & chemical‑grade options available
+        </div>
+      </div>
+
+      <!-- Blown Film -->
+      <div class="rounded-2xl border p-6">
+        
+        <img src="images/blown-film.jpg" alt="Blown Film" class="w-full h-100 object-cover rounded-lg mb-3">
+              <h3 class="mt-2 text-2xl font-semibold">Blown Film</h3>
+        <p class="mt-2 text-bodytext">Custom mono and multilayer films with up to 10‑color print for brands that need clarity, strength, and speed.</p>
+        <div class="mt-4 grid sm:grid-cols-2 gap-3">
+          <div class="rounded-xl border p-4"><div class="font-medium">Printed Pure Water Rolls</div><div class="text-sm text-bodytext">Crystal clarity, food-safe inks</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Shrink Film Rolls</div><div class="text-sm text-bodytext">High-hold, low haze</div></div>
+        </div>
+      </div>
+
+      <!-- Gallon Moulding (Blow) -->
+      <div class="rounded-2xl border p-6">
+        <img src="images/gallon-moulding.jpg" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-100 object-cover rounded-lg" />
+        <div class="text-sm text-emerald-700 flex items-center gap-2"><i data-lucide="package" class="w-4 h-4"></i> Product family</div>
+        <h3 class="mt-2 text-2xl font-semibold">Gallon Moulding (Blow)</h3>
+        <p class="mt-2 text-bodytext">Durable HDPE/PP containers in all sizes and forms, designed for safe storage and transport.</p>
+        <div class="mt-4 grid sm:grid-cols-2 gap-3">
+          <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil</div><div class="text-sm text-bodytext">Odor-neutral, food-contact compliant</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Coolants / Lubricant Oil</div><div class="text-sm text-bodytext">Chemical-resistant resins</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Liquid Soap & Detergent</div><div class="text-sm text-bodytext">Drop-tested handles</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Chemicals & Toilet Cleaner</div><div class="text-sm text-bodytext">Secure cap/liner options</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Yogurt Gallon</div><div class="text-sm text-bodytext">Dairy-safe materials</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Shampoo / Personal Care</div><div class="text-sm text-bodytext">Shelf-ready finish</div></div>
+        </div>
+      </div>
+
+      <!-- Lamination & Converting -->
+      <div class="rounded-2xl border p-6">
+        
+        <img src="images/lamination-converting.jpg" alt="Lamination &amp; Converting" class="w-full h-80 object-cover rounded-lg mb-3">
+              <h3 class="mt-2 text-2xl font-semibold">Lamination &amp; Converting</h3>
+        <p class="mt-2 text-bodytext">Printed and laminated films, bags, and pouches engineered for barrier, shelf impact, and machinability.</p>
+        <div class="mt-4 grid sm:grid-cols-2 gap-3">
+          <div class="rounded-xl border p-4"><div class="font-medium">Printed Wrappers & Bags</div><div class="text-sm text-bodytext">Up to 10 colors</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Printed Pouches</div><div class="text-sm text-bodytext">Zippers, valves, spouts</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Printed Shrink Wrap</div><div class="text-sm text-bodytext">360° brand coverage</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Chocolate Wrappers</div><div class="text-sm text-bodytext">High-shine, food-safe</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Standing Pouches</div><div class="text-sm text-bodytext">Gusseted, stand-stable</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Soap Bar & Spices Pack</div><div class="text-sm text-bodytext">Tear-notch, easy-open</div></div>
+          <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil Packet</div><div class="text-sm text-bodytext">Leak-proof seals</div></div>
+        </div>
+      </div>
     </div>
 
+    <!-- Industries -->
+    <div class="mt-10 rounded-2xl border p-6">
+      <div class="text-sm text-neutral-500">Industries served</div>
+      <div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-neutral-700">
+        <span class="rounded-full border px-3 py-1">Food & Beverage</span>
+        <span class="rounded-full border px-3 py-1">Dairy</span>
+        <span class="rounded-full border px-3 py-1">Home & Personal Care</span>
+        <span class="rounded-full border px-3 py-1">Automotive Fluids</span>
+        <span class="rounded-full border px-3 py-1">Industrial Chemicals</span>
+        <span class="rounded-full border px-3 py-1">Retail</span>
+      </div>
+    </div>
+  
 
-    <script>
-        // Lucide Icons
-        lucide.createIcons();
+  
+  <!-- Sustainability -->
+   
+  <section id="sustain" class="bg-neutral-50 border-y">
+    <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div class="rounded-3xl bg-white border p-6 shadow-sm">
+        <div class="text-sm text-neutral-500">Quality & Sustainability</div>
+        <ul class="mt-3 space-y-3 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> In-house recycling plant supporting Ghana’s circular economy</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Strict QA: compression, adhesion, and moisture checks</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Water-based inks/varnishes and recycled stock on request</li>
+        </ul>
+        <div class="mt-6 rounded-xl border p-4 text-sm bg-neutral-50">
+          Continuous improvement through Total Quality Management (TQM).
+        </div>
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-semibold">Reduce. Reuse. Recycle.</h2>
+        <p class="mt-3 text-bodytext">
+          Responsible packaging isn’t optional. Our processes and materials are chosen to cut waste, improve recyclability, and protect consumers.
+        </p>
+      </div>
+    </div>
+  </section>
 
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+  <!-- CTA / Pricing style -->
+  <section class="mx-auto max-w-7xl px-4 py-20" id="cta">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl border p-6">
+        <div class="text-sm text-neutral-500">Samples</div>
+        <div class="mt-1 text-3xl font-semibold">Free</div>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Spec review</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Basic artwork proof</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Lead-time estimate</li>
+        </ul>
+        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border">Enquire</a>
+      </div>
+      <div class="rounded-2xl border p-6 ring-1 ring-emerald-600 border-emerald-600">
+        <div class="text-sm text-neutral-500">Production</div>
+        <div class="mt-1 text-3xl font-semibold">Quote</div>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Full QA reports</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Team workspace</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Priority scheduling</li>
+        </ul>
+        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border">Enquire</a>
+      </div>
+      <div class="rounded-2xl border p-6">
+        <div class="text-sm text-neutral-500">Enterprise</div>
+        <div class="mt-1 text-3xl font-semibold">Talk to us</div>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Custom SLAs</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> On-site audits</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> SAML/SSO (portal)</li>
+        </ul>
+        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border">Enquire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-neutral-50 border-y">
+    <div class="mx-auto max-w-4xl px-4 py-16">
+      <h3 class="text-2xl font-semibold">Frequently asked questions</h3>
+      <div class="mt-6 divide-y">
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Do you support small runs?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">Yes — MOQs from ~100 units on select SKUs. Talk to our team for specifics.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Typical lead times?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">5–10 business days after artwork approval; rush options available.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Food-grade compliance?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">Closed-loop, automated lines minimize contact risk; food-safe inks and coatings offered.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Export readiness?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">We serve Ghana nationwide and export across West Africa with compliant documentation.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-10">
+    <div>
+      <h2 class="text-3xl md:text-4xl font-semibold">Let’s build better packaging</h2>
+      <p class="mt-3 text-bodytext">Share your spec, sketch, or idea. We’ll recommend materials, print, and timelines.</p>
+      <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Head Office</div>
+          <div class="text-bodytext mt-1">Hebron, Adjacent to Hebron Prayer Camp, Nsawam Adoagyiri, Eastern Region, Ghana</div>
+          <div class="mt-1">P.O. Box NK 26, North Kaneshie, Accra</div>
+          <div class="mt-1">Digital Code: GW-0787-0667</div>
+        </div>
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Accra Branch</div>
+          <div class="text-bodytext mt-1">Kassardjian yard, 31 Dadeban Rd, Accra</div>
+        </div>
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Kumasi Branch</div>
+          <div class="text-bodytext mt-1">ATONSU Road, Ashanti, Kumasi</div>
+        </div>
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Reach us</div>
+          <div class="mt-1">Office: +233 30 397 3205 / +233 30 397 3206</div>
+          <div class="mt-1">info@grand-chem.net</div>
+          <div class="mt-1">www.grand-chem.net</div>
+        </div>
+      </div>
+    </div>
+    <form id="quoteForm" class="rounded-2xl border p-6 bg-neutral-50">
+      <div class="text-sm text-neutral-500 mb-2">Request a quote</div>
+      <div class="grid grid-cols-1 gap-3">
+        <input name="company" required class="rounded-xl border px-3 py-2" placeholder="Company name" />
+        <input name="email" type="email" required class="rounded-xl border px-3 py-2" placeholder="Email" />
+        <input name="phone" class="rounded-xl border px-3 py-2" placeholder="Phone" />
+        <select name="product_family" class="rounded-xl border px-3 py-2">
+          <option>Product family</option>
+          <option>Injection Moulding</option>
+          <option>Blown Film</option>
+          <option>Gallon Moulding (Blow)</option>
+          <option>Lamination & Converting</option>
+        </select>
+        <textarea name="message" class="rounded-xl border px-3 py-2 min-h-[120px]" placeholder="Specs, sizes, artwork links…"></textarea>
+        <button id="quoteSubmit" type="submit" class="inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Submit</button>
+            <div id="quoteNote" class="mt-3 text-sm" aria-live="polite"></div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
+      <div>
+        © 2025 Grand‑Chem Limited — SEDEX Certified • Your Packaging Partner
+      </div>
+      <div class="md:text-right">Privacy • Terms</div>
+    </div>
+  </footer>
+
+  <script>
+    // Replace icon placeholders with SVGs
+    lucide.createIcons();
+  </script>
+
+<script>
+  // Replace with your real endpoint (e.g., Formspree/Web3Forms/self-hosted)
+  const ENDPOINT_URL = "https://formspree.io/f/yourid";
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('quoteForm');
+    const btn = document.getElementById('quoteSubmit');
+    const note = document.getElementById('quoteNote');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      note.textContent = "";
+      btn.disabled = true; btn.textContent = "Sending...";
+      const data = {
+        company: form.company.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        product_family: form.product_family.value,
+        message: form.message.value
+      };
+      try {
+        const res = await fetch(ENDPOINT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
         });
+        if (res.ok) {
+          note.className = "mt-3 text-sm text-green-600";
+          note.textContent = "Thanks! Your request has been sent.";
+          form.reset();
+        } else {
+          note.className = "mt-3 text-sm text-accent";
+          note.textContent = "Sorry, there was a problem sending your request.";
+        }
+      } catch (err) {
+        note.className = "mt-3 text-sm text-accent";
+        note.textContent = "Network error. Please try again.";
+      } finally {
+        btn.disabled = false; btn.textContent = "Submit";
+      }
+    });
+  });
+</script>
 
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement){
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  const els = document.querySelectorAll('.odometer');
+  const animate = (el)=>{
+    const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    const dur = 1800, start = performance.now();
+    function tick(now){
+      const p = Math.min(1, (now-start)/dur);
+      const eased = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ animate(e.target); io.unobserve(e.target);} });
+  }, { threshold: .6 });
+  els.forEach(el=> io.observe(el));
+});
+</script>
 
-        // Image Modal/Slider Logic
-        const productCards = document.querySelectorAll('.product-card');
-        const modal = document.getElementById('image-modal');
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalCloseBtn = document.getElementById('modal-close');
-        const sliderImage = document.getElementById('slider-image');
-        const prevBtn = document.getElementById('slider-prev');
-        const nextBtn = document.getElementById('slider-next');
-        let currentImages = [];
-        let currentIndex = 0;
-
-        const openModal = () => {
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            document.body.classList.add('modal-active');
-        };
-
-        const closeModal = () => {
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            document.body.classList.remove('modal-active');
-        };
-
-        const updateSliderImage = () => {
-            sliderImage.src = currentImages[currentIndex];
-        };
-
-        productCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const images = card.dataset.images.split(',');
-                currentImages = images;
-                currentIndex = 0;
-                updateSliderImage();
-                openModal();
-            });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-            updateSliderImage();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % currentImages.length;
-            updateSliderImage();
-        });
-
-        modalOverlay.addEventListener('click', closeModal);
-        modalCloseBtn.addEventListener('click', closeModal);
-        
-        // Keyboard navigation for slider
-        document.addEventListener('keydown', e => {
-            if (!document.body.classList.contains('modal-active')) return;
-            if (e.key === 'Escape') {
-                closeModal();
-            } else if (e.key === 'ArrowLeft') {
-                prevBtn.click();
-            } else if (e.key === 'ArrowRight') {
-                nextBtn.click();
-            }
-        });
-
-    </script>
 </body>
 </html>
