@@ -110,18 +110,18 @@
   @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
 </style>
 <script>
-  const RAW_FILES = [ "2liter gallon.webp", "180 ml-gc.webp", "200ml-gc.webp", "250ml-gc.webp", "1000ml-gc.webp", "grand-chem-bars.webp", "grand-chem-biscut-pack.webp", "grand-chem-bottle.webp", "grand-chem-caps.webp", "grand-chem-Chemicals-storage.webp", "grand-chem-cholate-wrapper.webp", "grand-chem-coffe-pouch.webp", "grand-chem-cosmetics.avif", "grand-chem-detergent.webp", "grand-chem-garbage.webp", "grand-chem-gummy-bear.webp", "grand-chem-palm-oil.webp", "grand-chem-pet-3.webp", "grand-chem-pharma.webp", "grand-chem-potato-chips.webp", "grand-chem-pure-water rolls.webp", "grand-chem-push-pull-cap.webp", "grand-chem-shampoo.webp", "grand-chem-shopping bags.webp", "grand-chem-shrink.webp", "grand-chem-spices.webp", "grand-chem-standing-pouch.webp", "grand-chem-take-away-bag.webp", "gc-toilet-liquid.webp", "grand-chem-yougrt.webp", "grand-chem-yougurt-gallom.webp", "plain-shrink-roll-2.webp", "plain-shrink-roll.webp", "pure-water-roll.webp" ];
+  const RAW_FILES = [ "2liter gallon.webp", "180 ml-gc.webp", "200ml-gc.webp", "250ml-gc.webp", "grand-chem-bars.webp", "grand-chem-biscut-pack.webp", "grand-chem-bottle.webp", "grand-chem-caps.webp", "grand-chem-cholate-wrapper.webp", "grand-chem-coffe-pouch.webp", "grand-chem-cosmetics.webp", "grand-chem-detergent.webp", "grand-chem-garbage.webp", "grand-chem-gummy-bear.webp", "grand-chem-palm-oil.webp", "grand-chem-pet-3.webp", "grand-chem-pharma.webp", "grand-chem-potato-chips.webp", "grand-chem-push-pull-cap.webp", "grand-chem-shopping bags.webp", "grand-chem-shrink.webp", "grand-chem-spices.webp", "grand-chem-standing-pouch.webp", "grand-chem-take-away-bag.webp", "gc-toilet-liquid.webp", "grand-chem-yougrt.webp", "grand-chem-yougurt-gallom.webp", "plain-shrink-roll-2.webp", "plain-shrink-roll.webp", "pure-water-roll.webp" ];
 
   function categorize(nm){
     const n = nm.toLowerCase();
     if (n.includes('cap')) return 'Caps & Closures';
-    if (n.includes('pet') || n.includes('bottle')|| n.includes('ml-gc')) return 'PET & Bottles';
+    if (n.includes('pet') || n.includes('bottle')|| n.includes('ml-gc')) return 'PET Bottles & Preforms ';
     if (n.includes('gallon') || n.includes('liter') || n.includes('toilet') ) return 'Gallons & HDPE';
-    if (n.includes('pouch') || n.includes('bag')) return 'Pouches & Bags';
-    if (n.includes('shrink') || n.includes('wrapper') || n.includes('roll')) return 'Wraps & Shrink';
-    if (n.includes('cosmetics') || n.includes('shampoo')) return 'Home & Personal Care';
+    if (n.includes('pouch') || n.includes('bags')) return 'Pouches & Bags';
+    if (n.includes('shrink')  || n.includes('roll')) return 'Wraps & Shrink';
+    if (n.includes('cosmetics') || n.includes('gummy') || n.includes('shampoo')) return 'Home & Personal Care';
     if (n.includes('pharma') ) return 'Chemicals & Pharma';
-    if (n.includes('oil') || n.includes('chips') || n.includes('chem') || n.includes('biscut') || n.includes('bars') || n.includes('gummy') || n.includes('spices') || n.includes('yog')) return 'Food & Beverage';
+    if (n.includes('oil') || n.includes('chips')  || n.includes('biscut') || n.includes('bars')  || n.includes('spices') || n.includes('yog')) || n.includes('wrapper') return 'Food & Beverage' ;
     if (n.includes('factory') || n.includes('floor') || n.includes('garbage')) return 'Factory & Process';
     return 'Other';
   }
