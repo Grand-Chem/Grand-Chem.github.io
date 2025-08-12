@@ -3,95 +3,81 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grand‑Chem Limited — Your Packaging Partner</title>
-  <meta name="description" content="Grand‑Chem Limited manufactures PET preforms, printed films, custom bags, and HDPE/PP containers in Ghana and West Africa." />
+  <title>Grand-Chem Limited — Your Packaging Partner</title>
+  <meta name="description" content="Grand-Chem Limited manufactures PET preforms, printed films, custom bags, and HDPE/PP containers in Ghana and West Africa." />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-  tailwind = {
-    theme: {
-      extend: {
-        colors: {
-          brand: '#2e3091',   // Button blue
-          accent: '#ed2724',  // Red accents
-          bodytext: '#5658a7' // Body text
-        }
-      }
+    tailwind.config = {
+      theme: { extend: {
+        colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
+      }}
     }
-  }
-</script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: '#2e3091',   // Button blue
-          accent: '#ed2724',  // Red accents
-          bodytext: '#5658a7' // Body text
-        }
-      }
-    }
-  }
-</script>
-  <!-- Lucide icons -->
+  </script>
+
+  <!-- Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>html{scroll-behavior:smooth}</style>
 
-<style>
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,0.06), transparent 60%),
-      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,0.06), transparent 60%),
-      linear-gradient(180deg, rgba(46,48,145,0.03), rgba(237,39,36,0.03));
-  }
-</style>
-<style>
-  /* Gradient + caps to echo the logo */
-  .logo-text{
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    /* gradient sampled from the logo: deep/navy → royal → light blue */
-    background: linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 1px 0 rgba(0,0,0,.12); /* subtle depth like the mark */
-    white-space: nowrap;
-  }
+  <style>
+    html{scroll-behavior:smooth}
+    /* Soft brandy background */
+    body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,.06), transparent 60%),
+      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,.06), transparent 60%),
+      linear-gradient(180deg, rgba(46,48,145,.03), rgba(237,39,36,.03));}
 
-  /* Fallback if background-clip:text isn’t supported */
-  @supports not (-webkit-background-clip: text) {
-    .logo-text { color: #2e3091; }
-  }
-</style>
+    /* Logo gradient text to match mark */
+    .logo-text{font-weight:800;text-transform:uppercase;letter-spacing:.03em;
+      background:linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 1px 0 rgba(0,0,0,.12);white-space:nowrap;}
+    @supports not (-webkit-background-clip:text){.logo-text{color:#2e3091}}
+  </style>
 </head>
+
 <body class="bg-white text-neutral-900 font-sans">
-  <!-- Navbar -->
+
+  <!-- ============ HEADER (desktop + mobile) ============ -->
   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
     <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-2">
-        <img src="images/logo.png" alt="Grand‑Chem" class="h-8 w-auto">
-        <span class="logo-text">Grand‑Chem Limited</span>
+        <img src="images/logo.png" alt="Grand-Chem" class="h-8 w-auto">
+        <span class="logo-text">Grand-Chem Limited</span>
       </a>
+
+      <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="#how" class="hover:opacity-70">How it works</a>
         <a href="products.html" class="hover:opacity-70">Products</a>
         <a href="#sustain" class="hover:opacity-70">Sustainability</a>
         <a href="#faq" class="hover:opacity-70">FAQ</a>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
       </nav>
-      <a href="#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">
-        Contact Sales <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
+
+      <!-- Mobile menu button -->
+      <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile drawer (keeps the CTA inside so it never blocks content) -->
+    <div id="mnav" class="md:hidden hidden border-t">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#how" class="py-1">How it works</a>
+        <a href="products.html" class="py-1">Products</a>
+        <a href="#sustain" class="py-1">Sustainability</a>
+        <a href="#faq" class="py-1">FAQ</a>
+        <a href="#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- ============ HERO ============ -->
   <section id="top" class="relative overflow-hidden">
     <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
       <div>
@@ -109,38 +95,34 @@
         <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
           <i data-lucide="shield" class="w-4 h-4"></i> SEDEX certified
           <span class="mx-1">•</span>
-          <i data-lucide="recycle" class="w-4 h-4"></i> In‑house recycling
+          <i data-lucide="recycle" class="w-4 h-4"></i> In-house recycling
           <span class="mx-1">•</span>
           <i data-lucide="truck" class="w-4 h-4"></i> Regional & export reach
         </div>
       </div>
+
       <div class="rounded-3xl border shadow-sm p-4">
-        <img src="images/hero.webp" alt="Grand‑Chem production" class="w-full h-64 object-cover rounded-2xl mb-4">
-      <div class="text-sm text-bodytext mb-3">Our scale</div>
-      <div class="grid grid-cols-3 gap-4 text-center">
-        <div class="rounded-xl border p-3">
-          <div class="text-3xl font-semibold"><span class="odometer" data-target="300">0</span>+</div>
-          <div class="text-xs text-bodytext">Customers</div>
-        </div>
-        <div class="rounded-xl border p-3">
-          <div class="text-3xl font-semibold"><span class="odometer" data-target="5">0</span>+</div>
-          <div class="text-xs text-bodytext">Countries</div>
-        </div>
-        <div class="rounded-xl border p-3">
-          <div class="text-3xl font-semibold"><span class="odometer" data-target="26890">0</span>+</div>
-          <div class="text-xs text-bodytext">Deliveries</div>
-        </div>
-      </div>
-    </div>
-  </div>
-            
-         
+        <img src="images/hero.webp" alt="Grand-Chem production" class="w-full h-64 object-cover rounded-2xl mb-4">
+        <div class="text-sm text-bodytext mb-3">Our scale</div>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div class="rounded-xl border p-3">
+            <div class="text-3xl font-semibold"><span class="odometer" data-target="300">0</span>+</div>
+            <div class="text-xs text-bodytext">Customers</div>
+          </div>
+          <div class="rounded-xl border p-3">
+            <div class="text-3xl font-semibold"><span class="odometer" data-target="5">0</span>+</div>
+            <div class="text-xs text-bodytext">Countries</div>
+          </div>
+          <div class="rounded-xl border p-3">
+            <div class="text-3xl font-semibold"><span class="odometer" data-target="26890">0</span>+</div>
+            <div class="text-xs text-bodytext">Deliveries</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
+  <!-- ============ HOW IT WORKS ============ -->
   <section id="how" class="bg-neutral-50 border-y">
     <div class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-3 gap-6">
       <div class="rounded-2xl bg-white border p-6 shadow-sm">
@@ -161,70 +143,68 @@
     </div>
   </section>
 
-  <!-- Products -->
-    <div class="mt-100 grid md:grid-cols-2 gap-6">
-      <!-- Injection Moulding -->
-      <div class="rounded-2xl border p-6">
-        <img src="images/injection-moulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover rounded-lg mb-3">
-              <h3 class="mt-2 text-2xl font-semibold">Injection Moulding</h3>
-        <p class="mt-2 text-bodytext">High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance.</p>
-        <div class="mt-4 grid sm:grid-cols-2 gap-3">
-          <div class="rounded-xl border p-4"><div class="font-medium">Caps</div><div class="text-sm text-bodytext">Food-grade, tamper-evident options</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Push &amp; Pull Caps</div><div class="text-sm text-bodytext">Smooth actuation, leak-tested</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">PET Preforms</div><div class="text-sm text-bodytext">Multiple neck finishes & weights</div></div>
-        </div>
-        <div class="mt-4 flex items-center gap-3 text-sm text-bodytext">
-          <i data-lucide="flask-conical" class="w-4 h-4"></i> Food‑contact & chemical‑grade options available
-        </div>
+  <!-- ============ PRODUCTS (overview cards) ============ -->
+  <section class="mx-auto max-w-7xl px-4 py-12 grid md:grid-cols-2 gap-6">
+    <!-- Injection Moulding -->
+    <div class="rounded-2xl border p-6">
+      <img src="images/injection-moulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover rounded-lg mb-3">
+      <h3 class="mt-2 text-2xl font-semibold">Injection Moulding</h3>
+      <p class="mt-2 text-bodytext">High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance.</p>
+      <div class="mt-4 grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl border p-4"><div class="font-medium">Caps</div><div class="text-sm text-bodytext">Food-grade, tamper-evident options</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Push &amp; Pull Caps</div><div class="text-sm text-bodytext">Smooth actuation, leak-tested</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">PET Preforms</div><div class="text-sm text-bodytext">Multiple neck finishes & weights</div></div>
       </div>
-
-      <!-- Blown Film -->
-      <div class="rounded-2xl border p-6">
-        
-        <img src="images/blown-film.webp" alt="Blown Film" class="w-full h-100 object-cover rounded-lg mb-3">
-              <h3 class="mt-2 text-2xl font-semibold">Blown Film</h3>
-        <p class="mt-2 text-bodytext">Custom mono and multilayer films with up to 10‑color print for brands that need clarity, strength, and speed.</p>
-        <div class="mt-4 grid sm:grid-cols-2 gap-3">
-          <div class="rounded-xl border p-4"><div class="font-medium">Printed Pure Water Rolls</div><div class="text-sm text-bodytext">Crystal clarity, food-safe inks</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Shrink Film Rolls</div><div class="text-sm text-bodytext">High-hold, low haze</div></div>
-        </div>
-      </div>
-
-      <!-- Gallon Moulding (Blow) -->
-      <div class="rounded-2xl border p-6">
-        <img src="images/gallon-moulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-100 object-cover rounded-lg" />
-        <div class="text-sm text-emerald-700 flex items-center gap-2"><i data-lucide="package" class="w-4 h-4"></i> Product family</div>
-        <h3 class="mt-2 text-2xl font-semibold">Gallon Moulding (Blow)</h3>
-        <p class="mt-2 text-bodytext">Durable HDPE/PP containers in all sizes and forms, designed for safe storage and transport.</p>
-        <div class="mt-4 grid sm:grid-cols-2 gap-3">
-          <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil</div><div class="text-sm text-bodytext">Odor-neutral, food-contact compliant</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Coolants / Lubricant Oil</div><div class="text-sm text-bodytext">Chemical-resistant resins</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Liquid Soap & Detergent</div><div class="text-sm text-bodytext">Drop-tested handles</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Chemicals & Toilet Cleaner</div><div class="text-sm text-bodytext">Secure cap/liner options</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Yogurt Gallon</div><div class="text-sm text-bodytext">Dairy-safe materials</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Shampoo / Personal Care</div><div class="text-sm text-bodytext">Shelf-ready finish</div></div>
-        </div>
-      </div>
-
-      <!-- Lamination & Converting -->
-      <div class="rounded-2xl border p-6">
-        
-        <img src="images/lamination-converting.webp" alt="Lamination &amp; Converting" class="w-full h-80 object-cover rounded-lg mb-3">
-              <h3 class="mt-2 text-2xl font-semibold">Lamination &amp; Converting</h3>
-        <p class="mt-2 text-bodytext">Printed and laminated films, bags, and pouches engineered for barrier, shelf impact, and machinability.</p>
-        <div class="mt-4 grid sm:grid-cols-2 gap-3">
-          <div class="rounded-xl border p-4"><div class="font-medium">Printed Wrappers & Bags</div><div class="text-sm text-bodytext">Up to 10 colors</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Printed Pouches</div><div class="text-sm text-bodytext">Zippers, valves, spouts</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Printed Shrink Wrap</div><div class="text-sm text-bodytext">360° brand coverage</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Chocolate Wrappers</div><div class="text-sm text-bodytext">High-shine, food-safe</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Standing Pouches</div><div class="text-sm text-bodytext">Gusseted, stand-stable</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Soap Bar & Spices Pack</div><div class="text-sm text-bodytext">Tear-notch, easy-open</div></div>
-          <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil Packet</div><div class="text-sm text-bodytext">Leak-proof seals</div></div>
-        </div>
+      <div class="mt-4 flex items-center gap-3 text-sm text-bodytext">
+        <i data-lucide="flask-conical" class="w-4 h-4"></i> Food-contact & chemical-grade options available
       </div>
     </div>
 
-    <!-- Industries -->
+    <!-- Blown Film -->
+    <div class="rounded-2xl border p-6">
+      <img src="images/blown-film.webp" alt="Blown Film" class="w-full h-80 object-cover rounded-lg mb-3">
+      <h3 class="mt-2 text-2xl font-semibold">Blown Film</h3>
+      <p class="mt-2 text-bodytext">Custom mono and multilayer films with up to 10-color print for brands that need clarity, strength, and speed.</p>
+      <div class="mt-4 grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl border p-4"><div class="font-medium">Printed Pure Water Rolls</div><div class="text-sm text-bodytext">Crystal clarity, food-safe inks</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Shrink Film Rolls</div><div class="text-sm text-bodytext">High-hold, low haze</div></div>
+      </div>
+    </div>
+
+    <!-- Gallon Moulding -->
+    <div class="rounded-2xl border p-6">
+      <img src="images/gallon-moulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-80 object-cover rounded-lg mb-3" />
+      <h3 class="mt-2 text-2xl font-semibold">Gallon Moulding (Blow)</h3>
+      <p class="mt-2 text-bodytext">Durable HDPE/PP containers in all sizes and forms, designed for safe storage and transport.</p>
+      <div class="mt-4 grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil</div><div class="text-sm text-bodytext">Odor-neutral, food-contact compliant</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Coolants / Lubricant Oil</div><div class="text-sm text-bodytext">Chemical-resistant resins</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Liquid Soap & Detergent</div><div class="text-sm text-bodytext">Drop-tested handles</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Chemicals & Toilet Cleaner</div><div class="text-sm text-bodytext">Secure cap/liner options</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Yogurt Gallon</div><div class="text-sm text-bodytext">Dairy-safe materials</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Shampoo / Personal Care</div><div class="text-sm text-bodytext">Shelf-ready finish</div></div>
+      </div>
+    </div>
+
+    <!-- Lamination & Converting -->
+    <div class="rounded-2xl border p-6">
+      <img src="images/lamination-converting.webp" alt="Lamination & Converting" class="w-full h-80 object-cover rounded-lg mb-3">
+      <h3 class="mt-2 text-2xl font-semibold">Lamination &amp; Converting</h3>
+      <p class="mt-2 text-bodytext">Printed and laminated films, bags, and pouches engineered for barrier, shelf impact, and machinability.</p>
+      <div class="mt-4 grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl border p-4"><div class="font-medium">Printed Wrappers & Bags</div><div class="text-sm text-bodytext">Up to 10 colors</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Printed Pouches</div><div class="text-sm text-bodytext">Zippers, valves, spouts</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Printed Shrink Wrap</div><div class="text-sm text-bodytext">360° brand coverage</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Chocolate Wrappers</div><div class="text-sm text-bodytext">High-shine, food-safe</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Standing Pouches</div><div class="text-sm text-bodytext">Gusseted, stand-stable</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Soap Bar & Spices Pack</div><div class="text-sm text-bodytext">Tear-notch, easy-open</div></div>
+        <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil Packet</div><div class="text-sm text-bodytext">Leak-proof seals</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INDUSTRIES ============ -->
+  <section class="mx-auto max-w-7xl px-4">
     <div class="mt-10 rounded-2xl border p-6">
       <div class="text-sm text-neutral-500">Industries served</div>
       <div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-neutral-700">
@@ -236,11 +216,9 @@
         <span class="rounded-full border px-3 py-1">Retail</span>
       </div>
     </div>
-  
+  </section>
 
-  
-  <!-- Sustainability -->
-   
+  <!-- ============ SUSTAINABILITY ============ -->
   <section id="sustain" class="bg-neutral-50 border-y">
     <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
       <div class="rounded-3xl bg-white border p-6 shadow-sm">
@@ -263,7 +241,7 @@
     </div>
   </section>
 
-  <!-- CTA / Pricing style -->
+  <!-- ============ CTA / PRICING STYLE ============ -->
   <section class="mx-auto max-w-7xl px-4 py-20" id="cta">
     <div class="grid md:grid-cols-3 gap-6">
       <div class="rounded-2xl border p-6">
@@ -299,7 +277,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ============ FAQ ============ -->
   <section id="faq" class="bg-neutral-50 border-y">
     <div class="mx-auto max-w-4xl px-4 py-16">
       <h3 class="text-2xl font-semibold">Frequently asked questions</h3>
@@ -332,7 +310,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- ============ CONTACT ============ -->
   <section id="contact" class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-10">
     <div>
       <h2 class="text-3xl md:text-4xl font-semibold">Let’s build better packaging</h2>
@@ -360,6 +338,7 @@
         </div>
       </div>
     </div>
+
     <form id="quoteForm" class="rounded-2xl border p-6 bg-neutral-50">
       <div class="text-sm text-neutral-500 mb-2">Request a quote</div>
       <div class="grid grid-cols-1 gap-3">
@@ -375,7 +354,7 @@
         </select>
         <textarea name="message" class="rounded-xl border px-3 py-2 min-h-[120px]" placeholder="Specs, sizes, artwork links…"></textarea>
         <button id="quoteSubmit" type="submit" class="inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Submit</button>
-            <div id="quoteNote" class="mt-3 text-sm" aria-live="polite"></div>
+        <div id="quoteNote" class="mt-3 text-sm" aria-live="polite"></div>
       </div>
     </form>
   </section>
@@ -383,82 +362,69 @@
   <!-- Footer -->
   <footer class="border-t">
     <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
-      <div>
-        © 2025 Grand‑Chem Limited — SEDEX Certified • Your Packaging Partner
-      </div>
+      <div>© 2025 Grand-Chem Limited — SEDEX Certified • Your Packaging Partner</div>
       <div class="md:text-right">Privacy • Terms</div>
     </div>
   </footer>
 
+  <!-- Icons -->
+  <script>lucide.createIcons();</script>
+
+  <!-- Mobile menu toggle (this is the bit you asked about) -->
   <script>
-    // Replace icon placeholders with SVGs
-    lucide.createIcons();
+    const mnavBtn = document.getElementById('mnavBtn');
+    const mnav    = document.getElementById('mnav');
+    if (mnavBtn) mnavBtn.onclick = () => {
+      mnav.classList.toggle('hidden');
+      mnavBtn.innerHTML = mnav.classList.contains('hidden')
+        ? '<i data-lucide="menu" class="w-6 h-6"></i>'
+        : '<i data-lucide="x" class="w-6 h-6"></i>';
+      lucide.createIcons();
+    };
   </script>
 
-<script>
-  // Replace with your real endpoint (e.g., Formspree/Web3Forms/self-hosted)
-  const ENDPOINT_URL = "https://formspree.io/f/yourid";
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('quoteForm');
-    const btn = document.getElementById('quoteSubmit');
-    const note = document.getElementById('quoteNote');
-    if (!form) return;
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      note.textContent = "";
-      btn.disabled = true; btn.textContent = "Sending...";
-      const data = {
-        company: form.company.value,
-        email: form.email.value,
-        phone: form.phone.value,
-        product_family: form.product_family.value,
-        message: form.message.value
-      };
-      try {
-        const res = await fetch(ENDPOINT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-        if (res.ok) {
-          note.className = "mt-3 text-sm text-green-600";
-          note.textContent = "Thanks! Your request has been sent.";
-          form.reset();
-        } else {
-          note.className = "mt-3 text-sm text-accent";
-          note.textContent = "Sorry, there was a problem sending your request.";
-        }
-      } catch (err) {
-        note.className = "mt-3 text-sm text-accent";
-        note.textContent = "Network error. Please try again.";
-      } finally {
-        btn.disabled = false; btn.textContent = "Submit";
-      }
+  <!-- Quote form (optional endpoint placeholder) -->
+  <script>
+    const ENDPOINT_URL = "https://formspree.io/f/yourid"; // replace with your real endpoint
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('quoteForm');
+      const btn  = document.getElementById('quoteSubmit');
+      const note = document.getElementById('quoteNote');
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); note.textContent=""; btn.disabled = true; btn.textContent = "Sending...";
+        const data = Object.fromEntries(new FormData(form).entries());
+        try {
+          const res = await fetch(ENDPOINT_URL, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(data) });
+          if (res.ok) { note.className="mt-3 text-sm text-green-600"; note.textContent="Thanks! Your request has been sent."; form.reset(); }
+          else { note.className="mt-3 text-sm text-accent"; note.textContent="Sorry, there was a problem sending your request."; }
+        } catch {
+          note.className="mt-3 text-sm text-accent"; note.textContent="Network error. Please try again.";
+        } finally { btn.disabled = false; btn.textContent = "Submit"; }
+      });
     });
-  });
-</script>
+  </script>
 
-
-<script>
-document.addEventListener('DOMContentLoaded', ()=>{
-  const els = document.querySelectorAll('.odometer');
-  const animate = (el)=>{
-    const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-    const dur = 1800, start = performance.now();
-    function tick(now){
-      const p = Math.min(1, (now-start)/dur);
-      const eased = 1 - Math.pow(1-p, 3);
-      el.textContent = Math.floor(eased * target).toLocaleString();
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  };
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ animate(e.target); io.unobserve(e.target);} });
-  }, { threshold: .6 });
-  els.forEach(el=> io.observe(el));
-});
-</script>
-
+  <!-- Odometer animation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const els = document.querySelectorAll('.odometer');
+      const animate = (el)=>{
+        const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+        const dur = 1800, start = performance.now();
+        function tick(now){
+          const p = Math.min(1, (now-start)/dur);
+          const eased = 1 - Math.pow(1-p, 3);
+          el.textContent = Math.floor(eased * target).toLocaleString();
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ animate(e.target); io.unobserve(e.target);} });
+      }, { threshold: .6 });
+      els.forEach(el=> io.observe(el));
+    });
+  </script>
 </body>
 </html>
