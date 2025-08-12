@@ -3,182 +3,528 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grand‑Chem Products</title>
+  <title>Grand-Chem Products</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    
-  tailwind = {
-    theme: {
-      extend: {
-        colors: {
-          brand: '#2e3091',   // Button blue
-          accent: '#ed2724',  // Red accents
-          bodytext: '#5658a7' // Body textf
-        }
-      }
+    tailwind.config = {
+      theme: { extend: {
+        colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
+      }}
     }
-  }
-  
-</script>
+  </script>
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: '#2e3091',   // Button blue
-          accent: '#ed2724',  // Red accents
-          bodytext: '#5658a7' // Body text
-        }
-      }
+  <style>
+    html{scroll-behavior:smooth}
+    /* soft gradient background */
+    body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,.06), transparent 60%),
+      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,.06), transparent 60%),
+      linear-gradient(180deg, rgba(46,48,145,.03), rgba(237,39,36,.03));}
+
+    /* Logo text gradient (matches your mark) */
+    .logo-text{font-weight:800;text-transform:uppercase;letter-spacing:.03em;
+      background:linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 1px 0 rgba(0,0,0,.12);white-space:nowrap;}
+    @supports not (-webkit-background-clip:text){.logo-text{color:#2e3091}}
+
+    /* Cards */
+    .float-card{background:linear-gradient(180deg,#f3f5f9,#f9faff);
+      border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;
+      box-shadow:0 6px 24px rgba(0,0,0,.06);transition:transform .25s,box-shadow .25s;
+      animation:floatY 6s ease-in-out infinite}
+    .float-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 10px 32px rgba(0,0,0,.10)}
+    @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+
+    /* Modal shell (centered, phone-friendly) */
+    .gc-backdrop{background:rgba(0,0,0,.42)}
+    .gc-modal{
+      /* centered width limits */
+      width:100%;
+      max-width:1100px;
+      /* height: full on mobile (minus 24px padding), auto on md+ */
+      height:calc(100vh - 24px);
     }
-  }
-</script>
- <style>
-  /* Gradient + caps to echo the logo */
-  .logo-text{
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    /* gradient sampled from the logo: deep/navy → royal → light blue */
-    background: linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 1px 0 rgba(0,0,0,.12); /* subtle depth like the mark */
-    white-space: nowrap;
-  }
+    @media (min-width:768px){
+      .gc-modal{height:auto;max-height:calc(100vh - 96px)}
+    }
 
-  /* Fallback if background-clip:text isn’t supported */
-  @supports not (-webkit-background-clip: text) {
-    .logo-text { color: #2e3091; }
-  }
-</style> 
-<script src="https://unpkg.com/lucide@latest"></script>
-  <style>html{scroll-behavior:smooth}</style>
-
-  
-  
-
-
-<style>
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,0.06), transparent 60%),
-      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,0.06), transparent 60%),
-      linear-gradient(180deg, rgba(46,48,145,0.03), rgba(237,39,36,0.03));
-  }
-</style>
-
+    /* Pills */
+    .gc-tab{border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:8px 12px;font-size:.9rem;background:#fff}
+    .gc-tab.active{background:#2e3091;color:#fff;border-color:#2e3091}
+    .gc-choice{border:1px solid rgba(0,0,0,.12);border-radius:9999px;padding:6px 12px;font-size:.9rem;background:#fff}
+    .gc-choice.active{background:#2e3091;color:#fff;border-color:#2e3091}
+    .btn-brand{background:#2e3091;color:#fff;border-radius:12px;padding:10px 16px}
+    .btn-brand:hover{filter:brightness(.95)}
+  </style>
 </head>
+
 <body class="bg-white text-neutral-900 font-sans">
-  <header class="border-b">
-    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2"><img src="images/logo.png" alt="Grand‑Chem" class="h-8 w-auto"><span class="logo-text">Grand‑Chem Limited</span></a>
-      <a class="text-sm underline" href="index.html#contact">Contact</a>
+
+  <!-- ========= HEADER (MOBILE MENU INCLUDED) ========= -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="images/logo.png" alt="Grand-Chem" class="h-8 w-auto">
+        <span class="logo-text">Grand-Chem Limited</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html#how" class="hover:opacity-70">How it works</a>
+        <a href="products.html" class="hover:opacity-70 text-brand font-medium">Products</a>
+        <a href="index.html#sustain" class="hover:opacity-70">Sustainability</a>
+        <a href="index.html#faq" class="hover:opacity-70">FAQ</a>
+        <a href="index.html#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
+      </nav>
+
+      <!-- Mobile button -->
+      <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="mnav" class="md:hidden hidden border-t">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="index.html#how" class="py-1">How it works</a>
+        <a href="products.html" class="py-1 text-brand font-medium">Products</a>
+        <a href="index.html#sustain" class="py-1">Sustainability</a>
+        <a href="index.html#faq" class="py-1">FAQ</a>
+        <!-- Move the button *inside* the mobile menu so it never blocks content -->
+        <a href="index.html#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">
+          Contact Sales
+        </a>
+      </div>
     </div>
   </header>
 
-  
+  <!-- Intro -->
+  <section class="mx-auto max-w-7xl px-4 pt-8">
+    <h1 class="text-3xl md:text-4xl font-semibold">Product gallery</h1>
+    <p class="mt-2 text-bodytext max-w-3xl">
+      Explore our core product families. Click any card to view sizes, colors, packs & MOQ, plus a quick image slider.
+    </p>
+  </section>
 
-  <script>lucide.createIcons();</script>
+  <!-- Section cards -->
+  <section id="sectionsGrid" class="mx-auto max-w-7xl px-4 py-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></section>
 
-<section id="gallery" class="mx-auto max-w-7xl px-4 py-16">
-  <div class="flex items-end justify-between gap-6">
-    <div>
-      <h2 class="text-3xl md:text-4xl font-semibold">Product gallery</h2>
-
-    </div>
-  </div>
-
-  <div id="galleryChips" class="mt-6 flex flex-wrap gap-2"></div>
-  <div id="galleryGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-</section>
-<style>
-  .chip{border-radius:9999px;border:1px solid rgba(0,0,0,.08);padding:6px 12px;font-size:.875rem;background:#fff;cursor:pointer}
-  .chip.active{background:#2e3091;color:#fff;border-color:#2e3091}
-  .float-card{background:linear-gradient(180deg,#f3f5f9,#f9faff);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;box-shadow:0 6px 24px rgba(0,0,0,.06);transition:transform .25s ease,box-shadow .25s ease;animation:floatY 6s ease-in-out infinite}
-  .float-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 10px 32px rgba(0,0,0,.10)}
-  .float-card img{border-radius:12px;display:block;width:100%;height:auto}
-  @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
-</style>
-<script>
-  const RAW_FILES = [ "2liter gallon.webp", "180 ml-gc.webp", "200ml-gc.webp", "250ml-gc.webp", "grand-chem-bars.webp", "grand-chem-biscut-pack.webp", "grand-chem-bottle.webp", "grand-chem-caps.webp", "grand-chem-cholate-wrapper.webp", "grand-chem-coffe-pouch.webp", "grand-chem-cosmetics.webp", "grand-chem-detergent.webp", "grand-chem-garbage.webp", "grand-chem-gummy-bear.webp", "grand-chem-palm-oil.webp", "grand-chem-pet-3.webp", "grand-chem-pharma.webp", "grand-chem-potato-chips.webp", "grand-chem-push-pull-cap.webp", "grand-chem-shopping bags.webp", "grand-chem-shrink.webp", "grand-chem-spices.webp", "grand-chem-standing-pouch.webp", "grand-chem-take-away-bag.webp", "gc-toilet-liquid.webp", "grand-chem-yougrt.webp", "grand-chem-yougurt-gallom.webp", "plain-shrink-roll-2.webp", "plain-shrink-roll.webp", "pure-water-roll.webp" ];
-
-  function categorize(nm){
-    const n = nm.toLowerCase();
-    if (n.includes('cap')) return 'Caps & Closures';
-    if (n.includes('pet') || n.includes('bottle')|| n.includes('ml-gc')) return 'PET Bottles & Preforms ';
-    if (n.includes('gallon') || n.includes('liter') || n.includes('toilet') ) return 'Gallons & HDPE';
-    if (n.includes('pouch') || n.includes('bags')) return 'Pouches & Bags';
-    if (n.includes('shrink')  || n.includes('roll')) return 'Wraps & Shrink';
-    if (n.includes('cosmetics') || n.includes('gummy') || n.includes('shampoo')) return 'Home & Personal Care';
-    if (n.includes('pharma') ) return 'Chemicals & Pharma';
-    if (n.includes('oil') || n.includes('chips')  || n.includes('biscut') || n.includes('bars')  || n.includes('spices') || n.includes('wrapper') || n.includes('yog')) return 'Food & Beverage' ;
-    if (n.includes('factory') || n.includes('floor') || n.includes('garbage')) return 'Factory & Process';
-    return 'Other';
-  }
-
-  const ITEMS = RAW_FILES.map(fn => ({ file: fn, cat: categorize(fn), src: 'images/gallery/' + encodeURIComponent(fn) }));
-  const CATS = ['All', ...Array.from(new Set(ITEMS.map(i=>i.cat)))];
-
-  const chips = document.getElementById('galleryChips');
-  const grid = document.getElementById('galleryGrid');
-
-  function renderChips(active='All'){
-    chips.innerHTML = '';
-    CATS.forEach(cat => {
-      const b = document.createElement('button');
-      b.className = 'chip' + (cat===active ? ' active' : '');
-      b.textContent = cat;
-      b.onclick = () => { renderChips(cat); renderGrid(cat); };
-      chips.appendChild(b);
-    });
-  }
-
-  function renderGrid(active='All'){
-    grid.innerHTML = '';
-    const list = active==='All' ? ITEMS : ITEMS.filter(i=>i.cat===active);
-    list.forEach((item, idx)=>{
-      const card = document.createElement('div');
-      card.className = 'float-card';
-      card.style.animationDelay = (idx%5)*0.15 + 's';
-      card.innerHTML = `
-        <img src="${item.src}" alt="${item.file}" loading="lazy">
-        <div class="mt-2 text-sm"><span class="text-bodytext">${item.cat}</span></div>
-
-      `;
-      grid.appendChild(card);
-    });
-  }
-
-  renderChips();
-  renderGrid();
-</script>
-
-
-<script>
-  // Remove duplicated images inside product cards (keeps the first image only)
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.rounded-2xl.border.p-6').forEach(card => {
-      const imgs = card.querySelectorAll('img');
-      for (let i = 1; i < imgs.length; i++) imgs[i].remove();
-    });
-  });
-</script>
-
-</body>
-<footer class="border-t mt-16">
+  <!-- Footer -->
+  <footer class="border-t mt-16">
     <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
-      <div>© 2025 Grand‑Chem Limited — SEDEX Certified • Your Packaging Partner</div>
+      <div>© 2025 Grand-Chem Limited — SEDEX Certified • Your Packaging Partner</div>
       <div class="md:text-right">Privacy • Terms</div>
     </div>
   </footer>
+
+  <!-- ===== MODAL (Centered + mobile-friendly) ===== -->
+  <div id="modalRoot" class="fixed inset-0 hidden z-[60]">
+    <!-- Centering layer -->
+    <div class="absolute inset-0 gc-backdrop"></div>
+    <div class="relative w-full h-full grid place-items-center p-3 md:p-6">
+      <div class="relative bg-white rounded-2xl shadow-xl border gc-modal overflow-hidden">
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b">
+          <div class="flex items-center gap-3">
+            <div class="h-9 w-9 rounded-lg bg-brand/10 flex items-center justify-center">
+              <i data-lucide="package" class="w-5 h-5 text-brand"></i>
+            </div>
+            <div>
+              <div id="mTitle" class="text-lg font-semibold">Title</div>
+              <div id="mSubtitle" class="text-sm text-brand"></div>
+            </div>
+          </div>
+          <button id="mClose" class="p-2 rounded-lg hover:bg-neutral-100">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Body: stacks on mobile, splits on md+ -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 max-h-full md:max-h-[calc(100vh-160px)]">
+          <!-- Images -->
+          <div class="p-4">
+            <div class="relative rounded-xl overflow-hidden border bg-neutral-50">
+              <img id="mImg" alt="" class="w-full h-[48vh] md:h-[420px] object-contain bg-white">
+              <button id="mPrev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+              </button>
+              <button id="mNext" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </button>
+            </div>
+            <div id="mDots" class="flex items-center justify-center gap-2 mt-3"></div>
+          </div>
+
+          <!-- Details -->
+          <div class="p-5 overflow-y-auto">
+            <div class="flex gap-2 mb-4">
+              <button id="tab1" class="gc-tab">Sizes</button>
+              <button id="tab2" class="gc-tab">Colors</button>
+              <button id="tab3" class="gc-tab">MOQ</button>
+            </div>
+            <div id="mBody" class="text-sm leading-relaxed"></div>
+
+            <a href="index.html#contact" class="inline-flex items-center gap-2 btn-brand mt-6">
+              Request a quote <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Mobile menu toggle (prevents “blocking” button on phones) */
+    const mnavBtn = document.getElementById('mnavBtn');
+    const mnav = document.getElementById('mnav');
+    if (mnavBtn) mnavBtn.onclick = ()=>{
+      mnav.classList.toggle('hidden');
+      mnavBtn.innerHTML = mnav.classList.contains('hidden')
+        ? '<i data-lucide="menu" class="w-6 h-6"></i>'
+        : '<i data-lucide="x" class="w-6 h-6"></i>';
+      lucide.createIcons();
+    };
+
+    /* ------------------ DATA ------------------ */
+    const IMG = (n) => `images/gallery/${n}`;
+
+    const SECTIONS = [
+      { id:'film',  title:'Blown Film', desc:'Mono & multilayer; pure water & shrink',
+        img: IMG('plain-shrink-roll.webp'),
+        images:[IMG('plain-shrink-roll.webp'), IMG('plain-shrink-roll-2.webp'), IMG('grand-chem-shrink.webp')],
+        modalType:'film'
+      },
+      { id:'pet',   title:'PET Bottles', desc:'140–1500 ml; pharma, food & personal care',
+        img: IMG('grand-chem-bottle.webp'),
+        images:[IMG('grand-chem-bottle.webp'), IMG('grand-chem-pharma.webp'), IMG('grand-chem-cosmetics.webp')],
+        modalType:'pet'
+      },
+      { id:'caps',  title:'Caps & Closures', desc:'Screw, push-pull; any color',
+        img: IMG('grand-chem-push-pull-cap.webp'),
+        images:[IMG('grand-chem-push-pull-cap.webp'), IMG('grand-chem-caps.webp')],
+        modalType:'caps'
+      },
+      { id:'lam',   title:'Lamination Jobs', desc:'Pouches, wrappers, barrier laminates',
+        img: IMG('grand-chem-spices.webp'),
+        images:[IMG('grand-chem-spices.webp'), IMG('grand-chem-coffe-pouch.webp'), IMG('grand-chem-cholate-wrapper.webp')],
+        modal: { subtitle:'Pouches, wrappers, high-barrier laminates', simple:[
+          'Gusseted, stand-pouch, zipper, spout & valve options.',
+          'High-shine chocolate wrappers to matte coffee textures.'
+        ], moq:'MOQ depends on width & print — usually 1–3 rolls' }
+      },
+      { id:'preforms',title:'Preforms', desc:'Multiple necks & gram weights',
+        img: IMG('grand-chem-pet-3.webp'),
+        images:[IMG('grand-chem-pet-3.webp'), IMG('grand-chem-yougrt.webp')],
+        modalType:'preforms'
+      },
+      { id:'gallon',title:'Gallon Moulding', desc:'HDPE 2 L & 4.5 L; cap + insert',
+        img: IMG('2liter gallon.webp'),
+        images:[IMG('2liter gallon.webp'), IMG('gc-toilet-liquid.webp'), IMG('grand-chem-palm-oil.webp')],
+        modalType:'gallons'
+      },
+      { id:'custom',title:'Custom Jobs', desc:'Special specs & brand work',
+        img: IMG('grand-chem-factory-floor.webp'),
+        images:[IMG('grand-chem-factory-bag-making.webp'), IMG('grand-chem-Chemicals-storage.webp')],
+        modal: { subtitle:'Unique sizes, colors, finishes & barrier targets', simple:[
+          'Send dieline or sample; we engineer the stack-up.',
+          'Artwork proofing & pilot runs to de-risk production.'
+        ], moq:'Project-dependent' }
+      }
+    ];
+
+    const PREFORMS = {
+      "29/25 mm":[{g:9.7,pack:"2400 pcs/bag"},{g:11,pack:"2400 pcs/bag"}],
+      "30 mm":[
+        {g:11,pack:"2100 pcs/bag"},{g:12,pack:"2100 pcs/bag"},{g:12.8,pack:"2100 pcs/bag"},
+        {g:14,pack:"1700 pcs/bag"},{g:14.5,pack:"1700 pcs/bag"},{g:17,pack:"1700 pcs/bag"},
+        {g:32,pack:"900 pcs/bag"},{g:36,pack:"900 pcs/bag"}
+      ],
+      "28 mm SN":[{g:17.7,pack:"1600 pcs/bag"},{g:22,pack:"1500 pcs/bag"}],
+      "28 mm":[{g:14.5,pack:"1700 pcs/bag"},{g:17,pack:"1700 pcs/bag"},{g:19,pack:"1200 pcs/bag"},
+               {g:23,pack:"1200 pcs/bag"},{g:31,pack:"900 pcs/bag"},{g:36,pack:"900 pcs/bag"}]
+    };
+
+    const CAPS = {
+      "29/25 mm":{ g:1.3, pack:"1000 pcs/bag" },
+      "30/25 mm":{ g:1.8, pack:"1000 pcs/bag" },
+      "1881 CSD 8":{ g:2.7, pack:"1000 pcs/bag" }
+    };
+
+    const PET_SIZES=[140,180,200,250,300,350,500,1000,1500];
+    function petPack(size){ return size>=1000 ? {bag:"50 pcs/bag", moq:"10 bags"} : {bag:"100 pcs/bag", moq:"10 bags"} }
+
+    const GALLONS = {
+      "4.5 L": {
+        weights:{
+          "Normal (160 g)":{"colors":["Clear","Milky White","Custom"],pack:"10 pcs/bag"},
+          "Heavy (190 g +)":{"colors":["Clear","Milky White","Custom"],pack:"10 pcs/bag"}
+        },
+        note:"Comes with cap + insert. Custom molds on request."
+      },
+      "2 L": { colors:["Clear","Milky White","Custom"], pack:"20 pcs/bag", note:"Comes with cap + insert." }
+    };
+
+    /* ------------------ RENDER CARDS ------------------ */
+    const grid = document.getElementById('sectionsGrid');
+    function card(section, idx){
+      const el=document.createElement('div');
+      el.className='float-card cursor-pointer';
+      el.style.animationDelay=(idx%5)*0.12+'s';
+      el.innerHTML=`
+        <img src="${section.img}" alt="${section.title}" class="w-full h-60 object-cover rounded-lg mb-3">
+        <div class="text-xs text-brand mb-1">${section.desc||''}</div>
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold">${section.title}</h3>
+          <button class="px-3 py-1 text-sm rounded-lg border">View</button>
+        </div>`;
+      el.addEventListener('click',()=>openModal(section));
+      return el;
+    }
+    SECTIONS.forEach((s,i)=>grid.appendChild(card(s,i)));
+
+    /* ------------------ MODAL CORE ------------------ */
+    const modalRoot=document.getElementById('modalRoot');
+    const mImg=document.getElementById('mImg');
+    const mTitle=document.getElementById('mTitle');
+    const mSubtitle=document.getElementById('mSubtitle');
+    const mBody=document.getElementById('mBody');
+    const mDots=document.getElementById('mDots');
+    const mPrev=document.getElementById('mPrev');
+    const mNext=document.getElementById('mNext');
+    const tab1=document.getElementById('tab1'), tab2=document.getElementById('tab2'), tab3=document.getElementById('tab3');
+
+    let cur={images:[],i:0,modalType:null,section:null};
+
+    function setImg(i){
+      cur.i=(i+cur.images.length)%cur.images.length;
+      mImg.src=cur.images[cur.i];
+      mDots.innerHTML=cur.images.map((_,k)=>`<span class="${k===cur.i?'w-2.5':'w-1.5'} h-1.5 rounded-full ${k===cur.i?'bg-brand':'bg-neutral-300'} inline-block"></span>`).join('');
+    }
+
+    function openModal(section){
+      cur={images:section.images||[section.img],i:0,modalType:section.modalType||null,section};
+      mTitle.textContent=section.title;
+      mSubtitle.textContent=section.modal?.subtitle||section.desc||'';
+      setImg(0);
+      modalRoot.classList.remove('hidden');
+      document.body.style.overflow='hidden';
+
+      tab1.textContent='Sizes'; tab2.textContent='Colors'; tab3.textContent='MOQ';
+      tab1.classList.add('active'); tab2.classList.remove('active'); tab3.classList.remove('active');
+
+      switch(section.modalType){
+        case 'preforms': renderPreforms(); break;
+        case 'gallons' : renderGallons(); break;
+        case 'caps'    : renderCaps(); break;
+        case 'film'    : renderFilm(); break;
+        case 'pet'     : renderPET(); break;
+        default        : renderSimple(section.modal);
+      }
+      lucide.createIcons();
+    }
+
+    document.getElementById('mClose').onclick=closeModal;
+    function closeModal(){ modalRoot.classList.add('hidden'); document.body.style.overflow='auto' }
+    modalRoot.addEventListener('click',e=>{ if(e.target===modalRoot) closeModal() });
+    mPrev.onclick=()=>setImg(cur.i-1);
+    mNext.onclick=()=>setImg(cur.i+1);
+
+    tab1.onclick=()=>{ tab1.classList.add('active');tab2.classList.remove('active');tab3.classList.remove('active'); route('sizes'); };
+    tab2.onclick=()=>{ tab2.classList.add('active');tab1.classList.remove('active');tab3.classList.remove('active'); route('colors'); };
+    tab3.onclick=()=>{ tab3.classList.add('active');tab1.classList.remove('active');tab2.classList.remove('active'); route('moq'); };
+    function route(which){
+      switch(cur.section.modalType){
+        case 'preforms': if(which==='sizes') renderPreforms(); else if(which==='colors') renderColorsNote(); else renderPreformsMOQ(); break;
+        case 'gallons' : renderGallons(which); break;
+        case 'caps'    : renderCaps(which); break;
+        case 'film'    : renderFilm(which); break;
+        case 'pet'     : renderPET(which); break;
+        default        : if(which==='sizes') renderSimple(cur.section.modal); else if(which==='colors') renderColorsNote(); else renderMOQ(cur.section.modal);
+      }
+    }
+
+    /* ---------- simple bodies ---------- */
+    function renderSimple(modal){
+      mBody.innerHTML = `<ul class="list-disc pl-5 space-y-1">${(modal?.simple||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    }
+    function renderColorsNote(){ mBody.innerHTML = `<div class="text-sm">Most items available in <b>any color</b> on request. Brand color matching supported.</div>`; }
+    function renderMOQ(modal){ mBody.innerHTML = `<div class="text-sm">MOQ: ${modal?.moq||'Project-dependent'}.</div>`; }
+
+    /* ---------- Preforms: size -> grams -> pack ---------- */
+    let pf_selectedSize=null;
+    function renderPreforms(){
+      const sizes=Object.keys(PREFORMS);
+      if(!pf_selectedSize) pf_selectedSize=sizes[0];
+      const grams=PREFORMS[pf_selectedSize];
+      mBody.innerHTML=`
+        <div class="text-xs text-neutral-500 mb-2">Pick neck size, then gram to reveal pack:</div>
+        <div class="flex flex-wrap gap-2 mb-3">
+          ${sizes.map(s=>`<button data-size="${s}" class="gc-choice ${s===pf_selectedSize?'active':''}">${s}</button>`).join('')}
+        </div>
+        <div class="text-xs text-neutral-500 mb-1">Grams</div>
+        <div class="flex flex-wrap gap-2">
+          ${grams.map(g=>`<button data-gram="${g.g}" class="gc-choice">${g.g} g</button>`).join('')}
+        </div>
+        <div id="pfPack" class="mt-4 text-sm"></div>`;
+      mBody.querySelectorAll('[data-size]').forEach(b=> b.onclick=()=>{pf_selectedSize=b.dataset.size;renderPreforms();});
+      mBody.querySelectorAll('[data-gram]').forEach(b=> b.onclick=()=>{
+        const g=+b.dataset.gram, found=PREFORMS[pf_selectedSize].find(x=>x.g===g);
+        mBody.querySelector('#pfPack').innerHTML=`<div class="rounded-lg border p-3 bg-neutral-50">Pack: <b>${found.pack}</b></div>`;
+        mBody.querySelectorAll('[data-gram]').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+      });
+    }
+    function renderPreformsMOQ(){ mBody.innerHTML=`<div class="text-sm">Typical MOQ: 1 bag (pack varies by gram). Colors available on request.</div>` }
+
+    /* ---------- Caps: neck -> weight + pack ---------- */
+    let cap_selected=Object.keys(CAPS)[0];
+    function renderCaps(which='sizes'){
+      if(which==='colors'){ renderColorsNote(); return; }
+      if(which==='moq'){ mBody.innerHTML=`<div class="text-sm">Standard pack: <b>1000 pcs/bag</b>. Any color available.</div>`; return; }
+      const keys=Object.keys(CAPS); const {g,pack}=CAPS[cap_selected];
+      mBody.innerHTML=`
+        <div class="text-xs text-neutral-500 mb-2">Pick neck:</div>
+        <div class="flex flex-wrap gap-2 mb-3">
+          ${keys.map(k=>`<button data-cap="${k}" class="gc-choice ${k===cap_selected?'active':''}">${k}</button>`).join('')}
+        </div>
+        <div class="rounded-lg border p-3 bg-neutral-50">
+          <div><b>Weight:</b> ${g} g each</div>
+          <div><b>Pack:</b> ${pack}</div>
+        </div>
+        <div class="mt-3 text-sm">Color: <b>any</b> (brand match on request).</div>`;
+      mBody.querySelectorAll('[data-cap]').forEach(b=> b.onclick=()=>{cap_selected=b.dataset.cap;renderCaps()});
+    }
+
+    /* ---------- Film: Shrink vs Pure Water ---------- */
+    let film_type='Shrink Wrap';
+    function renderFilm(which='sizes'){
+      const types=['Shrink Wrap','Pure Water Roll'];
+      if(which==='moq'){ mBody.innerHTML=`<div class="text-sm">Typical MOQ: 1–5 rolls depending on width & micron. Printing up to 10 colors.</div>`; return; }
+      if(which==='colors'){ mBody.innerHTML=`<div class="text-sm">Plain (transparent) or printed up to 10 colors. HD or LD substrate per spec.</div>`; return; }
+      if(!types.includes(film_type)) film_type=types[0];
+
+      if(film_type==='Shrink Wrap'){
+        mBody.innerHTML=`
+          <div class="text-xs text-neutral-500 mb-2">Select type:</div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${types.map(t=>`<button data-film="${t}" class="gc-choice ${t===film_type?'active':''}">${t}</button>`).join('')}
+          </div>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><b>Core type</b>: PVC / Paper</li>
+            <li><b>Core Ø</b>: provide diameter in mm</li>
+            <li><b>Size</b>: width in mm + required micron</li>
+            <li><b>S hrinkage %</b>: target percentage</li>
+            <li><b>Finish</b>: Plain (transparent) or Printed</li>
+          </ul>`;
+      }else{
+        mBody.innerHTML=`
+          <div class="text-xs text-neutral-500 mb-2">Select type:</div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${types.map(t=>`<button data-film="${t}" class="gc-choice ${t===film_type?'active':''}">${t}</button>`).join('')}
+          </div>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><b>Material</b>: HD (cheaper) or LD (clearer; costs more)</li>
+            <li><b>Standard</b>: 13" rolls, ~20 kg each, paper core</li>
+            <li><b>Micron</b>: 35 / 37 µ typical</li>
+          </ul>`;
+      }
+      mBody.querySelectorAll('[data-film]').forEach(b=> b.onclick=()=>{ film_type=b.dataset.film; renderFilm() });
+    }
+
+    /* ---------- PET bottles: size -> pack + MOQ ---------- */
+    let pet_selected=PET_SIZES[0];
+    function renderPET(which='sizes'){
+      if(which==='colors'){ renderColorsNote(); return; }
+      if(which==='moq'){ mBody.innerHTML=`<div class="text-sm">Standard MOQ: <b>10 bags</b>. Pack per bag depends on size (see Sizes tab).</div>`; return; }
+      const pills=PET_SIZES.map(s=>`<button data-ml="${s}" class="gc-choice ${s===pet_selected?'active':''}">${s} ml</button>`).join('');
+      const info=petPack(pet_selected);
+      mBody.innerHTML=`
+        <div class="text-xs text-neutral-500 mb-2">Pick size:</div>
+        <div class="flex flex-wrap gap-2 mb-3">${pills}</div>
+        <div class="rounded-lg border p-3 bg-neutral-50">
+          <div><b>Pack:</b> ${info.bag}</div>
+          <div><b>MOQ:</b> ${info.moq}</div>
+        </div>
+        <div class="mt-3 text-sm">Necks: 28–30 mm. Caps, pumps, flip-tops available.</div>`;
+      mBody.querySelectorAll('[data-ml]').forEach(b=> b.onclick=()=>{ pet_selected=+b.dataset.ml; renderPET() });
+    }
+
+    /* ---------- Gallons: size -> weight -> color -> pack ---------- */
+    let gal_size='4.5 L', gal_weight='Normal (160 g)', gal_color='Clear';
+    function renderGallons(which='sizes'){
+      tab1.textContent='Sizes'; tab2.textContent='Colors'; tab3.textContent='Pack';
+      const sizeKeys=Object.keys(GALLONS); if(!sizeKeys.includes(gal_size)) gal_size=sizeKeys[0];
+
+      if(gal_size==='4.5 L'){
+        const weights=Object.keys(GALLONS['4.5 L'].weights);
+        if(!weights.includes(gal_weight)) gal_weight=weights[0];
+        const colors=GALLONS['4.5 L'].weights[gal_weight].colors;
+        const pack=GALLONS['4.5 L'].weights[gal_weight].pack;
+        const note=GALLONS['4.5 L'].note;
+
+        const bodySizes=`
+          <div class="text-xs text-neutral-500 mb-2">Select size:</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${sizeKeys.map(s=>`<button data-gsize="${s}" class="gc-choice ${s===gal_size?'active':''}">${s}</button>`).join('')}
+          </div>`;
+        const bodyWeights=`
+          <div class="text-xs text-neutral-500 mb-2">Weight (4.5 L):</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${weights.map(w=>`<button data-gw="${w}" class="gc-choice ${w===gal_weight?'active':''}">${w}</button>`).join('')}
+          </div>`;
+        const bodyColors=`
+          <div class="text-xs text-neutral-500 mb-2">Colors:</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${colors.map(c=>`<button data-gc="${c}" class="gc-choice ${c===gal_color?'active':''}">${c}</button>`).join('')}
+          </div>`;
+
+        if(tab1.classList.contains('active')) mBody.innerHTML=bodySizes+bodyWeights+bodyColors+packCard(pack,note);
+        else if(tab2.classList.contains('active')) mBody.innerHTML=bodyColors+packCard(pack,note);
+        else mBody.innerHTML=packCard(pack,note);
+
+      }else{ // 2 L
+        const colors=GALLONS['2 L'].colors; gal_color=colors.includes(gal_color)?gal_color:colors[0];
+        const pack=GALLONS['2 L'].pack, note=GALLONS['2 L'].note;
+        const bodySizes=`
+          <div class="text-xs text-neutral-500 mb-2">Select size:</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${sizeKeys.map(s=>`<button data-gsize="${s}" class="gc-choice ${s===gal_size?'active':''}">${s}</button>`).join('')}
+          </div>`;
+        const bodyColors=`
+          <div class="text-xs text-neutral-500 mb-2">Colors:</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${colors.map(c=>`<button data-gc="${c}" class="gc-choice ${c===gal_color?'active':''}">${c}</button>`).join('')}
+          </div>`;
+
+        if(tab1.classList.contains('active')) mBody.innerHTML=bodySizes+bodyColors+packCard(pack,note);
+        else if(tab2.classList.contains('active')) mBody.innerHTML=bodyColors+packCard(pack,note);
+        else mBody.innerHTML=packCard(pack,note);
+      }
+
+      wireGallons();
+    }
+    function packCard(pack,note){
+      return `<div class="rounded-lg border p-3 bg-neutral-50">
+        <div><b>Pack:</b> ${pack}</div><div><b>Includes:</b> Cap + Insert</div></div>
+        <div class="mt-3 text-sm">${note} Colors: <b>Clear / Milky / Custom</b>.</div>`;
+    }
+    function wireGallons(){
+      mBody.querySelectorAll('[data-gsize]')?.forEach(b=> b.onclick=()=>{gal_size=b.dataset.gsize;renderGallons()});
+      mBody.querySelectorAll('[data-gw]')?.forEach(b=> b.onclick=()=>{gal_weight=b.dataset.gw;renderGallons()});
+      mBody.querySelectorAll('[data-gc]')?.forEach(b=> b.onclick=()=>{gal_color=b.dataset.gc;mBody.querySelectorAll('[data-gc]').forEach(x=>x.classList.remove('active'));b.classList.add('active');});
+    }
+
+    /* Init icons */
+    lucide.createIcons();
+  </script>
+</body>
 </html>
