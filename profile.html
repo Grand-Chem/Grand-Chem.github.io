@@ -10,17 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind with brand colors -->
+  <!-- Tailwind (brand palette) -->
   <script>
-    tailwind = { theme: { extend: {
-      colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
-    } } };
+    tailwind = { theme: { extend: { colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' } } } };
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme: { extend: {
-      colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
-    } } };
+    tailwind.config = { theme: { extend: { colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' } } } };
   </script>
 
   <!-- Icons -->
@@ -30,77 +26,111 @@
     html{scroll-behavior:smooth}
     body{font-family:Inter,system-ui,Arial,sans-serif}
 
-    /* Brand header wordmark */
+    /* ================== Brand header wordmark ================== */
     .logo-text{
       font-weight:800; text-transform:uppercase; letter-spacing:.03em; white-space:nowrap;
-      background:linear-gradient(90deg,#1c2e84 0%,#3b55c0 45%,#76a6e9 95%);
+      background:linear-gradient(90deg,#2e3091 100%,#3b55c0 0%,#76a6e9 0%);
       -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 1px 0 rgba(0,0,0,.12);
     }
     @supports not (-webkit-background-clip:text){ .logo-text{ color:#2e3091; } }
 
-    /* One-screen-at-a-time vertical snapping */
+    /* ================== Snap-scrolling container ================== */
     .snap-y-mandatory{ height:100vh; overflow-y:scroll; scroll-snap-type:y mandatory; }
     .snap-section{ min-height:100vh; scroll-snap-align:start; display:flex; align-items:center; position:relative; }
 
-    /* Pretty cards */
+    /* ================== Pretty cards + reveal ================== */
     .ph{ background:linear-gradient(180deg,#f6f8ff,#ffffff); border:1px solid rgba(0,0,0,.06); box-shadow:0 8px 24px rgba(0,0,0,.08); }
-
-    /* Reveal on view */
     .reveal{ opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease; }
     .reveal.in{ opacity:1; transform:none; }
 
-    /* ===== Reactive parallax background (now stronger & always visible) ===== */
-    #bgBase, #bgIcons{
-      position:fixed; inset:0; pointer-events:none; transform:translate3d(0,0,0); will-change:transform;
+    /* ================== Parallax background (mouse/tilt reactive) ================== */
+    #bgBase, #bgIcons{ position:fixed; inset:0; pointer-events:none; transform:translate3d(0,0,0); will-change:transform; }
+    #bgBase{ z-index:0; background:
+      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,0.14), transparent 60%),
+      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,0.14), transparent 60%),
+      linear-gradient(180deg, rgba(46,48,145,0.08), rgba(237,39,36,0.06));
     }
-    /* move these ABOVE section backgrounds */
-    #bgBase{ z-index:0; }
-    #bgIcons{ z-index:1; }
-    /* push content above parallax layers */
+    #bgIcons{ z-index:1; background-image:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 96 96"><g fill="%23cdd6ff"><rect x="4" y="12" width="34" height="18" rx="3"/><rect x="58" y="8" width="30" height="22" rx="3"/><circle cx="18" cy="64" r="9"/><rect x="40" y="56" width="18" height="28" rx="4"/><rect x="70" y="52" width="18" height="34" rx="4"/></g></svg>');
+      background-size: 220px 220px; background-repeat:repeat; opacity:.65; animation: drift 26s linear infinite;
+    }
+    @keyframes drift{ from{background-position:0 0} to{background-position:220px 220px} }
     header, main, footer{ position:relative; z-index:2; }
 
-    /* Base haze */
-    #bgBase{
-      background:
-        radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,0.14), transparent 60%),
-        radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,0.14), transparent 60%),
-        linear-gradient(180deg, rgba(46,48,145,0.08), rgba(237,39,36,0.06));
+    /* ================== Brand outline button utility ================== */
+    .btn-outline-brand{
+      border-width:2px; border-color:#2e3091;
+      transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
     }
-    /* Floating packaging icons */
-    #bgIcons{
-      background-image:
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 96 96"><g fill="%23cdd6ff"><rect x="4" y="12" width="34" height="18" rx="3"/><rect x="58" y="8" width="30" height="22" rx="3"/><circle cx="18" cy="64" r="9"/><rect x="40" y="56" width="18" height="28" rx="4"/><rect x="70" y="52" width="18" height="34" rx="4"/></g></svg>');
-      background-size: 220px 220px; background-repeat:repeat; opacity:.65;
-      animation: drift 26s linear infinite;
+    .btn-outline-brand:hover{ background:#f8f9ff; }
+    .btn-outline-brand:focus{ outline:none; box-shadow:0 0 0 3px rgba(46,48,145,.18); }
+
+    /* ================== Network map (image only, no borders/labels) ================== */
+    .map-shell{ border-radius:1.5rem; overflow:hidden; }
+    .map-img{ width:100%; height:460px; object-fit:cover; display:block; } /* full bleed */
+
+    /* ================== Roadmap (single vertical line) ================== */
+    .timeline{ position:relative; }
+    .timeline-inner{ position:relative; height:200vh; } /* JS will resize for perfect spacing */
+    .center-line{ position:absolute; left:50%; top:0; bottom:0; width:10px; transform:translateX(-50%);
+      background:linear-gradient(180deg,#2e3091,#1c2e84); border-radius:9999px; box-shadow:0 0 0 4px #fff;
     }
-    @keyframes drift{
-      from{ background-position: 0 0; }
-      to  { background-position: 220px 220px; }
+    .tick{ position:absolute; width:22px; height:2px; background:#2e3091; box-shadow:0 0 0 2px #fff; }
+    .ms-card{ position:absolute; max-width:420px; }
+    .ms-card .card{ border-radius:1rem; }
+
+    /* ================== Leadership image glow (brand blue + red, border-only feeling) ================== */
+    .glow-wrap{ position:relative; border-radius:12px; overflow:hidden; }
+    .glow-img{
+      display:block; width:100%; height:100%; object-fit:cover;
+      box-shadow:
+        0 0 0 2px #ffffff,                      /* crisp edge */
+        0 0 18px 2px rgba(46,48,145,.45),       /* brand blue glow */
+        0 0 28px 8px rgba(237,39,36,.25);       /* accent red soft glow */
+      transition: box-shadow .28s ease;
+    }
+    .glow-wrap:hover .glow-img{
+      box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 24px 4px rgba(46,48,145,.65),
+        0 0 40px 14px rgba(237,39,36,.35);
     }
 
-    /* World map pins */
-    .map-wrap{ position:relative; }
-    .map-img{ background-size:contain; background-position:center; background-repeat:no-repeat; }
-    .pin{ position:absolute; transform:translate(-50%,-100%); text-align:center; }
-    .pin .dot{ width:12px; height:12px; border-radius:9999px; background:#2e3091; border:3px solid #fff; box-shadow:0 0 0 4px rgba(46,48,145,.18); }
-
-    /* Journey road */
-    .roadwrap{ position:relative; }
-    .road-svg{ position:absolute; inset:0; pointer-events:none; }
-    .connector{ position:absolute; width:18px; height:2px; background:#2e3091; box-shadow:0 0 0 2px #fff; }
-
-    /* Leadership modal */
+    /* Modal */
     .modal{ position:fixed; inset:0; display:none; z-index:60; }
     .modal.show{ display:block; }
+    /* =============================
+   WhatsApp Floating Button Styles
+   ============================= */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px; /* Distance from bottom */
+      left: 20px;   /* Distance from left */
+      z-index: 9999;
+      text-decoration: none;
+    }
+
+    .whatsapp-icon {
+      width: 55px;
+      height: 55px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 50%;
+    }
+
+    .whatsapp-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
   </style>
 </head>
 <body class="bg-white text-neutral-900">
 
-  <!-- Reactive parallax layers -->
+  <!-- Parallax layers -->
   <div id="bgBase" aria-hidden="true"></div>
   <div id="bgIcons" aria-hidden="true"></div>
 
-  <!-- Header / Nav -->
+  <!-- ================== Header / Nav ================== -->
   <header class="sticky top-0 z-[5] bg-white/90 backdrop-blur border-b">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="index.html#top" class="flex items-center gap-2">
@@ -120,7 +150,7 @@
         </a>
       </nav>
 
-      <!-- Mobile menu button -->
+      <!-- Mobile menu -->
       <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Open menu">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
@@ -129,7 +159,7 @@
     <!-- Mobile drawer -->
     <div id="mnav" class="md:hidden hidden border-t">
       <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="index.html#how" class="py-1">How it works</a>
+        <a href="index.html#how" class="py-1">How We Work</a>
         <a href="products.html" class="py-1">Products</a>
         <a href="profile.html" class="py-1">Profile</a>
         <a href="index.html#sustain" class="py-1">Sustainability</a>
@@ -139,10 +169,10 @@
     </div>
   </header>
 
-  <!-- One-screen-at-a-time scroll container -->
-  <main id="snapContainer" class="snap-y-mandatory">
+  <!-- ================== Snap-scroll container ================== -->
+  <main class="snap-y-mandatory">
 
-    <!-- 1) Mission / Vision / Values (brand blue background, big white cards) -->
+    <!-- 1) Mission / Vision / Values (brand-blue background + big white cards) -->
     <section class="snap-section bg-brand">
       <div class="max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="grid md:grid-cols-3 gap-6">
@@ -171,89 +201,39 @@
       </div>
     </section>
 
-    <!-- 2) Genius Group — Our Network (upload images/world-map.webp 2000×1000) -->
-    <section class="snap-section bg-neutral-50 border-y">
+    <!-- 2) Genius Group — Our Network (image only; no borders/labels) -->
+    <section class="snap-section bg-neutral-50">
       <div class="max-w-7xl mx-auto px-4 py-12 w-full">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-3xl md:text-4xl font-extrabold">Genius Group — Our Network</h2>
-          <div class="hidden md:flex items-center gap-2 text-sm text-neutral-500">
-            <i data-lucide="globe-2" class="w-4 h-4"></i> Ghana • India • UAE
-          </div>
-        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Genius Group — Our Network</h2>
 
-        <div class="map-wrap rounded-3xl border ph bg-white overflow-hidden reveal" style="height: 460px;">
-          <div id="mapImg" class="absolute inset-0 map-img"></div>
-
-          <!-- Fallback map if you haven't uploaded images/world-map.webp yet -->
-          <svg class="absolute inset-0" viewBox="0 0 1200 600" aria-hidden="true">
-            <defs>
-              <linearGradient id="mapg" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#eef3ff"/>
-                <stop offset="1" stop-color="#e2e9ff"/>
-              </linearGradient>
-            </defs>
-            <g fill="url(#mapg)" stroke="#c9d6ff" stroke-width="1.1">
-              <path d="M75,250 C140,160 300,120 420,150 C520,175 530,240 470,270 C410,300 360,330 300,340 C230,351 140,320 90,300 Z"/>
-              <path d="M500,240 C540,210 610,210 660,230 C710,250 700,290 650,310 C600,330 530,320 500,295 Z"/>
-              <path d="M720,260 C770,240 860,240 900,265 C945,292 920,330 860,345 C800,360 730,340 710,310 Z"/>
-              <path d="M950,280 C1000,275 1080,285 1110,305 C1140,325 1110,350 1060,355 C1010,360 970,340 955,320 Z"/>
-              <circle cx="1030" cy="420" r="35"/>
-            </g>
-          </svg>
-
-          <!-- Pins (tweak left/top after you add a real map) -->
-          <div class="pin" style="top:62%; left:40%;">
-            <div class="dot"></div>
-            <div class="mt-1 text-xs bg-white/95 backdrop-blur px-2 py-1 rounded shadow">Ghana — Grand-Chem, Genius Polymers, Garuda</div>
-          </div>
-          <div class="pin" style="top:58%; left:57%;">
-            <div class="dot"></div>
-            <div class="mt-1 text-xs bg-white/95 backdrop-blur px-2 py-1 rounded shadow">UAE — Ganesa Exim FZE</div>
-          </div>
-          <div class="pin" style="top:60%; left:64%;">
-            <div class="dot"></div>
-            <div class="mt-1 text-xs bg-white/95 backdrop-blur px-2 py-1 rounded shadow">India — Glencol Colours, Yuktha Coatings</div>
-          </div>
+        <!-- Replace this file with your upload at /images/world-map.webp -->
+        <div class="map-shell reveal">
+          <img src="images/world-map.webp" alt="Genius Group network map" class="map-img">
         </div>
       </div>
     </section>
 
-    <!-- 3) Our Journey (cards auto-snap to the road via JS) -->
+    <!-- 3) Our Journey (single vertical road; even spacing; fits ~2 screens for 8 items) -->
     <section class="snap-section bg-white">
       <div class="max-w-7xl mx-auto px-4 py-12 w-full">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Our Journey</h2>
 
-        <div class="roadwrap">
-          <!-- Shorter path to pass near all milestones -->
-          <svg class="road-svg" viewBox="0 0 1200 1300" preserveAspectRatio="none">
-            <path id="road-shadow" d="M320 40 C 720 120, 560 260, 900 360
-                     C 1100 410, 960 560, 680 640
-                     C 440 705, 520 880, 820 980
-                     C 1000 1040, 920 1160, 640 1240"
-                  stroke="rgba(0,0,0,.10)" stroke-width="28" fill="none"/>
-            <path id="road" d="M320 40 C 720 120, 560 260, 900 360
-                     C 1100 410, 960 560, 680 640
-                     C 440 705, 520 880, 820 980
-                     C 1000 1040, 920 1160, 640 1240"
-                  stroke="#2e3091" stroke-width="20" fill="none" stroke-linecap="round"/>
-            <use href="#road" stroke="#ffffff" stroke-width="4" stroke-dasharray="18 16" />
-          </svg>
-
-          <!-- Milestones (JS positions these based on path length %) -->
-          <div id="milestones" class="relative"></div>
-
-          <!-- Tall spacer so you can scroll inside this section -->
-          <div class="h-[1300px]"></div>
+        <div id="timeline" class="timeline">
+          <div class="timeline-inner">
+            <div class="center-line" aria-hidden="true"></div>
+            <!-- Milestone cards + ticks are injected by JS -->
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 4) Leadership (clickable cards + working “See more”) -->
+    <!-- 4) Leadership (clickable; images have brand glow) -->
     <section class="snap-section bg-neutral-50 border-y">
       <div class="max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl md:text-4xl font-extrabold">Leadership</h2>
-          <button id="seeMore" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 border bg-white hover:bg-neutral-50">
+          <!-- brand-outline button utility in use -->
+          <button id="seeMore" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 border bg-white hover:bg-neutral-50 btn-outline-brand">
             <span id="seeMoreLabel">See more</span>
             <i id="seeMoreIcon" data-lucide="chevron-down" class="w-4 h-4 transition-transform"></i>
           </button>
@@ -261,49 +241,49 @@
 
         <!-- First 4 -->
         <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader" 
-                   data-name="Chandra Sekhar Chaganti" 
+          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader"
+                   data-name="Chandra Sekhar Chaganti"
                    data-role="Founder & Managing Director"
                    data-bio="First-generation entrepreneur focused on innovation, operational excellence and long-term value."
-                   data-img="images/leaders/leader-1.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-1.jpg" alt="" class="w-full h-full object-cover">
+                   data-img="images/leaders/leader-1.webp">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-1.webp" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Chandra Sekhar Chaganti</div>
             <div class="text-sm text-neutral-500">Founder & Managing Director</div>
           </article>
 
-          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader" 
-                   data-name="Kumar Parvathaneni" 
+          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader"
+                   data-name="Kumar Parvathaneni"
                    data-role="Executive Director"
                    data-bio="Oversees strategic execution and governance across Grand-Chem operations."
                    data-img="images/leaders/leader-2.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-2.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-2.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Kumar Parvathaneni</div>
             <div class="text-sm text-neutral-500">Executive Director</div>
           </article>
 
-          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader" 
-                   data-name="Narendra Gollapudi" 
+          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader"
+                   data-name="Narendra Gollapudi"
                    data-role="Country Head"
                    data-bio="Leads Ghana market strategy and growth for the Genius Group network."
                    data-img="images/leaders/leader-3.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-3.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-3.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Narendra Gollapudi</div>
             <div class="text-sm text-neutral-500">Country Head</div>
           </article>
 
-          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader" 
-                   data-name="Laasya Chaganti" 
+          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader"
+                   data-name="Laasya Chaganti"
                    data-role="Head of Operations"
                    data-bio="Drives manufacturing excellence and continuous improvement."
                    data-img="images/leaders/leader-4.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-4.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-4.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Laasya Chaganti</div>
             <div class="text-sm text-neutral-500">Head of Operations</div>
@@ -316,8 +296,8 @@
                    data-name="Ganesh Jha" data-role="Finance Head"
                    data-bio="Responsible for financial strategy, controls and capital efficiency."
                    data-img="images/leaders/leader-5.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-5.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-5.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Ganesh Jha</div>
             <div class="text-sm text-neutral-500">Finance Head</div>
@@ -327,8 +307,8 @@
                    data-name="Lokesh G" data-role="Infrastructure Development"
                    data-bio="Leads facility expansion and infrastructure delivery."
                    data-img="images/leaders/leader-6.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-6.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-6.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Lokesh G</div>
             <div class="text-sm text-neutral-500">Infrastructure Development</div>
@@ -338,8 +318,8 @@
                    data-name="Chetan Patel" data-role="Head of Electrical Operations"
                    data-bio="Ensures reliable power, safety and uptime across sites."
                    data-img="images/leaders/leader-7.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-7.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-7.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Chetan Patel</div>
             <div class="text-sm text-neutral-500">Head of Electrical Operations</div>
@@ -349,8 +329,8 @@
                    data-name="Samuel Cobbina" data-role="Human Resource Manager"
                    data-bio="Builds people capability, culture and compliant processes."
                    data-img="images/leaders/leader-8.jpg">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 mb-3">
-              <img src="images/leaders/leader-8.jpg" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap mb-3">
+              <img src="images/leaders/leader-8.jpg" alt="" class="glow-img">
             </div>
             <div class="font-semibold">Samuel Cobbina</div>
             <div class="text-sm text-neutral-500">Human Resource Manager</div>
@@ -384,14 +364,14 @@
         </div>
         <div class="grid md:grid-cols-2 gap-0">
           <div class="p-5">
-            <div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
-              <img id="lmImg" src="" alt="" class="w-full h-full object-cover">
+            <div class="aspect-[4/3] glow-wrap">
+              <img id="lmImg" src="" alt="" class="glow-img">
             </div>
           </div>
           <div class="p-5">
             <div id="lmBio" class="text-neutral-700 leading-relaxed"></div>
             <a href="index.html#contact" class="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">
-              Contact Sales <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              Contact Our Team <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
           </div>
         </div>
@@ -399,13 +379,18 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- ================== Scripts ================== -->
   <script>
     lucide.createIcons();
 
-    /* Mobile drawer */
+    /* Mobile drawer with icon swap */
     document.getElementById('mnavBtn')?.addEventListener('click', ()=>{
-      document.getElementById('mnav')?.classList.toggle('hidden');
+      const dr = document.getElementById('mnav');
+      dr.classList.toggle('hidden');
+      document.getElementById('mnavBtn').innerHTML = dr.classList.contains('hidden')
+        ? '<i data-lucide="menu" class="w-6 h-6"></i>'
+        : '<i data-lucide="x" class="w-6 h-6"></i>';
+      lucide.createIcons();
     });
 
     /* Reveal on view */
@@ -414,13 +399,12 @@
     }, { threshold:.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    /* Map fallback → use your own webp if present (2000×1000 or 2400×1200) */
+    /* Parallax background (mouse + tilt) */
     (function(){
-      const imgDiv = document.getElementById('mapImg');
-      if(!imgDiv) return;
-      const test = new Image();
-      test.onload  = ()=> imgDiv.style.backgroundImage = "url('images/world-map.webp')";
-      test.src = 'images/world-map.webp';
+      const base=document.getElementById('bgBase'), icons=document.getElementById('bgIcons');
+      const move=(mx,my)=>{ base.style.transform=`translate3d(${mx*10}px,${my*10}px,0)`; icons.style.transform=`translate3d(${mx*20}px,${my*20}px,0)`; };
+      window.addEventListener('mousemove',e=>{const cx=innerWidth/2,cy=innerHeight/2; move((e.clientX-cx)/cx,(e.clientY-cy)/cy);});
+      window.addEventListener('deviceorientation',e=>move((e.gamma||0)/45,(e.beta||0)/45),{passive:true});
     })();
 
     /* Leadership modal */
@@ -442,86 +426,95 @@
     document.getElementById('lmClose')?.addEventListener('click', ()=> modal.classList.remove('show'));
     modal.addEventListener('click', (e)=>{ if(e.target === modal.firstElementChild) modal.classList.remove('show'); });
 
-    /* See more toggle (fixed) */
+    /* See more toggle */
     (function(){
-      const btn   = document.getElementById('seeMore');
-      const wrap  = document.getElementById('moreLeaders');
+      const btn = document.getElementById('seeMore');
+      const wrap = document.getElementById('moreLeaders');
       const label = document.getElementById('seeMoreLabel');
-      const icon  = document.getElementById('seeMoreIcon');
+      const icon = document.getElementById('seeMoreIcon');
       if(!btn || !wrap) return;
       btn.addEventListener('click', ()=>{
-        const isHidden = wrap.classList.contains('hidden');
+        const hidden = wrap.classList.contains('hidden');
         wrap.classList.toggle('hidden');
-        label.textContent = isHidden ? 'See less' : 'See more';
-        icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        label.textContent = hidden ? 'See less' : 'See more';
+        icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
       });
     })();
 
-    /* Stronger reactive parallax (mouse + device tilt) */
+    /* =============== Our Journey: single vertical road with even spacing =============== */
     (function(){
-      const base  = document.getElementById('bgBase');
-      const icons = document.getElementById('bgIcons');
-      const move = (mx, my)=>{
-        base.style.transform  = `translate3d(${mx*10}px, ${my*10}px, 0)`;
-        icons.style.transform = `translate3d(${mx*20}px, ${my*20}px, 0)`;
-      };
-      window.addEventListener('mousemove', (e)=>{
-        const cx = innerWidth/2, cy = innerHeight/2;
-        move((e.clientX - cx)/cx, (e.clientY - cy)/cy);
-      });
-      window.addEventListener('deviceorientation', (e)=>{
-        move((e.gamma||0)/45, (e.beta||0)/45);
-      }, { passive:true });
-    })();
-
-    /* ====== Journey: place each card directly on the road ======
-       We compute a point along the SVG path and position the card near it.
-       You can tweak dx/dy offsets below if you want the card above/below the road. */
-    (function(){
-      const data = [
-        { year:'2006', title:'First steps', text:'PET blowing manufacturing begins.',    t:0.06, dx:-260, dy:-70 },
-        { year:'2009', title:'Film production', text:'Monolayer extrusion film machines introduced.', t:0.30, dx:140, dy:10 },
-        { year:'2014–2015', title:'Foundation', text:'Built a 2,200 sqm facility.',     t:0.56, dx:-260, dy:10 },
-        { year:'2017', title:'New technology', text:'3 multilayer lines, 10-color presses, high-capacity injection.', t:0.72, dx:140, dy:-10 },
-        { year:'2018', title:'Strengthening', text:'Expanded preforms & flexo capabilities.', t:0.84, dx:-260, dy:-10 },
-        { year:'2023', title:'Recycling', text:'In-house recycling plant commissioned.', t:0.91, dx:140, dy:-10 },
-        { year:'2024', title:'Scale-up', text:'New 8,350 sqm facility; >9,000 MT annual capacity.', t:0.95, dx:-260, dy:-10 },
-        { year:'2025', title:'5-layer line', text:'New 5-layer poly extrusion commissioned.', t:0.985, dx:140, dy:-20 },
+      // ---- Edit milestones here (JS will space them evenly and add ticks) ----
+      const milestones = [
+        { year:'2006', title:'First steps', text:'PET blowing manufacturing begins.' },
+        { year:'2009', title:'Film production', text:'Monolayer extrusion film machines introduced.' },
+        { year:'2014–2015', title:'Foundation', text:'Built a 2,200 sqm facility.' },
+        { year:'2017', title:'New technology', text:'3 multilayer lines, 10-color presses, high-capacity injection.' },
+        { year:'2018', title:'Strengthening', text:'Expanded preforms & flexo capabilities.' },
+        { year:'2023', title:'Recycling', text:'In-house recycling plant commissioned.' },
+        { year:'2024', title:'Scale-up', text:'New 8,350 sqm facility; >9,000 MT annual capacity.' },
+        { year:'2025', title:'5-layer line', text:'New 5-layer poly extrusion commissioned.' },
       ];
-      const path = document.getElementById('road');
-      const box  = path.getBBox();
-      const wrap = document.getElementById('milestones');
-      const len  = path.getTotalLength();
 
-      data.forEach((m, idx)=>{
-        const p = path.getPointAtLength(len*m.t);
-        // Card
-        const card = document.createElement('div');
-        card.className = 'absolute max-w-sm';
-        card.style.left = (p.x + m.dx) + 'px';
-        card.style.top  = (p.y + m.dy) + 'px';
-        card.innerHTML = `
-          <div class="rounded-2xl border p-5 ph bg-white reveal">
-            <div class="text-xs uppercase tracking-wider text-neutral-500">${m.year}</div>
-            <h3 class="mt-1 font-semibold">${m.title}</h3>
-            <p class="mt-2 text-bodytext text-sm">${m.text}</p>
-          </div>`;
-        wrap.appendChild(card);
+      const root = document.querySelector('#timeline .timeline-inner');
 
-        // Connector tick that touches the road
-        const tick = document.createElement('div');
-        tick.className = 'connector';
-        tick.style.left = (p.x - 9) + 'px';
-        tick.style.top  = (p.y - 1) + 'px';
-        wrap.appendChild(tick);
-      });
+      function build(){
+        // Clear previous nodes
+        [...root.querySelectorAll('.ms-card,.tick')].forEach(n=>n.remove());
 
-      // reveal animation for newly added cards
-      const io2 = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io2.unobserve(e.target);} });
-      }, { threshold:.15 });
-      wrap.querySelectorAll('.reveal').forEach(el=> io2.observe(el));
+        // ---- Sizing logic: ~4 items per screen -> screens = ceil(n/4) ----
+        const perScreen = 4;
+        const screens = Math.max(2, Math.ceil(milestones.length / perScreen)); // at least 2 screens as requested
+        const totalH = screens * window.innerHeight;
+
+        root.style.height = totalH + 'px';
+
+        const centerX = root.clientWidth / 2;
+        const sideGap = Math.min(360, Math.max(240, root.clientWidth * 0.22)); // left/right offset distance
+        const topPad = 100, bottomPad = 120;
+        const step = (totalH - topPad - bottomPad) / (milestones.length - 1);
+
+        milestones.forEach((m, i)=>{
+          const top = Math.round(topPad + i * step);
+          const onLeft = (i % 2 === 0); // alternate sides
+          const x = centerX + (onLeft ? -sideGap : sideGap);
+
+          // Card wrapper
+          const wrap = document.createElement('div');
+          wrap.className = 'ms-card';
+          wrap.style.top  = `${top - 50}px`;
+          wrap.style.left = `${x - 210}px`; // center a 420px card
+          wrap.innerHTML = `
+            <div class="card border ph bg-white p-5">
+              <div class="text-xs uppercase tracking-wider text-neutral-500">${m.year}</div>
+              <h3 class="mt-1 font-semibold">${m.title}</h3>
+              <p class="mt-2 text-bodytext text-sm">${m.text}</p>
+            </div>`;
+          root.appendChild(wrap);
+
+          // Tick that touches the road
+          const tick = document.createElement('div');
+          tick.className = 'tick';
+          tick.style.top = `${top}px`;
+          tick.style.left = onLeft ? `calc(50% - 22px)` : `50%`;
+          root.appendChild(tick);
+        });
+      }
+
+      build();
+      window.addEventListener('resize', build, { passive:true });
     })();
   </script>
+  <!-- =============================
+     WhatsApp Floating Button
+     Always stays at bottom-left corner
+     Sends message to +233540125312
+    ================================= -->
+    <a href="https://wa.me/233540125312?text=Hello%20Grand-Chem%20Limited%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products."
+    target="_blank"
+    class="whatsapp-float"
+     aria-label="Chat on WhatsApp">
+    <img src="images/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
+    </a>
+    <!-- End WhatsApp Floating Button -->
 </body>
 </html>
