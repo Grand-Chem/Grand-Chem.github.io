@@ -24,6 +24,7 @@
 
   <style>
     html{scroll-behavior:smooth}
+
     /* soft gradient background */
     body::before{content:"";position:fixed;inset:0;z-index:-1;background:
       radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,.06), transparent 60%),
@@ -47,10 +48,7 @@
 
     /* Modal shell (centered, phone-friendly) */
     .gc-backdrop{background:rgba(0,0,0,.42)}
-    .gc-modal{
-      width:100%; max-width:1100px;
-      height:calc(100vh - 24px);
-    }
+    .gc-modal{ width:100%; max-width:1100px; height:calc(100vh - 24px); }
     @media (min-width:768px){
       .gc-modal{height:auto;max-height:calc(100vh - 96px)}
     }
@@ -63,58 +61,59 @@
     .btn-brand{background:#2e3091;color:#fff;border-radius:12px;padding:10px 16px}
     .btn-brand:hover{filter:brightness(.95)}
 
-    /* ===== Brand-blue outline button utility (drop-in) ===== */
+    /* ===== Brand-blue outline button utility ===== */
     .btn-outline-brand{
       border-width:2px; border-color:#2e3091;
       transition: border-color .2s ease, box-shadow .2s ease;
     }
-    .btn-outline-brand:hover{ border-color:#2e3091; }
     .btn-outline-brand:focus{
       outline:none; border-color:rgba(46,48,145,.8);
       box-shadow:0 0 0 3px rgba(46,48,145,.15);
     }
 
-    /* ===== Brand glow for images (blue + subtle red) ===== */
+    /* ===== Brand glow for images (remove white ring on demand) ===== */
     .glow-outer{
-      border-radius:.75rem; /* ≈ rounded-lg */
+      border-radius:.75rem;
       box-shadow:
         0 0 0 2px #fff,
-        0 0 18px 2px rgba(46,48,145,.45),
-        0 0 36px 10px rgba(237,39,36,.20);
+        0 0 36px 10px rgba(46,48,145,.45),
+        0 0 18px 2px rgba(237,39,36,.20);
       transition: box-shadow .28s ease;
     }
     .glow-outer:hover{
       box-shadow:
         0 0 0 2px #fff,
-        0 0 24px 4px rgba(46,48,145,.65),
-        0 0 44px 16px rgba(237,39,36,.28);
+        0 0 42px 16px rgba(46,48,145,.65),
+        0 0 24px 4px rgba(237,39,36,.28);
     }
+    /* NEW: plain variant with NO white outline ring */
+    .glow-outer--plain{
+      box-shadow:
+        0 0 18px 2px rgba(46,48,145,.45),
+        0 0 36px 10px rgba(237,39,36,.20) !important;
+    }
+    .glow-outer--plain:hover{
+      box-shadow:
+        0 0 44px 16px rgba(46,48,145,.65),
+        0 0 24px 4px rgba(237,39,36,.28) !important;
+    }
+
     .glow-mask{ overflow:hidden; border-radius: inherit; }
-    /* =============================
-   WhatsApp Floating Button Styles
-   ============================= */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px; /* Distance from bottom */
-      left: 20px;   /* Distance from left */
-      z-index: 9999;
-      text-decoration: none;
-    }
 
-    .whatsapp-icon {
-      width: 55px;
-      height: 55px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 50%;
-    }
+    /* WhatsApp Floating Button */
+    .whatsapp-float { position: fixed; bottom: 20px; left: 20px; z-index: 9999; text-decoration: none; }
+    .whatsapp-icon { width: 55px; height: 55px; transition: transform .3s, box-shadow .3s; border-radius: 50%; }
+    .whatsapp-icon:hover { transform: scale(1.1); box-shadow: 0 6px 15px rgba(0,0,0,.4); }
 
-    .whatsapp-icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
+    /* ---------- EXACT FIXES FOR WHITE TILE ---------- */
+    /* Make the image stage 100% transparent and stop any nested element from painting a background */
+    #imageStage { background: transparent !important; }
+    #imageStage * { background: transparent !important; }
 
-
+    /* (Optional) If your photo has white baked in and the page behind is darker,
+       you can try revealing it with blending:
+       #mImg { mix-blend-mode: multiply; }
+    */
   </style>
 </head>
 
@@ -128,7 +127,6 @@
         <span class="logo-text">Grand-Chem Limited</span>
       </a>
 
-      <!-- Desktop nav -->
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="index.html#how" class="hover:opacity-70">How We Work</a>
@@ -153,10 +151,7 @@
         <a href="profile.html" class="py-1">Profile</a>
         <a href="index.html#sustain" class="py-1">Sustainability</a>
         <a href="index.html#faq" class="py-1">FAQ</a>
-        <!-- CTA kept inside so it never blocks content -->
-        <a href="index.html#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">
-          Contact Sales
-        </a>
+        <a href="index.html#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
       </div>
     </div>
   </header>
@@ -184,7 +179,7 @@
   <div id="modalRoot" class="fixed inset-0 hidden z-[60]">
     <div class="absolute inset-0 gc-backdrop"></div>
     <div class="relative w-full h-full grid place-items-center p-3 md:p-6">
-      <div class="relative bg-white rounded-2xl shadow-xl border gc-modal overflow-hidden">
+      <div class="relative bg-white rounded-2xl shadow-xl border gc-modal overflow-hidden flex flex-col">
         <!-- Header -->
         <div class="flex items-center justify-between px-5 py-4 border-b">
           <div class="flex items-center gap-3">
@@ -202,17 +197,18 @@
         </div>
 
         <!-- Body -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 max-h-full md:max-h[calc(100vh-160px)]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 max-h-full md:max-h-[calc(100vh-160px)] min-h-0">
           <!-- Images (glow added) -->
           <div class="p-4">
-            <div class="glow-outer rounded-xl">
+            <!-- NOTE: plain glow (no white ring) + transparent stage -->
+            <div class="glow-outer glow-outer--plain rounded-xl">
               <div class="glow-mask">
-                <div class="relative bg-neutral-50">
-                  <img id="mImg" alt="" class="w-full h-[48vh] md:h-[420px] object-contain bg-white">
-                  <button id="mPrev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow">
+                <div id="imageStage" class="relative">
+                  <img id="mImg" alt="" class="w-full h-[38vh] md:h-[420px] object-cover">
+                  <button id="mPrev" class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 shadow">
                     <i data-lucide="chevron-left" class="w-5 h-5"></i>
                   </button>
-                  <button id="mNext" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow">
+                  <button id="mNext" class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 shadow">
                     <i data-lucide="chevron-right" class="w-5 h-5"></i>
                   </button>
                 </div>
@@ -222,7 +218,7 @@
           </div>
 
           <!-- Details -->
-          <div class="p-5 overflow-y-auto">
+          <div class="p-5 overflow-y-auto min-h-0">
             <div class="flex gap-2 mb-4">
               <button id="tab1" class="gc-tab">Sizes</button>
               <button id="tab2" class="gc-tab">Colors</button>
@@ -280,7 +276,7 @@
       },
       { id:'preforms',title:'Preforms', desc:'Multiple necks & gram weights',
         img: IMG('grand-chem-pet-3.webp'),
-        images:[IMG('grand-chem-pet-3.webp'), IMG('grand-chem-yougrt.webp')],
+        images:[IMG('grand-chem-pet-3.webp')],
         modalType:'preforms'
       },
       { id:'gallon',title:'Gallon Moulding', desc:'HDPE 2 L & 4.5 L & Cap + Insert',
@@ -317,11 +313,10 @@
     };
 
     /* ---------- PET bottles: with special Pharma/Medical options ---------- */
-    // Display labels for pills (includes special ones)
     const PET_PRODUCTS = [
       {size:140,  label:'140 ml'},
-      {size:180,  label:'Medical Solution Bottle 180 ml'}, // NEW special
-      {size:200,  label:'Pharma Bottle 200 ml'},            // NEW special
+      {size:180,  label:'Medical Solution Bottle 180 ml'},
+      {size:200,  label:'Pharma Bottle 200 ml'},
       {size:250,  label:'250 ml'},
       {size:300,  label:'300 ml'},
       {size:350,  label:'350 ml'},
@@ -330,7 +325,6 @@
       {size:1500, label:'1500 ml'}
     ];
 
-    // Packs/MOQ overrides for special items
     const PET_SPECIAL = {
       200: { bag:'100 pcs/bag', moq:'10 bags', label:'Pharma Bottle 200 ml' },
       180: { bag:'100 pcs/bag', moq:'10 bags', label:'Medical Solution Bottle 180 ml' }
@@ -348,14 +342,12 @@
       el.className='float-card cursor-pointer';
       el.style.animationDelay=(idx%5)*0.12+'s';
       el.innerHTML=`
-        <!-- image with brand glow -->
         <div class="glow-outer rounded-lg mb-3"><div class="glow-mask">
           <img src="${section.img}" alt="${section.title}" class="w-full h-60 object-cover">
         </div></div>
         <div class="text-xs text-brand mb-1">${section.desc||''}</div>
         <div class="flex items-center justify-between">
           <h3 class="text-lg font-semibold">${section.title}</h3>
-          <!-- brand-blue outline button -->
           <button class="px-3 py-1 text-sm rounded-lg border btn-outline-brand">View</button>
         </div>`;
       el.addEventListener('click',()=>openModal(section));
@@ -431,7 +423,7 @@
     function renderColorsNote(){ mBody.innerHTML = `<div class="text-sm">Most items available in <b>any color</b> on request. Brand color matching supported.</div>`; }
     function renderMOQ(modal){ mBody.innerHTML = `<div class="text-sm">MOQ: ${modal?.moq||'Project-dependent'}.</div>`; }
 
-    /* ---------- Preforms: size -> grams -> pack ---------- */
+    /* ---------- Preforms ---------- */
     let pf_selectedSize=null;
     function renderPreforms(){
       const sizes=Object.keys(PREFORMS);
@@ -456,7 +448,7 @@
     }
     function renderPreformsMOQ(){ mBody.innerHTML=`<div class="text-sm">Typical MOQ: 1 bag (pack varies by gram). Colors available on request.</div>` }
 
-    /* ---------- Caps: neck -> weight + pack ---------- */
+    /* ---------- Caps ---------- */
     let cap_selected=Object.keys(CAPS)[0];
     function renderCaps(which='sizes'){
       if(which==='colors'){ renderColorsNote(); return; }
@@ -475,7 +467,7 @@
       mBody.querySelectorAll('[data-cap]').forEach(b=> b.onclick=()=>{cap_selected=b.dataset.cap;renderCaps()});
     }
 
-    /* ---------- Film: Shrink vs Pure Water ---------- */
+    /* ---------- Film ---------- */
     let film_type='Shrink Wrap';
     function renderFilm(which='sizes'){
       const types=['Shrink Wrap','Pure Water Roll'];
@@ -511,7 +503,7 @@
       mBody.querySelectorAll('[data-film]').forEach(b=> b.onclick=()=>{ film_type=b.dataset.film; renderFilm() });
     }
 
-    /* ---------- PET bottles: size -> pack + MOQ (with special labels) ---------- */
+    /* ---------- PET bottles ---------- */
     let pet_selected = PET_PRODUCTS[0].size;
     function renderPET(which='sizes'){
       if(which==='colors'){ renderColorsNote(); return; }
@@ -532,7 +524,7 @@
       mBody.querySelectorAll('[data-ml]').forEach(b=> b.onclick=()=>{ pet_selected=+b.dataset.ml; renderPET() });
     }
 
-    /* ---------- Gallons: size -> weight -> color -> pack ---------- */
+    /* ---------- Gallons ---------- */
     const GALLONS = {
       "4.5 L": {
         weights:{
@@ -611,17 +603,11 @@
     /* Init icons */
     lucide.createIcons();
   </script>
-  <!-- =============================
-     WhatsApp Floating Button
-     Always stays at bottom-left corner
-     Sends message to +233540125312
-    ================================= -->
-    <a href="https://wa.me/233540125312?text=Hello%20Grand-Chem%20Limited%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products."
-    target="_blank"
-    class="whatsapp-float"
-     aria-label="Chat on WhatsApp">
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/233540125312?text=Hello%20Grand-Chem%20Limited%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products."
+     target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
     <img src="images/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
-    </a>
-    <!-- End WhatsApp Floating Button -->
+  </a>
 </body>
 </html>
