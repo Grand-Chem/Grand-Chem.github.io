@@ -49,6 +49,39 @@
       border-color: rgba(46,48,145,.8);
       box-shadow: 0 0 0 3px rgba(46,48,145,.15);
     }
+    /* ===== Clients (logo rail) ===== */
+    .clients-wrap{
+      position:relative; overflow:hidden; border-radius:1rem; border:1px solid rgba(0,0,0,.06);
+      background:#5088b8; /* keep clean behind transparent SVGs */
+      /* fade masks on edges */
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+    }
+    .clients-rail{
+      display:flex; align-items:center; gap:28px; padding:18px 20px;
+      overflow-x:auto; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none; /* Firefox */
+    }
+    .clients-rail::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
+    
+    /* logo tile */
+    .client-logo{
+      flex:0 0 auto; height:44px; width:auto; opacity:.9; filter:grayscale(1) contrast(1.05);
+      transition:opacity .2s ease, filter .2s ease, transform .2s ease;
+    }
+    .client-logo:hover{ opacity:1; filter:none; transform:translateY(-2px); }
+    
+    /* arrow buttons (optional) */
+    .clients-nav{
+      position:absolute; inset-block:0; display:flex; align-items:center; padding:0 6px; pointer-events:none;
+    }
+    .clients-nav > button{
+      pointer-events:auto; display:grid; place-items:center;
+      width:34px; height:34px; border-radius:9999px; border:1px solid rgba(0,0,0,.12);
+      background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    .clients-nav--left{ left:6px; }
+    .clients-nav--right{ right:6px; }
 
     /* ========= Brand glow for images (blue + subtle red) =========
        Wrap the img in .glow-outer -> .glow-mask, so the shadow is visible
@@ -164,7 +197,7 @@
             <img src="images/hero.webp" alt="Grand-Chem production" class="w-full h-64 object-cover">
           </div>
         </div>
-        <div class="text-sm text-bodytext mb-3">Till Date</div>
+        <div class="text-sm text-bodytext mb-3">Our scale</div>
         <div class="grid grid-cols-3 gap-4 text-center">
           <div class="rounded-xl border p-3">
             <div class="text-3xl font-semibold"><span class="odometer" data-target="300">0</span>+</div>
@@ -182,6 +215,48 @@
       </div>
     </div>
   </section>
+  <!-- ==================== CLIENTS SHOWCASE (place after PRODUCTS, before INDUSTRIES) ==================== -->
+  <section class="mx-auto max-w-7xl px-4 py-10">
+    <div class="flex items-end justify-between mb-3">
+      <div>
+        <div class="text-sm text-neutral-500">Trusted by teams across West Africa</div>
+        <h2 class="text-2xl md:text-3xl font-semibold">Our clients</h2>
+      </div>
+    </div>
+  
+    <div class="clients-wrap">
+      <div id="clientsRail" class="clients-rail" aria-label="Client logos carousel">
+        <!-- Tip: Use transparent SVG/PNG logos sized ~200–280px wide, ~44px tall -->
+        <img src="images/clients/daaro.png"         alt="daaro"               class="client-logo" loading="lazy">
+        <img src="images/clients/ECCBC.png"       alt="Coca-Cola"            class="client-logo" loading="lazy">
+        <img src="images/clients/fanmilk.png"        alt="FanMilk"              class="client-logo" loading="lazy">
+        <img src="images/clients/voltic.webp"         alt="Voltic"               class="client-logo" loading="lazy">
+        <img src="images/clients/Healthilife.png"       alt="Healthilife"             class="client-logo" loading="lazy">
+        <img src="images/clients/miniplast.png"       alt="miniplast"             class="client-logo" loading="lazy">
+        <img src="images/clients/specialice.png"       alt="specialice"            class="client-logo" loading="lazy">
+        <img src="images/clients/decorplast.png"       alt="decorplast"             class="client-logo" loading="lazy">
+        <img src="images/clients/ACADIA.png"        alt="ACADIA"         class="client-logo" loading="lazy">
+        <img src="images/clients/indomie.jpg"        alt="Indomie"              class="client-logo" loading="lazy">
+        <img src="images/clients/TAMPICO.png"         alt="TAMPICO"               class="client-logo" loading="lazy">
+        <img src="images/clients/wilmar.jpeg"         alt="Wilmar"               class="client-logo" loading="lazy">
+        <!-- Add as many as you want -->
+      </div>
+      
+      <!-- Optional: arrows (tap/click) -->
+      <div class="clients-nav clients-nav--left">
+        <button type="button" id="clientsPrev" aria-label="Scroll left">
+          <i data-lucide="chevron-left" class="w-4 h-4 text-neutral-700"></i>
+        </button>
+      </div>
+      <div class="clients-nav clients-nav--right">
+        <button type="button" id="clientsNext" aria-label="Scroll right">
+          <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-700"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- Replace these src paths with your actual files under images/clients/ -->
+<!-- ==================== /CLIENTS SHOWCASE ==================== -->
 
   <!-- ============ HOW IT WORKS ============ -->
   <section id="how" class="bg-neutral-50 border-y">
@@ -274,7 +349,7 @@
         <div class="rounded-xl border p-4"><div class="font-medium">Standing Pouches</div><div class="text-sm text-bodytext">Gusseted, stand-stable</div></div>
         <div class="rounded-xl border p-4"><div class="font-medium">Soap Bar & Spices Pack</div><div class="text-sm text-bodytext">Tear-notch, easy-open</div></div>
         <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil Packet</div><div class="text-sm text-bodytext">Leak-proof seals</div></div>
-        <a href="products.html" class="inline-flex justify-center rounded-xl px-5 py-3 bg-brand text-white">Explore products</a>
+        <a href="products.html" class=" inline-flex justify-center px-7 py-7 rounded-xl border p-10  text-bodytext bg-brand text-white ">Explore products</a>
       </div>
     </div>
   </section>
@@ -319,8 +394,8 @@
 
   <!-- ============ CTA / PRICING STYLE ============ -->
   <section class="mx-auto max-w-7xl px-4 py-20" id="cta">
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="rounded-2xl border p-6">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="rounded-2xl border p-6 ring-1 ring-blue-600 border-emerald-600">
         <div class="text-sm text-neutral-500">Samples</div>
         <div class="mt-1 text-3xl font-semibold">Free</div>
         <ul class="mt-4 space-y-2 text-sm">
@@ -331,7 +406,7 @@
         <!-- brand-blue outlined button -->
         <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-brand">Enquire</a>
       </div>
-      <div class="rounded-2xl border p-6 ring-1 ring-emerald-600 border-emerald-600">
+      <div class="rounded-2xl border p-6 ring-1 ring-blue-600 border-emerald-600">
         <div class="text-sm text-neutral-500">Production</div>
         <div class="mt-1 text-3xl font-semibold">Quote</div>
         <ul class="mt-4 space-y-2 text-sm">
@@ -340,19 +415,9 @@
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Priority scheduling</li>
         </ul>
         <!-- brand-blue outlined button -->
-        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-brand">Enquire</a>
+        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-blue-500">Enquire</a>
       </div>
-      <div class="rounded-2xl border p-6">
-        <div class="text-sm text-neutral-500">Enterprise</div>
-        <div class="mt-1 text-3xl font-semibold">Talk to us</div>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Custom SLAs</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> On-site audits</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> SAML/SSO (portal)</li>
-        </ul>
-        <!-- brand-blue outlined button -->
-        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-brand">Enquire</a>
-      </div>
+      
     </div>
   </section>
 
@@ -523,5 +588,56 @@
     <img src="images/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
     </a>
     <!-- End WhatsApp Floating Button -->
+    
+  <script>
+    /* ===== Clients rail: infinite auto-scroll + swipe + arrows ===== */
+    (function(){
+      const rail = document.getElementById('clientsRail');
+      if(!rail) return;
+      // 1) Duplicate content once to create a seamless loop
+      rail.innerHTML += rail.innerHTML;
+      
+      // 2) Auto scroll
+      let raf, speed = 0.6, paused = false;
+      function step(){
+        if(!paused){
+          rail.scrollLeft += speed;
+          // when we pass the halfway point (original width), snap back
+          const half = Math.floor(rail.scrollWidth / 2);
+          if (rail.scrollLeft >= half) rail.scrollLeft = rail.scrollLeft - half;
+        }
+        raf = requestAnimationFrame(step);
+      }
+      raf = requestAnimationFrame(step);
+      
+      // Pause on hover / focus / touch
+      const pause = ()=> paused = true;
+      const play  = ()=> paused = false;
+      rail.addEventListener('mouseenter', pause);
+      rail.addEventListener('mouseleave', play);
+      rail.addEventListener('touchstart', pause, {passive:true});
+      rail.addEventListener('touchend', play, {passive:true});
+      rail.addEventListener('focusin', pause);
+      rail.addEventListener('focusout', play);
+      
+      // 3) Drag to scroll with mouse (desktop convenience)
+      let isDown=false, startX=0, startLeft=0;
+      rail.addEventListener('mousedown', (e)=>{ isDown=true; pause(); startX=e.pageX; startLeft=rail.scrollLeft; rail.style.cursor='grabbing'; });
+      window.addEventListener('mouseup', ()=>{ if(isDown){ isDown=false; rail.style.cursor='default'; play(); }});
+      window.addEventListener('mousemove', (e)=>{ if(!isDown) return; const dx=e.pageX-startX; rail.scrollLeft = startLeft - dx; });
+      
+      // 4) Arrow buttons
+      const prev = document.getElementById('clientsPrev');
+      const next = document.getElementById('clientsNext');
+      const nudge = (dir)=>{ pause(); rail.scrollBy({ left: dir*300, behavior:'smooth' }); setTimeout(play, 600); };
+      prev?.addEventListener('click', ()=>nudge(-1));
+      next?.addEventListener('click', ()=>nudge(1));
+      
+      // Make sure new icons render
+      if (window.lucide?.createIcons) lucide.createIcons();
+    })();
+  </script>
+    
+
 </body>
 </html>
