@@ -14,7 +14,7 @@
   <script>
     tailwind.config = {
       theme: { extend: {
-        colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
+        colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7', white: "#ffffff" }
       }}
     }
   </script>
@@ -39,9 +39,9 @@
     @supports not (-webkit-background-clip:text){.logo-text{color:#2e3091}}
 
     /* Cards */
-    .float-card{background:linear-gradient(180deg,#f3f5f9,#f9faff);
+    .float-card{background:linear-gradient(180deg,#b8b9b9,#b8b9b9);
       border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;
-      box-shadow:0 6px 24px rgba(0,0,0,.06);transition:transform .25s,box-shadow .25s;
+      box-shadow:#b8b9b9;transition:transform .25s,box-shadow .25s;
       animation:floatY 6s ease-in-out infinite}
     .float-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 10px 32px rgba(0,0,0,.10)}
     @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
@@ -54,35 +54,21 @@
     }
 
     /* Pills */
-    .gc-tab{border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:8px 12px;font-size:.9rem;background:#fff}
-    .gc-tab.active{background:#2e3091;color:#fff;border-color:#2e3091}
-    .gc-choice{border:1px solid rgba(0,0,0,.12);border-radius:9999px;padding:6px 12px;font-size:.9rem;background:#fff}
-    .gc-choice.active{background:#2e3091;color:#fff;border-color:#2e3091}
-    .btn-brand{background:#2e3091;color:#fff;border-radius:12px;padding:10px 16px}
+    .gc-tab{border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:8px 12px;font-size:.9rem;background:#b8b9b9}
+    .gc-tab.active{background:#2e3091;color:#b8b9b9;border-color:#2e3091}
+    .gc-choice{border:1px solid rgba(0,0,0,.12);border-radius:9999px;padding:6px 12px;font-size:.9rem;background:#b8b9b9}
+    .gc-choice.active{background:#2e3091;color:#b8b9b9;border-color:#2e3091}
+    .btn-brand{background:#2e3091;color:#b8b9b9;border-radius:12px;padding:10px 16px}
     .btn-brand:hover{filter:brightness(.95)}
 
     /* ===== Brand-blue outline button utility ===== */
-    .btn-outline-brand{
-      border-width:2px; border-color:#2e3091;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    .btn-outline-brand:focus{
-      outline:none; border-color:rgba(46,48,145,.8);
-      box-shadow:0 0 0 3px rgba(46,48,145,.15);
-    }
+    
 
     /* ===== Brand glow for images (remove white ring on demand) ===== */
-    .glow-outer{
-      border-radius:.75rem;
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 36px 10px rgba(46,48,145,.45),
-        0 0 18px 2px rgba(237,39,36,.20);
-      transition: box-shadow .28s ease;
-    }
+    
     .glow-outer:hover{
       box-shadow:
-        0 0 0 2px #fff,
+
         0 0 42px 16px rgba(46,48,145,.65),
         0 0 24px 4px rgba(237,39,36,.28);
     }
@@ -117,10 +103,10 @@
   </style>
 </head>
 
-<body class="bg-white text-neutral-900 font-sans">
+<body class="text-White-900 font-sans" style="background-color:#b8b9b9;">
 
   <!-- ========= HEADER (MOBILE MENU INCLUDED) ========= -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+  <header class="sticky top-0 z-50  backdrop-blur " style="background-color: #b8b9b9;">
     <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-2">
         <img src="images/logo.png" alt="Grand-Chem" class="h-8 w-auto">
@@ -128,12 +114,12 @@
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="index.html#how" class="hover:opacity-70">How We Work</a>
-        <a href="products.html" class="hover:opacity-70">Products</a>
-        <a href="profile.html" class="hover:opacity-70">Profile</a>
-        <a href="index.html#sustain" class="hover:opacity-70">Sustainability</a>
-        <a href="index.html#faq" class="hover:opacity-70">FAQ</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm" style="background-color: #b8b9b9;">
+        <a href="index.html#how" class="hover:opacity-70 text-accent">How We Work</a>
+        <a href="products.html" class="hover:opacity-70 text-accent">Products</a>
+        <a href="profile.html" class="hover:opacity-70 text-accent">Profile</a>
+        <a href="index.html#sustain" class="hover:opacity-70 text-accent">Sustainability</a>
+        <a href="index.html#faq" class="hover:opacity-70 text-accent">FAQ</a>
         <a href="index.html#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
       </nav>
 
@@ -157,19 +143,19 @@
   </header>
 
   <!-- Intro -->
-  <section class="mx-auto max-w-7xl px-4 pt-8">
-    <h1 class="text-3xl md:text-4xl font-semibold">Product gallery</h1>
+  <section class="mx-auto max-w-9xl px-6 pt-8 " style="background-color:#b8b9b9;" >
+    <h1 class="text-3xl md:text-4xl font-semibold text-accent ">Product gallery</h1>
     <p class="mt-2 text-bodytext max-w-3xl">
       Explore our core product families. Click any card to view sizes, colors, packs & MOQ, plus a quick image slider.
     </p>
   </section>
 
   <!-- Section cards -->
-  <section id="sectionsGrid" class="mx-auto max-w-7xl px-4 py-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></section>
+  <section id="sectionsGrid" style="background-color:#b8b9b9;" class="mx-auto max-w-9xl px-4 py-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" ></section>
 
   <!-- Footer -->
-  <footer class="border-t mt-16">
-    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
+  <footer class=" mt-16" style="background-color:#b8b9b9;">
+    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6" >
       <div>© 2025 Grand-Chem Limited — SEDEX Certified • Your Packaging Partner</div>
       <div class="md:text-right">Privacy • Terms</div>
     </div>
@@ -177,11 +163,11 @@
 
   <!-- ===== MODAL (Centered + mobile-friendly) ===== -->
   <div id="modalRoot" class="fixed inset-0 hidden z-[60]">
-    <div class="absolute inset-0 gc-backdrop"></div>
+    <div class="absolute inset-0 "></div>
     <div class="relative w-full h-full grid place-items-center p-3 md:p-6">
-      <div class="relative bg-white rounded-2xl shadow-xl border gc-modal overflow-hidden flex flex-col">
+      <div class="relative bg-white rounded-2xl shadow-xl  gc-modal overflow-hidden flex flex-col">
         <!-- Header -->
-        <div class="flex items-center justify-between px-5 py-4 border-b">
+        <div class="flex items-center justify-between px-5 py-4 border-b" >
           <div class="flex items-center gap-3">
             <div class="h-9 w-9 rounded-lg bg-brand/10 flex items-center justify-center">
               <i data-lucide="package" class="w-5 h-5 text-brand"></i>
@@ -343,11 +329,11 @@
       el.style.animationDelay=(idx%5)*0.12+'s';
       el.innerHTML=`
         <div class="glow-outer rounded-lg mb-3"><div class="glow-mask">
-          <img src="${section.img}" alt="${section.title}" class="w-full h-60 object-cover">
+          <img src="${section.img}" alt="${section.title}" class="w-full h-[38vh] md:h-[420px] object-cover">
         </div></div>
         <div class="text-xs text-brand mb-1">${section.desc||''}</div>
         <div class="flex items-center justify-between">
-          <h3 class="text-lg font-semibold">${section.title}</h3>
+          <h3 class="text-accent font-semibold ">${section.title}</h3>
           <button class="px-3 py-1 text-sm rounded-lg border btn-outline-brand">View</button>
         </div>`;
       el.addEventListener('click',()=>openModal(section));
@@ -513,7 +499,7 @@
       const info = petPack(pet_selected);
 
       mBody.innerHTML=`
-        <div class="text-xs text-neutral-500 mb-2">Pick size:</div>
+        <div class="text-xs text-white-500 mb-2">Pick size:</div>
         <div class="flex flex-wrap gap-2 mb-3">${pills}</div>
         <div class="rounded-lg border p-3 bg-neutral-50">
           <div><b>Pack:</b> ${info.bag}</div>
