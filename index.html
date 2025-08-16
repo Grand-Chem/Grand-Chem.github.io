@@ -561,7 +561,7 @@
       const els = document.querySelectorAll('.odometer');
       const animate = (el)=>{
         const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-        const dur = 1800, start = performance.now();
+        const dur = 18000, start = performance.now();
         function tick(now){
           const p = Math.min(1, (now-start)/dur);
           const eased = 1 - Math.pow(1-p, 3);
