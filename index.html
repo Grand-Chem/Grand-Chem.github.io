@@ -235,6 +235,93 @@
       height: auto;
     }
 
+    /* Fixed Scroll Navigation */
+    .scroll-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .scroll-nav.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-nav-item {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(46,48,145,0.3);
+      border: 2px solid #2e3091;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .scroll-nav-item:hover,
+    .scroll-nav-item.active {
+      background: #2e3091;
+      transform: scale(1.2);
+    }
+
+    .scroll-nav-item::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #2e3091;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .scroll-nav-item:hover::before {
+      opacity: 1;
+      visibility: visible;
+      right: 30px;
+    }
+
+    .scroll-nav-item::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 4px solid transparent;
+      border-left-color: #2e3091;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .scroll-nav-item:hover::after {
+      opacity: 1;
+      visibility: visible;
+      right: -5px;
+    }
+
+    /* Hide on mobile */
+    @media (max-width: 768px) {
+      .scroll-nav {
+        display: none;
+      }
+    }
+
     /* Enhanced product cards */
     .product-card {
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -319,6 +406,17 @@
       <div class="text-sm text-bodytext mt-2">Loading your packaging solutions...</div>
     </div>
   </div>
+
+  <!-- Fixed Scroll Navigation -->
+  <nav id="scroll-nav" class="scroll-nav">
+    <div class="scroll-nav-item" data-target="top" data-tooltip="Home"></div>
+    <div class="scroll-nav-item" data-target="factory" data-tooltip="Factory"></div>
+    <div class="scroll-nav-item" data-target="clients" data-tooltip="Clients"></div>
+    <div class="scroll-nav-item" data-target="how" data-tooltip="How We Work"></div>
+    <div class="scroll-nav-item" data-target="products" data-tooltip="Products"></div>
+    <div class="scroll-nav-item" data-target="sustain" data-tooltip="Sustainability"></div>
+    <div class="scroll-nav-item" data-target="contact" data-tooltip="Contact"></div>
+  </nav>
 
   <!-- ============ HEADER (desktop + mobile) ============ -->
   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
@@ -448,7 +546,7 @@
       </div>
 
       <div class="fade-in-right">
-        <div class="relative rounded-3xl border shadow-xl p-6 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 group parallax-element">
+        <div class="relative rounded-3xl border shadow-xl p-6 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 group parallax-card">
           <!-- Enhanced glow wrapper with parallax -->
           <div class="glow-outer rounded-2xl mb-6 overflow-hidden group-hover:scale-105 transition-transform duration-500">
             <div class="glow-mask relative">
@@ -511,7 +609,7 @@
   </section>
 
   <!-- ============ FACTORY SHOWCASE WITH DRONE FOOTAGE ============ -->
-  <section class="bg-gradient-to-br from-neutral-50 to-blue-50/30 py-20 section-transition">
+  <section id="factory" class="bg-gradient-to-br from-neutral-50 to-blue-50/30 py-20 section-transition">
     <div class="mx-auto max-w-7xl px-4">
       <!-- Section Header -->
       <div class="text-center mb-16 fade-in-up">
@@ -616,7 +714,7 @@
   </section>
 
   <!-- ==================== CLIENTS SHOWCASE (place after PRODUCTS, before INDUSTRIES) ==================== -->
-  <section class="mx-auto max-w-8xl px-4 py-10">
+  <section id="clients" class="mx-auto max-w-8xl px-4 py-10">
     <div class="flex items-end justify-between mb-10">
       <div>
         <div class="text-sm text-neutral-500" data-i18n="clients.subtitle">Trusted by teams across West Africa</div>
@@ -680,7 +778,7 @@
   </section>
 
   <!-- ============ ENHANCED PRODUCTS SHOWCASE ============ -->
-  <section class="mx-auto max-w-7xl px-4 py-16 section-transition">
+  <section id="products" class="mx-auto max-w-7xl px-4 py-16 section-transition">
     <div class="text-center mb-16 fade-in-up">
       <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand/10 to-accent/10 text-brand rounded-full text-sm font-medium mb-4">
         <i data-lucide="factory" class="w-4 h-4"></i>
@@ -703,7 +801,7 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/injectionmoulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <img src="images/injectionmoulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover parallax-element" loading="lazy" onerror="this.onerror=null; this.src='images/hero.webp'; console.log('Failed to load injectionmoulding.webp');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-brand">
               ⚡ HIGH PRECISION
@@ -755,7 +853,7 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/blowfilm.webp" alt="Blown Film" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <img src="images/blowfilm.webp" alt="Blown Film" class="w-full h-80 object-cover parallax-element" loading="lazy" onerror="this.onerror=null; this.src='images/hero.webp'; console.log('Failed to load blowfilm.webp');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-accent">
               🎨 10-COLOR PRINT
@@ -800,7 +898,7 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/gallonmoulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-80 object-cover parallax-element" />
+            <img src="images/gallonmoulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-80 object-cover parallax-element" onerror="this.onerror=null; this.src='images/hero.webp'; console.log('Failed to load gallonmoulding.webp');" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-green-600">
               🛡️ DURABLE HDPE/PP
@@ -859,7 +957,7 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/laminationconverting.webp" alt="Lamination & Converting" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <img src="images/laminationconverting.webp" alt="Lamination & Converting" class="w-full h-80 object-cover parallax-element" loading="lazy" onerror="this.onerror=null; this.src='images/hero.webp'; console.log('Failed to load laminationconverting.webp');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-purple-600">
               📦 CUSTOM BARRIER FILMS
@@ -1381,6 +1479,14 @@
           element.style.transform = `translate3d(0, ${yPos}px, 0) rotate(${rotation}deg)`;
         });
 
+        // Hero stats card parallax to match hero image
+        const parallaxCards = document.querySelectorAll('.parallax-card');
+        parallaxCards.forEach((element) => {
+          const rate = scrolled * -0.5; // Same rate as parallax-element
+          const yPos = Math.round(rate);
+          element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+
         ticking = false;
       }
 
@@ -1502,6 +1608,69 @@
           });
         });
       }
+
+      // ===== FIXED SCROLL NAVIGATION =====
+      const scrollNav = document.getElementById('scroll-nav');
+      const scrollNavItems = document.querySelectorAll('.scroll-nav-item');
+
+      // Show/hide scroll navigation based on scroll position
+      function toggleScrollNav() {
+        if (window.scrollY > 200) {
+          scrollNav.classList.add('visible');
+        } else {
+          scrollNav.classList.remove('visible');
+        }
+      }
+
+      // Update active navigation item based on current section
+      function updateActiveNavItem() {
+        const sections = ['top', 'factory', 'clients', 'how', 'products', 'sustain', 'contact'];
+        let activeSection = 'top';
+
+        sections.forEach(sectionId => {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 200 && rect.bottom >= 200) {
+              activeSection = sectionId;
+            }
+          }
+        });
+
+        // Update active state
+        scrollNavItems.forEach(item => {
+          if (item.dataset.target === activeSection) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+
+      // Handle scroll navigation clicks
+      scrollNavItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const targetId = item.dataset.target;
+          const targetSection = document.getElementById(targetId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Listen for scroll events
+      window.addEventListener('scroll', () => {
+        toggleScrollNav();
+        updateActiveNavItem();
+      }, { passive: true });
+
+      // Initial check
+      toggleScrollNav();
+      updateActiveNavItem();
 
       // ===== PERFORMANCE OPTIMIZATION =====
       // Reduce motion for users who prefer it
