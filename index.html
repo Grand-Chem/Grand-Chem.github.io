@@ -212,6 +212,29 @@
       transform: scale(1);
     }
 
+    /* Fix image loading and layering issues */
+    img {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .glow-mask img,
+    .parallax-element {
+      position: relative;
+      z-index: 2;
+      will-change: transform;
+    }
+
+    /* Ensure video elements display correctly */
+    video {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: auto;
+    }
+
     /* Enhanced product cards */
     .product-card {
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -425,7 +448,7 @@
       </div>
 
       <div class="fade-in-right">
-        <div class="relative rounded-3xl border shadow-xl p-6 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 group">
+        <div class="relative rounded-3xl border shadow-xl p-6 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 group parallax-element">
           <!-- Enhanced glow wrapper with parallax -->
           <div class="glow-outer rounded-2xl mb-6 overflow-hidden group-hover:scale-105 transition-transform duration-500">
             <div class="glow-mask relative">
@@ -486,6 +509,112 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ FACTORY SHOWCASE WITH DRONE FOOTAGE ============ -->
+  <section class="bg-gradient-to-br from-neutral-50 to-blue-50/30 py-20 section-transition">
+    <div class="mx-auto max-w-7xl px-4">
+      <!-- Section Header -->
+      <div class="text-center mb-16 fade-in-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand/10 to-accent/10 text-brand rounded-full text-sm font-medium mb-4">
+          <i data-lucide="factory" class="w-4 h-4"></i>
+          <span data-i18n="factory.badge">Our Manufacturing Facility</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent mb-4" data-i18n="factory.title">
+          State-of-the-Art Production
+        </h2>
+        <p class="text-lg text-bodytext max-w-3xl mx-auto" data-i18n="factory.subtitle">
+          Take a virtual tour of our modern manufacturing facility in Ghana, equipped with cutting-edge technology and operated by skilled professionals
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Video Section -->
+        <div class="fade-in-left">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl group bg-white p-3">
+            <div class="glow-outer rounded-2xl overflow-hidden">
+              <div class="glow-mask relative bg-neutral-900">
+                <!-- Placeholder for your drone footage video -->
+                <video
+                  class="w-full h-80 object-cover"
+                  poster="images/hero.webp"
+                  controls
+                  preload="metadata"
+                  aria-label="Grand-Chem factory drone footage">
+                  <source src="videos/factory-drone-footage-light.mp4" type="video/mp4">
+                  <source src="videos/factory-drone-footage-compressed.mp4" type="video/mp4">
+                  <!-- Fallback for browsers that don't support video -->
+                  <img src="images/hero.webp" alt="Grand-Chem factory aerial view" class="w-full h-80 object-cover">
+                </video>
+
+                <!-- Video Overlay Controls -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-brand">
+                  🎥 Drone Footage
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Caption -->
+            <div class="mt-4 text-center text-sm text-bodytext">
+              <span class="font-medium" data-i18n="factory.video-caption">Aerial view of our Hebron manufacturing facility</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Factory Features -->
+        <div class="fade-in-right space-y-6">
+          <div class="rounded-2xl border p-6 bg-white/80 backdrop-blur hover:bg-white hover:shadow-lg transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-brand to-brand/80 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="factory" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-xl mb-2" data-i18n="factory.modern-facility">Modern Facility</h3>
+                <p class="text-bodytext" data-i18n="factory.modern-desc">50,000+ sq ft manufacturing space with automated production lines and climate-controlled environments</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border p-6 bg-white/80 backdrop-blur hover:bg-white hover:shadow-lg transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-xl mb-2" data-i18n="factory.quality-control">Quality Control</h3>
+                <p class="text-bodytext" data-i18n="factory.quality-desc">24/7 quality monitoring with advanced testing equipment ensuring consistent product standards</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border p-6 bg-white/80 backdrop-blur hover:bg-white hover:shadow-lg transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-accent to-red-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="users" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-xl mb-2" data-i18n="factory.skilled-team">Skilled Team</h3>
+                <p class="text-bodytext" data-i18n="factory.team-desc">100+ trained professionals operating advanced machinery with precision and expertise</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border p-6 bg-white/80 backdrop-blur hover:bg-white hover:shadow-lg transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="recycle" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-xl mb-2" data-i18n="factory.sustainability">Sustainable Operations</h3>
+                <p class="text-bodytext" data-i18n="factory.sustainability-desc">In-house recycling plant and eco-friendly processes minimizing environmental impact</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== CLIENTS SHOWCASE (place after PRODUCTS, before INDUSTRIES) ==================== -->
   <section class="mx-auto max-w-8xl px-4 py-10">
     <div class="flex items-end justify-between mb-10">
