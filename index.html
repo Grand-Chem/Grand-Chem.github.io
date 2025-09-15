@@ -467,6 +467,256 @@
       color: #64748b;
     }
 
+    /* Innovative 3D Product Showcase */
+    .product-showcase {
+      perspective: 1500px;
+      min-height: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 60px 20px;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+
+    .product-carousel {
+      position: relative;
+      width: min(90vw, 800px);
+      height: 600px;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      margin: 0 auto;
+    }
+
+    .product-item {
+      position: absolute;
+      width: 420px;
+      height: 520px;
+      background: white;
+      border-radius: 24px;
+      border: 2px solid #e2e8f0;
+      padding: 32px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      transform-origin: center center -300px;
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      overflow: hidden;
+      left: 50%;
+      top: 50%;
+      margin-left: -210px;
+      margin-top: -260px;
+    }
+
+    .product-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #2e3091, #ed2724);
+      border-radius: 24px 24px 0 0;
+    }
+
+    .product-item.active {
+      z-index: 10;
+      transform: translateZ(80px) scale(1.1);
+      box-shadow: 0 30px 60px rgba(46,48,145,0.2);
+    }
+
+    .product-item:not(.active) {
+      filter: grayscale(30%) brightness(70%);
+    }
+
+    .product-item:hover:not(.active) {
+      transform: translateZ(20px) scale(1.02);
+      filter: grayscale(0%) brightness(100%);
+    }
+
+    .product-image-container {
+      width: 100%;
+      height: 240px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-item:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .product-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .product-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .product-feature {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .product-cta {
+      margin-top: auto;
+      background: linear-gradient(135deg, #2e3091, #4338ca);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .product-cta:hover {
+      background: linear-gradient(135deg, #1e40af, #3730a3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(46,48,145,0.3);
+    }
+
+    .carousel-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-dot.active {
+      background: #2e3091;
+      transform: scale(1.3);
+    }
+
+    .nav-dot.active::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 2px solid #2e3091;
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 20;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .carousel-controls:hover {
+      background: #2e3091;
+      color: white;
+      border-color: #2e3091;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 12px 35px rgba(46,48,145,0.3);
+    }
+
+    .carousel-prev {
+      left: -120px;
+    }
+
+    .carousel-next {
+      right: -120px;
+    }
+
+    @media (max-width: 768px) {
+      .product-showcase {
+        min-height: 700px;
+        padding: 40px 0;
+      }
+
+      .product-carousel {
+        width: 350px;
+        height: 450px;
+      }
+
+      .product-item {
+        width: 320px;
+        height: 420px;
+        padding: 24px;
+        margin-left: -160px;
+        margin-top: -210px;
+      }
+
+      .product-image-container {
+        height: 200px;
+      }
+
+      .carousel-controls {
+        display: none;
+      }
+    }
+
     /* Enhanced product cards */
     .product-card {
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -938,8 +1188,273 @@
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8">
-    <!-- Enhanced Injection Moulding -->
+    <!-- Enhanced 4-Card Grid with Full Details -->
+    <div class="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+
+      <!-- Injection Moulding Card -->
+      <div class="product-detail-card bg-white rounded-3xl border-2 border-gray-100 overflow-hidden hover:border-brand/30 hover:shadow-2xl transition-all duration-500 group">
+        <div class="relative">
+          <div class="aspect-video overflow-hidden">
+            <img src="images/injectionmoulding-new.png" alt="Injection Moulding" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="absolute top-4 right-4 bg-brand/90 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold">
+            ⚡ HIGH PRECISION
+          </div>
+        </div>
+
+        <div class="p-8">
+          <h3 class="text-3xl font-bold text-gray-900 mb-3 group-hover:text-brand transition-colors">Injection Moulding</h3>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance and reliability.</p>
+
+          <!-- Key Specs -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-brand/5 p-4 rounded-xl border border-brand/20">
+              <div class="text-brand font-semibold mb-1">Production Capacity</div>
+              <div class="text-sm text-gray-600">50,000+ units/day</div>
+            </div>
+            <div class="bg-brand/5 p-4 rounded-xl border border-brand/20">
+              <div class="text-brand font-semibold mb-1">Precision</div>
+              <div class="text-sm text-gray-600">±0.05mm tolerance</div>
+            </div>
+            <div class="bg-brand/5 p-4 rounded-xl border border-brand/20">
+              <div class="text-brand font-semibold mb-1">Materials</div>
+              <div class="text-sm text-gray-600">PP, HDPE, PET</div>
+            </div>
+            <div class="bg-brand/5 p-4 rounded-xl border border-brand/20">
+              <div class="text-brand font-semibold mb-1">Quality</div>
+              <div class="text-sm text-gray-600">ISO 9001:2015</div>
+            </div>
+          </div>
+
+          <!-- Applications -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-900 mb-3">Key Applications:</h4>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-brand rounded-full"></div>
+                <span>Beverage bottles</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-brand rounded-full"></div>
+                <span>Food containers</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-brand rounded-full"></div>
+                <span>Personal care</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-brand rounded-full"></div>
+                <span>Chemical bottles</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="products.html" class="inline-flex items-center justify-center w-full rounded-xl px-6 py-4 bg-brand text-white font-semibold hover:bg-brand/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <span>View Full Details</span>
+            <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Blown Film Card -->
+      <div class="product-detail-card bg-white rounded-3xl border-2 border-gray-100 overflow-hidden hover:border-red-300 hover:shadow-2xl transition-all duration-500 group">
+        <div class="relative">
+          <div class="aspect-video overflow-hidden">
+            <img src="images/blowfilm-new.png" alt="Blown Film" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="absolute top-4 right-4 bg-red-600/90 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold">
+            🎨 10-COLOR PRINT
+          </div>
+        </div>
+
+        <div class="p-8">
+          <h3 class="text-3xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">Blown Film</h3>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">Custom mono and multilayer films with superior clarity, strength, and up to 10-color printing capabilities for premium packaging solutions.</p>
+
+          <!-- Key Specs -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-red-50 p-4 rounded-xl border border-red-200">
+              <div class="text-red-600 font-semibold mb-1">Thickness Range</div>
+              <div class="text-sm text-gray-600">10-200 microns</div>
+            </div>
+            <div class="bg-red-50 p-4 rounded-xl border border-red-200">
+              <div class="text-red-600 font-semibold mb-1">Print Colors</div>
+              <div class="text-sm text-gray-600">Up to 10 colors</div>
+            </div>
+            <div class="bg-red-50 p-4 rounded-xl border border-red-200">
+              <div class="text-red-600 font-semibold mb-1">Materials</div>
+              <div class="text-sm text-gray-600">LDPE, LLDPE, HDPE, PP</div>
+            </div>
+            <div class="bg-red-50 p-4 rounded-xl border border-red-200">
+              <div class="text-red-600 font-semibold mb-1">Speed</div>
+              <div class="text-sm text-gray-600">150 m/min</div>
+            </div>
+          </div>
+
+          <!-- Applications -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-900 mb-3">Key Applications:</h4>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-red-600 rounded-full"></div>
+                <span>Pure water sachets</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-red-600 rounded-full"></div>
+                <span>Shopping bags</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-red-600 rounded-full"></div>
+                <span>Food packaging</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-red-600 rounded-full"></div>
+                <span>Shrink wrapping</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="products.html" class="inline-flex items-center justify-center w-full rounded-xl px-6 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <span>View Full Details</span>
+            <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Gallon Moulding Card -->
+      <div class="product-detail-card bg-white rounded-3xl border-2 border-gray-100 overflow-hidden hover:border-green-300 hover:shadow-2xl transition-all duration-500 group">
+        <div class="relative">
+          <div class="aspect-video overflow-hidden">
+            <img src="images/gallonmoulding-new.png" alt="Gallon Moulding" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="absolute top-4 right-4 bg-green-600/90 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold">
+            🛡️ DURABLE HDPE/PP
+          </div>
+        </div>
+
+        <div class="p-8">
+          <h3 class="text-3xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">Gallon Moulding</h3>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">Durable HDPE and PP containers from 100ml to 25L, engineered for safe storage and transport of various liquid products.</p>
+
+          <!-- Key Specs -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+              <div class="text-green-600 font-semibold mb-1">Size Range</div>
+              <div class="text-sm text-gray-600">100ml - 25L</div>
+            </div>
+            <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+              <div class="text-green-600 font-semibold mb-1">Materials</div>
+              <div class="text-sm text-gray-600">HDPE, PP</div>
+            </div>
+            <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+              <div class="text-green-600 font-semibold mb-1">Testing</div>
+              <div class="text-sm text-gray-600">Drop tested 1.2m</div>
+            </div>
+            <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+              <div class="text-green-600 font-semibold mb-1">Temperature</div>
+              <div class="text-sm text-gray-600">-20°C to +60°C</div>
+            </div>
+          </div>
+
+          <!-- Applications -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-900 mb-3">Key Applications:</h4>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                <span>Edible oils</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                <span>Automotive fluids</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                <span>Cleaning products</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                <span>Personal care</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="products.html" class="inline-flex items-center justify-center w-full rounded-xl px-6 py-4 bg-green-600 text-white font-semibold hover:bg-green-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <span>View Full Details</span>
+            <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Lamination & Converting Card -->
+      <div class="product-detail-card bg-white rounded-3xl border-2 border-gray-100 overflow-hidden hover:border-purple-300 hover:shadow-2xl transition-all duration-500 group">
+        <div class="relative">
+          <div class="aspect-video overflow-hidden">
+            <img src="images/laminationconverting-new.png" alt="Lamination & Converting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="absolute top-4 right-4 bg-purple-600/90 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold">
+            📦 BARRIER FILMS
+          </div>
+        </div>
+
+        <div class="p-8">
+          <h3 class="text-3xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Lamination & Converting</h3>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">Advanced printed films, flexible packaging, and custom barrier solutions engineered for optimal shelf impact and product protection.</p>
+
+          <!-- Key Specs -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+              <div class="text-purple-600 font-semibold mb-1">Lamination</div>
+              <div class="text-sm text-gray-600">Dry & Extrusion</div>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+              <div class="text-purple-600 font-semibold mb-1">Print Colors</div>
+              <div class="text-sm text-gray-600">Up to 10 colors</div>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+              <div class="text-purple-600 font-semibold mb-1">Materials</div>
+              <div class="text-sm text-gray-600">PE, PP, PET, Foil</div>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+              <div class="text-purple-600 font-semibold mb-1">Barrier</div>
+              <div class="text-sm text-gray-600">Moisture, oxygen, light</div>
+            </div>
+          </div>
+
+          <!-- Applications -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-900 mb-3">Key Applications:</h4>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                <span>Food packaging</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                <span>Stand-up pouches</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                <span>Chocolate wrappers</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                <span>Spice packaging</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="products.html" class="inline-flex items-center justify-center w-full rounded-xl px-6 py-4 bg-purple-600 text-white font-semibold hover:bg-purple-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <span>View Full Details</span>
+            <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display: none;" class="old-products">
+    <!-- OLD Enhanced Injection Moulding -->
     <div class="product-card rounded-2xl border p-6 bg-white hover:bg-gradient-to-br hover:from-white hover:to-brand/5 fade-in-left group relative overflow-hidden">
       <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand/10 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500"></div>
 
@@ -1950,7 +2465,7 @@
             <div id="modalDescription" class="text-gray-600 leading-relaxed mb-6">
               Detailed product description will appear here...
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-4 mb-6">
               <div class="bg-brand/5 p-4 rounded-xl border border-brand/20">
                 <div class="text-brand font-semibold mb-1">Quality Standard</div>
                 <div class="text-sm text-gray-600">ISO 9001:2015</div>
@@ -1959,6 +2474,12 @@
                 <div class="text-green-600 font-semibold mb-1">Eco-Friendly</div>
                 <div class="text-sm text-gray-600">Recyclable Materials</div>
               </div>
+            </div>
+            <div class="text-center">
+              <a href="products.html" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand to-accent text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                <span>View All Products</span>
+              </a>
             </div>
           </div>
         </div>
@@ -2147,7 +2668,11 @@
       const modal = document.getElementById('productModal');
       const data = productData[productType];
 
-      if (!data) return;
+      if (!data) {
+        // Fallback to products page if no data available
+        window.location.href = 'products.html';
+        return;
+      }
 
       // Update modal content
       document.getElementById('modalTitle').textContent = data.title;
@@ -2238,6 +2763,61 @@
         closeProductModal();
       }
     });
+
+    // 3D Product Carousel JavaScript
+    let currentSlide = 0;
+    const totalSlides = 4;
+
+    function updateCarousel() {
+      const carousel = document.getElementById('productCarousel');
+      const items = carousel.querySelectorAll('.product-item');
+      const dots = document.querySelectorAll('.nav-dot');
+
+      items.forEach((item, index) => {
+        const offset = (index - currentSlide) * 90; // 90 degrees between items
+        const isActive = index === currentSlide;
+
+        item.style.transform = `rotateY(${offset}deg) translateZ(300px)`;
+        item.classList.toggle('active', isActive);
+      });
+
+      // Update navigation dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function rotateCarousel(direction) {
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    // Auto-rotate carousel (optional)
+    let autoRotate = setInterval(() => {
+      rotateCarousel(1);
+    }, 5000);
+
+    // Pause auto-rotate on hover
+    document.querySelector('.product-showcase').addEventListener('mouseenter', () => {
+      clearInterval(autoRotate);
+    });
+
+    document.querySelector('.product-showcase').addEventListener('mouseleave', () => {
+      autoRotate = setInterval(() => {
+        rotateCarousel(1);
+      }, 5000);
+    });
+
+    // Initialize carousel
+    updateCarousel();
+
+    // Re-render icons after carousel setup
+    if (window.lucide?.createIcons) lucide.createIcons();
   </script>
 
 </body>
