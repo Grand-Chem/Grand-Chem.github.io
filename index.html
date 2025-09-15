@@ -223,8 +223,24 @@
     .glow-mask img,
     .parallax-element {
       position: relative;
-      z-index: 2;
+      z-index: 10;
       will-change: transform;
+    }
+
+    .glow-mask {
+      overflow: hidden;
+      border-radius: inherit;
+      position: relative;
+    }
+
+    .glow-mask > img {
+      position: relative;
+      z-index: 5;
+    }
+
+    .glow-mask > div {
+      position: absolute;
+      z-index: 6;
     }
 
     /* Ensure video elements display correctly */
@@ -320,6 +336,135 @@
       .scroll-nav {
         display: none;
       }
+    }
+
+    /* Product Detail Modal */
+    .product-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .product-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .product-modal-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      transform: translateY(50px) scale(0.95);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+
+    .product-modal.active .product-modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      position: relative;
+      background: linear-gradient(135deg, #2e3091, #ed2724);
+      color: white;
+      padding: 30px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.1);
+    }
+
+    .product-tabs {
+      border-bottom: 2px solid #f1f5f9;
+      background: #fafafa;
+    }
+
+    .product-tab {
+      padding: 16px 24px;
+      background: none;
+      border: none;
+      color: #64748b;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    .product-tab.active {
+      color: #2e3091;
+      border-bottom-color: #2e3091;
+      background: white;
+    }
+
+    .product-tab:hover {
+      color: #2e3091;
+      background: #f8fafc;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 30px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .spec-item {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 4px solid #2e3091;
+    }
+
+    .spec-label {
+      font-weight: 600;
+      color: #2e3091;
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      color: #64748b;
     }
 
     /* Enhanced product cards */
@@ -802,8 +947,8 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/injectionmoulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover parallax-element" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <img src="images/injectionmoulding-new.png" alt="Injection Moulding" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-brand">
               ⚡ HIGH PRECISION
             </div>
@@ -832,10 +977,10 @@
           </div>
         </div>
 
-        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-brand text-white font-semibold hover:bg-brand/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-          <span>Explore products</span>
-          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
-        </a>
+        <button onclick="openProductModal('injection')" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-brand text-white font-semibold hover:bg-brand/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>View Details</span>
+          <i data-lucide="eye" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </button>
 
         <div class="mt-4 flex items-center gap-3 text-sm text-bodytext">
           <div class="flex items-center gap-2">
@@ -854,8 +999,8 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/blowfilm.webp" alt="Blown Film" class="w-full h-80 object-cover parallax-element" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <img src="images/blowfilm-new.png" alt="Blown Film" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-accent">
               🎨 10-COLOR PRINT
             </div>
@@ -884,10 +1029,10 @@
           </div>
         </div>
 
-        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-accent text-white font-semibold hover:bg-accent/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-          <span>Explore products</span>
-          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
-        </a>
+        <button onclick="openProductModal('blownfilm')" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-accent text-white font-semibold hover:bg-accent/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>View Details</span>
+          <i data-lucide="eye" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </button>
       </div>
     </div>
 
@@ -899,8 +1044,8 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/gallonmoulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-80 object-cover parallax-element" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <img src="images/gallonmoulding-new.png" alt="Gallon Moulding" loading="lazy" decoding="async" class="w-full h-80 object-cover parallax-element" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-green-600">
               🛡️ DURABLE HDPE/PP
             </div>
@@ -943,10 +1088,10 @@
           </div>
         </div>
 
-        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-green-600 text-white font-semibold hover:bg-green-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-          <span>Explore products</span>
-          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
-        </a>
+        <button onclick="openProductModal('gallon')" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-green-600 text-white font-semibold hover:bg-green-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>View Details</span>
+          <i data-lucide="eye" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </button>
       </div>
     </div>
 
@@ -958,8 +1103,8 @@
       <div class="relative">
         <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
           <div class="glow-mask relative">
-            <img src="images/laminationconverting.webp" alt="Lamination & Converting" class="w-full h-80 object-cover parallax-element" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <img src="images/laminationconverting-new.png" alt="Lamination & Converting" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-purple-600">
               📦 CUSTOM BARRIER FILMS
             </div>
@@ -1006,10 +1151,10 @@
           </div>
         </div>
 
-        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-purple-600 text-white font-semibold hover:bg-purple-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-          <span>Explore products</span>
-          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
-        </a>
+        <button onclick="openProductModal('lamination')" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-purple-600 text-white font-semibold hover:bg-purple-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>View Details</span>
+          <i data-lucide="eye" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </button>
       </div>
     </div>
   </section>
@@ -1776,7 +1921,72 @@
     <img src="images/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
     </a>
     <!-- End WhatsApp Floating Button -->
-    
+
+  <!-- Product Detail Modal -->
+  <div id="productModal" class="product-modal">
+    <div class="product-modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeProductModal()">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <h2 id="modalTitle" class="text-3xl font-bold mb-2">Product Details</h2>
+        <p id="modalSubtitle" class="text-white/80">Comprehensive information about our manufacturing solutions</p>
+      </div>
+
+      <div class="product-tabs">
+        <button class="product-tab active" onclick="switchTab('overview')">Overview</button>
+        <button class="product-tab" onclick="switchTab('specifications')">Specifications</button>
+        <button class="product-tab" onclick="switchTab('applications')">Applications</button>
+        <button class="product-tab" onclick="switchTab('gallery')">Gallery</button>
+      </div>
+
+      <div id="overview" class="tab-content active">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <img id="modalMainImage" src="images/hero.webp" alt="Product" class="w-full h-80 object-cover rounded-xl shadow-lg">
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Product Overview</h3>
+            <div id="modalDescription" class="text-gray-600 leading-relaxed mb-6">
+              Detailed product description will appear here...
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-brand/5 p-4 rounded-xl border border-brand/20">
+                <div class="text-brand font-semibold mb-1">Quality Standard</div>
+                <div class="text-sm text-gray-600">ISO 9001:2015</div>
+              </div>
+              <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+                <div class="text-green-600 font-semibold mb-1">Eco-Friendly</div>
+                <div class="text-sm text-gray-600">Recyclable Materials</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="specifications" class="tab-content">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Technical Specifications</h3>
+        <div id="modalSpecs" class="spec-grid">
+          <!-- Specifications will be populated dynamically -->
+        </div>
+      </div>
+
+      <div id="applications" class="tab-content">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Applications & Industries</h3>
+        <div id="modalApplications" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Applications will be populated dynamically -->
+        </div>
+      </div>
+
+      <div id="gallery" class="tab-content">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Product Gallery</h3>
+        <div id="modalGallery" class="grid md:grid-cols-3 gap-4">
+          <!-- Gallery images will be populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ===== Clients rail: infinite auto-scroll + swipe + arrows ===== */
     (function(){
@@ -1825,7 +2035,210 @@
       if (window.lucide?.createIcons) lucide.createIcons();
     })();
   </script>
-    
+
+  <!-- Product Modal JavaScript -->
+  <script>
+    // Product data
+    const productData = {
+      injection: {
+        title: "Injection Moulding",
+        subtitle: "High-precision caps, closures, and PET preforms",
+        image: "images/injectionmoulding-new.png",
+        description: "Our state-of-the-art injection moulding facility produces high-quality caps, closures, and PET preforms with exceptional precision. Using automated production lines and strict quality control measures, we ensure consistent performance and reliability for all our injection moulded products.",
+        specifications: {
+          "Material Types": "PP, HDPE, PET",
+          "Production Capacity": "50,000+ units/day",
+          "Mould Precision": "±0.05mm tolerance",
+          "Quality Standard": "ISO 9001:2015",
+          "Temperature Range": "-40°C to +80°C",
+          "Neck Finishes": "28mm, 38mm, 48mm, 63mm",
+          "Colors Available": "Clear, Blue, Green, Custom",
+          "Minimum Order": "10,000 pieces"
+        },
+        applications: [
+          { title: "Beverage Industry", desc: "Water bottles, juice containers, soft drinks" },
+          { title: "Food Packaging", desc: "Sauce jars, condiment bottles, food containers" },
+          { title: "Personal Care", desc: "Shampoo bottles, lotion containers, cosmetic jars" },
+          { title: "Chemical Industry", desc: "Chemical containers, laboratory bottles" },
+          { title: "Pharmaceutical", desc: "Medicine bottles, supplement containers" },
+          { title: "Household Products", desc: "Cleaning product bottles, detergent containers" }
+        ],
+        gallery: ["images/gallery/grand-chem-caps.webp", "images/gallery/grand-chem-bottle.webp", "images/gallery/grand-chem-pet-3.webp"]
+      },
+      blownfilm: {
+        title: "Blown Film",
+        subtitle: "Custom mono and multilayer films with up to 10-color print",
+        image: "images/blowfilm-new.png",
+        description: "Our blown film production line creates custom mono and multilayer films with superior clarity, strength, and printability. With up to 10-color printing capabilities, we deliver films that meet the highest standards for packaging applications across various industries.",
+        specifications: {
+          "Film Types": "Mono-layer, Multi-layer",
+          "Thickness Range": "10-200 microns",
+          "Width Range": "100mm - 2000mm",
+          "Print Colors": "Up to 10 colors",
+          "Materials": "LDPE, LLDPE, HDPE, PP",
+          "Production Speed": "150 m/min",
+          "Quality Control": "Online thickness monitoring",
+          "Certification": "Food grade compliant"
+        },
+        applications: [
+          { title: "Food Packaging", desc: "Fresh produce bags, frozen food wraps" },
+          { title: "Pure Water Sachets", desc: "Crystal clear water packaging films" },
+          { title: "Shopping Bags", desc: "Retail and grocery shopping bags" },
+          { title: "Agricultural Films", desc: "Greenhouse covers, mulch films" },
+          { title: "Industrial Packaging", desc: "Heavy-duty packaging films" },
+          { title: "Shrink Wrapping", desc: "Product bundling and protection" }
+        ],
+        gallery: ["images/gallery/pure-water-roll.webp", "images/gallery/grand-chem-shopping bags.webp", "images/gallery/plain-shrink-roll.webp"]
+      },
+      gallon: {
+        title: "Gallon Moulding (Blow)",
+        subtitle: "Durable HDPE/PP containers in all sizes and forms",
+        image: "images/gallonmoulding-new.png",
+        description: "Our blow moulding facility specializes in producing durable HDPE and PP containers for various liquid storage and transport applications. From small bottles to large gallons, we manufacture containers that meet strict safety and quality standards.",
+        specifications: {
+          "Container Sizes": "100ml - 25L",
+          "Materials": "HDPE, PP",
+          "Wall Thickness": "1.5mm - 5mm",
+          "Handle Types": "Integrated, Snap-on",
+          "Closure Options": "Screw caps, Push-pull, Tamper-evident",
+          "Drop Test": "1.2m height passed",
+          "Temperature Resistance": "-20°C to +60°C",
+          "UV Protection": "Available on request"
+        },
+        applications: [
+          { title: "Edible Oils", desc: "Cooking oil, palm oil containers" },
+          { title: "Automotive Fluids", desc: "Engine oil, coolants, brake fluid" },
+          { title: "Cleaning Products", desc: "Liquid soap, detergents, disinfectants" },
+          { title: "Industrial Chemicals", desc: "Solvents, acids, cleaning agents" },
+          { title: "Personal Care", desc: "Shampoo gallons, body wash containers" },
+          { title: "Dairy Products", desc: "Milk containers, yogurt gallons" }
+        ],
+        gallery: ["images/gallery/2liter gallon.webp", "images/gallery/grand-chem-yougurt-gallom.webp", "images/gallery/gc-toilet-liquid.webp"]
+      },
+      lamination: {
+        title: "Lamination & Converting",
+        subtitle: "Printed and laminated films, bags, and pouches",
+        image: "images/laminationconverting-new.png",
+        description: "Our lamination and converting facility produces high-quality printed films, flexible packaging, and custom pouches. We specialize in barrier films, stand-up pouches, and custom packaging solutions that provide excellent shelf impact and product protection.",
+        specifications: {
+          "Lamination Types": "Dry lamination, Extrusion lamination",
+          "Substrate Materials": "PE, PP, PET, Aluminum foil",
+          "Printing Colors": "Up to 10 colors",
+          "Pouch Types": "Stand-up, Flat, Gusseted",
+          "Barrier Properties": "Moisture, oxygen, light barrier",
+          "Sealing Strength": "15-25 N/15mm",
+          "Temperature Range": "5°C to 40°C storage",
+          "Shelf Life": "12-24 months"
+        },
+        applications: [
+          { title: "Food Packaging", desc: "Snack pouches, spice packaging, chocolate wrappers" },
+          { title: "Beverage Packaging", desc: "Coffee pouches, tea bags, drink sachets" },
+          { title: "Personal Care", desc: "Soap wrappers, cosmetic pouches" },
+          { title: "Pharmaceutical", desc: "Medicine pouches, supplement packaging" },
+          { title: "Agricultural Products", desc: "Seeds packaging, fertilizer bags" },
+          { title: "Retail Products", desc: "Gift bags, promotional packaging" }
+        ],
+        gallery: ["images/gallery/grand-chem-standing-pouch.webp", "images/gallery/grand-chem-cholate-wrapper.webp", "images/gallery/grand-chem-spices.webp"]
+      }
+    };
+
+    // Modal functions
+    function openProductModal(productType) {
+      const modal = document.getElementById('productModal');
+      const data = productData[productType];
+
+      if (!data) return;
+
+      // Update modal content
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalSubtitle').textContent = data.subtitle;
+      document.getElementById('modalMainImage').src = data.image;
+      document.getElementById('modalDescription').textContent = data.description;
+
+      // Update specifications
+      const specsContainer = document.getElementById('modalSpecs');
+      specsContainer.innerHTML = '';
+      Object.entries(data.specifications).forEach(([key, value]) => {
+        const specItem = document.createElement('div');
+        specItem.className = 'spec-item';
+        specItem.innerHTML = `
+          <div class="spec-label">${key}</div>
+          <div class="spec-value">${value}</div>
+        `;
+        specsContainer.appendChild(specItem);
+      });
+
+      // Update applications
+      const appsContainer = document.getElementById('modalApplications');
+      appsContainer.innerHTML = '';
+      data.applications.forEach(app => {
+        const appItem = document.createElement('div');
+        appItem.className = 'bg-gray-50 p-6 rounded-xl border border-gray-200 hover:border-brand/30 transition-colors';
+        appItem.innerHTML = `
+          <h4 class="font-semibold text-gray-900 mb-2">${app.title}</h4>
+          <p class="text-gray-600 text-sm">${app.desc}</p>
+        `;
+        appsContainer.appendChild(appItem);
+      });
+
+      // Update gallery
+      const galleryContainer = document.getElementById('modalGallery');
+      galleryContainer.innerHTML = '';
+      data.gallery.forEach(imageSrc => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'aspect-square rounded-xl overflow-hidden';
+        galleryItem.innerHTML = `
+          <img src="${imageSrc}" alt="Product gallery" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer">
+        `;
+        galleryContainer.appendChild(galleryItem);
+      });
+
+      // Show modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Re-render icons
+      if (window.lucide?.createIcons) lucide.createIcons();
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function switchTab(tabName) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Remove active class from all tabs
+      document.querySelectorAll('.product-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Show selected tab content
+      document.getElementById(tabName).classList.add('active');
+
+      // Add active class to clicked tab
+      event.target.classList.add('active');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('productModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeProductModal();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeProductModal();
+      }
+    });
+  </script>
 
 </body>
 </html>
