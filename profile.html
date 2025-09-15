@@ -42,32 +42,136 @@
       transition:box-shadow .28s ease}
     .glow-wrap:hover .glow-img{box-shadow:0 0 0 2px #fff,0 0 40px 4px rgba(46,48,145,.65),0 0 20px 14px rgba(237,39,36,.35)}
 
-    /* ===== Horizontal Journey ===== */
-    .journey-wrap{position:relative}
+    /* ===== Enhanced Animated Journey ===== */
+    .journey-wrap{position:relative;overflow:hidden;}
+
     .journey-track{
-      display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:24px;
-      padding:20px 24px 44px;border-radius:18px;background:#fff;border:1px solid rgba(0,0,0,.06);
+      display:flex;gap:30px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:24px;
+      padding:30px 24px 60px;border-radius:20px;
+      background:linear-gradient(135deg, #ffffff, #f8fafc);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 20px 40px rgba(0,0,0,.06);
     }
+
     .journey-card{
-      flex:0 0 540px;scroll-snap-align:center;position:relative;border-radius:16px;background:linear-gradient(180deg,#f7f8ff,#ffffff);
-      border:1px solid rgba(0,0,0,.06);box-shadow:0 10px 24px rgba(0,0,0,.06);overflow:hidden
+      flex:0 0 580px;scroll-snap-align:center;position:relative;
+      border-radius:20px;
+      background:linear-gradient(145deg, #ffffff, #f7f9fc);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 15px 35px rgba(0,0,0,.08);
+      overflow:hidden;
+      transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity:0;
+      transform:translateY(40px) scale(0.95);
     }
-    @media (max-width:768px){ .journey-card{flex-basis:86vw} }
 
-    .journey-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:linear-gradient(135deg,#eaf1ff,#f8faff)}
-    .journey-body{padding:14px 16px 18px}
-    .journey-year{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#6b7280}
-    .journey-title{font-weight:700}
-    .journey-txt{color:#5658a7;font-size:.92rem}
+    .journey-card.visible {
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
 
-    .journey-baseline{position:absolute;left:0;right:0;top:calc(16px + 9vw);height:4px;max-height:6px;background:#2e3091;opacity:.12;border-radius:9999px}
-    @media (min-width:768px){ .journey-baseline{top:210px} }
+    .journey-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow:0 25px 50px rgba(0,0,0,.15);
+      border-color:rgba(46,48,145,.2);
+    }
 
+    @media (max-width:768px){ .journey-card{flex-basis:90vw} }
+
+    .journey-img{
+      width:100%;aspect-ratio:16/9;object-fit:cover;
+      background:linear-gradient(135deg,#eaf1ff,#f8faff);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .journey-img::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(45deg, transparent, rgba(46,48,145,0.1), transparent);
+      transform:translateX(-100%);
+      transition:transform 0.6s ease;
+    }
+
+    .journey-card:hover .journey-img::before {
+      transform:translateX(100%);
+    }
+
+    .journey-body{padding:20px 24px 24px}
+    .journey-year{
+      font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+      color:#ed2724;font-weight:600;
+      display:inline-block;
+      padding:4px 12px;
+      background:rgba(237,39,36,.1);
+      border-radius:20px;
+      margin-bottom:8px;
+    }
+    .journey-title{font-weight:700;font-size:1.1rem;color:#2e3091;margin-bottom:8px;}
+    .journey-txt{color:#5658a7;font-size:.95rem;line-height:1.5}
+
+    /* Enhanced Timeline */
+    .journey-baseline{
+      position:absolute;left:24px;right:24px;
+      top:calc(20px + 8vw);height:6px;
+      background:linear-gradient(90deg, #2e3091, #ed2724, #2e3091);
+      border-radius:9999px;
+      box-shadow:0 2px 10px rgba(46,48,145,.3);
+      overflow:hidden;
+    }
+
+    .journey-baseline::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transform:translateX(-100%);
+      animation:timelineShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes timelineShimmer {
+      0%, 100% { transform:translateX(-100%); }
+      50% { transform:translateX(100%); }
+    }
+
+    @media (min-width:768px){ .journey-baseline{top:240px} }
+
+    /* Enhanced Dots */
     .journey-card::after{
-      content:"";position:absolute;left:50%;transform:translateX(-50%);top:calc(16px + 9vw + 2px);
-      width:10px;height:10px;border-radius:9999px;background:#2e3091;border:2px solid #fff;box-shadow:0 0 0 4px rgba(46,48,145,.12)
+      content:"";position:absolute;left:50%;transform:translateX(-50%);
+      top:calc(20px + 8vw + 3px);
+      width:16px;height:16px;border-radius:50%;
+      background:linear-gradient(45deg, #2e3091, #ed2724);
+      border:3px solid #fff;
+      box-shadow:0 0 0 6px rgba(46,48,145,.15), 0 4px 12px rgba(0,0,0,.2);
+      transition:all 0.3s ease;
     }
-    @media (min-width:768px){ .journey-card::after{top:222px} }
+
+    .journey-card:hover::after {
+      transform:translateX(-50%) scale(1.2);
+      box-shadow:0 0 0 8px rgba(46,48,145,.25), 0 6px 16px rgba(0,0,0,.3);
+    }
+
+    @media (min-width:768px){ .journey-card::after{top:243px} }
+
+    /* Floating Animation */
+    .journey-card {
+      animation:float 6s ease-in-out infinite;
+    }
+
+    .journey-card:nth-child(even) {
+      animation-delay:-3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform:translateY(0px) scale(1); }
+      50% { transform:translateY(-5px) scale(1); }
+    }
+
+    .journey-card:hover {
+      animation-play-state:paused;
+    }
   </style>
 </head>
 <body class="bg-white text-neutral-900">
@@ -80,7 +184,7 @@
         <span class="logo-text">Grand-Chem Limited</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="index.html#how" class="hover:opacity-70">How We Work</a>
+        <a href="index.html#how" class="hover:opacity-70">How it works</a>
         <a href="products.html" class="hover:opacity-70">Products</a>
         <a href="profile.html" class="hover:opacity-70">Profile</a>
         <a href="index.html#sustain" class="hover:opacity-70">Sustainability</a>
@@ -155,28 +259,76 @@
       </div>
     </section>
 
-    <!-- 4) Leadership (plain background; cards have glow) -->
+    <!-- 4) Leadership (Enhanced single leader showcase) -->
     <section class="relative bg-white border-y">
       <div class="max-w-7xl mx-auto px-4 py-12">
-        <div class="flex items-center justify-between">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-red-500">Leadership</h2>
-          <button id="seeMore" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 border bg-white hover:bg-neutral-50">
-            <span id="seeMoreLabel">See more</span>
-            <i id="seeMoreIcon" data-lucide="chevron-down" class="w-4 h-4 transition-transform"></i>
-          </button>
-        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-red-500 mb-8">Leadership</h2>
 
-        <!-- First 4 -->
-        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <article class="rounded-2xl border bg-white ph p-4 reveal cursor-pointer leader"
+        <!-- Featured Leader - Chandra Sekhar Chaganti -->
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Leader Image -->
+            <div class="relative">
+              <div class="aspect-[4/3] glow-wrap cursor-pointer leader"
                    data-name="Chandra Sekhar Chaganti"
                    data-role="Founder & Managing Director"
-                   data-bio="First-generation entrepreneur focused on innovation, operational excellence and long-term value."
+                   data-bio="First-generation entrepreneur with over 15 years of experience in packaging manufacturing. Chandra Sekhar founded Grand-Chem Limited with a vision to deliver world-class packaging solutions across West Africa. Under his leadership, the company has grown from a small PET bottle manufacturing unit to a comprehensive packaging solutions provider, serving over 300 customers across 5 countries. His focus on innovation, operational excellence, and sustainable practices has positioned Grand-Chem as a trusted partner for leading brands in Ghana and beyond. Chandra Sekhar is committed to building long-term value through quality manufacturing, environmental responsibility, and empowering local communities."
                    data-img="images/leaders/leader-1.webp">
-            <div class="aspect-[4/3] glow-wrap mb-3"><img src="images/leaders/leader-1.webp" alt="" class="glow-img"></div>
-            <div class="font-semibold">Chandra Sekhar Chaganti</div>
-            <div class="text-sm text-neutral-500">Founder & Managing Director</div>
-          </article>
+                <img src="images/leaders/leader-1.webp" alt="Chandra Sekhar Chaganti" class="glow-img">
+                <!-- Floating elements around image -->
+                <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-brand/10 to-accent/10 rounded-full blur-sm animate-pulse"></div>
+                <div class="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-accent/10 to-brand/10 rounded-full blur-sm animate-pulse delay-1000"></div>
+              </div>
+            </div>
+
+            <!-- Leader Info -->
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Chandra Sekhar Chaganti</h3>
+                <p class="text-lg text-brand font-semibold mb-4">Founder & Managing Director</p>
+                <p class="text-bodytext leading-relaxed">
+                  First-generation entrepreneur focused on innovation, operational excellence and long-term value creation.
+                  Leading Grand-Chem's mission to deliver world-class packaging solutions across West Africa.
+                </p>
+              </div>
+
+              <!-- Key Achievements -->
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gradient-to-br from-brand/5 to-transparent p-4 rounded-xl border border-brand/10">
+                  <div class="text-2xl font-bold text-brand">15+</div>
+                  <div class="text-sm text-bodytext">Years Experience</div>
+                </div>
+                <div class="bg-gradient-to-br from-accent/5 to-transparent p-4 rounded-xl border border-accent/10">
+                  <div class="text-2xl font-bold text-accent">300+</div>
+                  <div class="text-sm text-bodytext">Customers Served</div>
+                </div>
+                <div class="bg-gradient-to-br from-green-500/5 to-transparent p-4 rounded-xl border border-green-500/10">
+                  <div class="text-2xl font-bold text-green-600">5</div>
+                  <div class="text-sm text-bodytext">Countries Reached</div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-500/5 to-transparent p-4 rounded-xl border border-purple-500/10">
+                  <div class="text-2xl font-bold text-purple-600">2006</div>
+                  <div class="text-sm text-bodytext">Company Founded</div>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                <button class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 bg-brand text-white font-semibold hover:bg-brand/90 transition-all duration-300 cursor-pointer leader"
+                        data-name="Chandra Sekhar Chaganti"
+                        data-role="Founder & Managing Director"
+                        data-bio="First-generation entrepreneur with over 15 years of experience in packaging manufacturing. Chandra Sekhar founded Grand-Chem Limited with a vision to deliver world-class packaging solutions across West Africa. Under his leadership, the company has grown from a small PET bottle manufacturing unit to a comprehensive packaging solutions provider, serving over 300 customers across 5 countries. His focus on innovation, operational excellence, and sustainable practices has positioned Grand-Chem as a trusted partner for leading brands in Ghana and beyond. Chandra Sekhar is committed to building long-term value through quality manufacturing, environmental responsibility, and empowering local communities."
+                        data-img="images/leaders/leader-1.webp">
+                  <i data-lucide="user-circle" class="w-5 h-5"></i>
+                  View Full Profile
+                </button>
+                <a href="index.html#contact" class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 border border-brand text-brand font-semibold hover:bg-brand hover:text-white transition-all duration-300">
+                  <i data-lucide="message-circle" class="w-5 h-5"></i>
+                  Contact Leadership
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -250,42 +402,114 @@
     document.getElementById('lmClose')?.addEventListener('click', ()=> modal.classList.add('hidden'));
     modal.addEventListener('click', (e)=>{ if(e.target === modal.firstElementChild) modal.classList.add('hidden'); });
 
-    /* See more toggle */
-    (function(){
-      const btn = document.getElementById('seeMore');
-      const wrap = document.getElementById('moreLeaders');
-      const label = document.getElementById('seeMoreLabel');
-      const icon = document.getElementById('seeMoreIcon');
-      btn?.addEventListener('click', ()=>{
-        const hidden = wrap.classList.contains('hidden');
-        wrap.classList.toggle('hidden');
-        label.textContent = hidden ? 'See less' : 'See more';
-        icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
-      });
-    })();
 
-    /* ===== Horizontal Journey builder ===== */
+    /* ===== Enhanced Animated Journey builder ===== */
     (function(){
       const roadmap = [
-        { year:'2025', title:'5-layer line', text:'New 5-layer poly extrusion commissioned.', img:'images/roadmap/2025.webp' },
-        { year:'2024', title:'Scale-up', text:'New 8,350 sqm facility; >9,000 MT annual capacity.', img:'images/roadmap/2024.webp' },
-        { year:'2023', title:'Recycling', text:'In-house recycling plant commissioned.', img:'images/roadmap/2023.webp' },
-        { year:'2018', title:'Strengthening', text:'Expanded preforms & flexo capabilities.', img:'images/roadmap/2018.webp' },
-        { year:'2017', title:'New technology', text:'3 multilayer lines, 10-color presses, high-capacity injection.', img:'images/roadmap/2017.webp' },
-        { year:'2014–2015', title:'Foundation', text:'Built a 2,200 sqm facility.', img:'images/roadmap/2015.webp' },
-        { year:'2009', title:'Film production', text:'Monolayer extrusion film machines introduced.', img:'images/roadmap/2009.webp' },
-        { year:'2006', title:'First steps', text:'PET blowing manufacturing begins.', img:'images/roadmap/2006.webp' },
+        { year:'2025', title:'5-layer line', text:'New 5-layer poly extrusion commissioned with advanced technology for superior film quality.', img:'images/roadmap/2025.webp', icon:'🚀' },
+        { year:'2024', title:'Major Scale-up', text:'New 8,350 sqm facility completed; >9,000 MT annual capacity achieved.', img:'images/roadmap/2024.webp', icon:'🏭' },
+        { year:'2023', title:'Green Revolution', text:'In-house recycling plant commissioned, supporting Ghana\'s circular economy.', img:'images/roadmap/2023.webp', icon:'♻️' },
+        { year:'2018', title:'Strengthening', text:'Expanded preforms & flexo capabilities with new equipment lines.', img:'images/roadmap/2018.webp', icon:'💪' },
+        { year:'2017', title:'Technology Leap', text:'3 multilayer lines, 10-color presses, high-capacity injection molding deployed.', img:'images/roadmap/2017.webp', icon:'⚡' },
+        { year:'2014–2015', title:'Foundation Era', text:'Built our first 2,200 sqm facility establishing manufacturing base.', img:'images/roadmap/2015.webp', icon:'🏗️' },
+        { year:'2009', title:'Film Innovation', text:'Monolayer extrusion film machines introduced, expanding product range.', img:'images/roadmap/2009.webp', icon:'🎬' },
+        { year:'2006', title:'The Beginning', text:'PET blowing manufacturing begins - Grand-Chem Limited founded.', img:'images/roadmap/2006.webp', icon:'🌟' },
       ];
+
       const track = document.getElementById('journeyTrack');
-      track.innerHTML = roadmap.map(m => `
-        <article class="journey-card">
-          <img class="journey-img" alt="" onerror="this.style.background='linear-gradient(135deg,#eaf1ff,#f8faff)';this.removeAttribute('src')" src="${m.img||''}" />
+      track.innerHTML = roadmap.map((m, index) => `
+        <article class="journey-card" data-index="${index}">
+          <div class="journey-img" style="background-image: url('${m.img}'); background-size: cover; background-position: center;">
+            <div style="position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; backdrop-filter: blur(10px);">
+              ${m.icon}
+            </div>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.3), transparent 60%);"></div>
+          </div>
           <div class="journey-body">
             <div class="journey-year">${m.year}</div>
-            <div class="journey-title mt-1">${m.title}</div>
-            <p class="journey-txt mt-2">${m.text}</p>
+            <div class="journey-title">${m.title}</div>
+            <p class="journey-txt">${m.text}</p>
           </div>
         </article>`).join('');
+
+      // Enhanced scroll-triggered animations
+      const journeyCards = document.querySelectorAll('.journey-card');
+      const journeyTrack = document.getElementById('journeyTrack');
+
+      // Intersection Observer for scroll-triggered animations
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 150);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '50px'
+      });
+
+      // Observe each journey card
+      journeyCards.forEach(card => {
+        cardObserver.observe(card);
+      });
+
+      // Enhanced scroll interaction
+      let isScrolling = false;
+      journeyTrack.addEventListener('scroll', () => {
+        if (!isScrolling) {
+          isScrolling = true;
+
+          // Add parallax effect to cards while scrolling
+          const scrollLeft = journeyTrack.scrollLeft;
+          journeyCards.forEach((card, index) => {
+            const cardLeft = card.offsetLeft;
+            const distance = Math.abs(scrollLeft - cardLeft + 300);
+            const scale = Math.max(0.85, 1 - distance / 2000);
+            const opacity = Math.max(0.3, 1 - distance / 1500);
+
+            if (!card.matches(':hover')) {
+              card.style.transform = `scale(${scale}) translateY(${(1-scale) * 20}px)`;
+              card.style.opacity = opacity;
+            }
+          });
+
+          // Clear scrolling flag
+          setTimeout(() => {
+            isScrolling = false;
+          }, 150);
+        }
+      });
+
+      // Auto-scroll showcase (optional)
+      let autoScrollInterval;
+      const startAutoScroll = () => {
+        autoScrollInterval = setInterval(() => {
+          if (!journeyTrack.matches(':hover')) {
+            const scrollAmount = 300;
+            const maxScroll = journeyTrack.scrollWidth - journeyTrack.clientWidth;
+
+            if (journeyTrack.scrollLeft >= maxScroll) {
+              journeyTrack.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+              journeyTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+          }
+        }, 4000);
+      };
+
+      const stopAutoScroll = () => {
+        clearInterval(autoScrollInterval);
+      };
+
+      // Pause auto-scroll on hover
+      journeyTrack.addEventListener('mouseenter', stopAutoScroll);
+      journeyTrack.addEventListener('mouseleave', startAutoScroll);
+
+      // Start auto-scroll after initial load
+      setTimeout(startAutoScroll, 3000);
+
     })();
   </script>
 </body>
