@@ -1,510 +1,1532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grand-Chem Limited — Your Packaging Partner</title>
-  <meta name="description" content="Grand-Chem Limited manufactures PET preforms, printed films, custom bags, and HDPE/PP containers in Ghana and West Africa." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grand-Chem Limited — Your Packaging Partner</title>
+  <meta name="description" content="Grand-Chem Limited manufactures PET preforms, printed films, custom bags, and HDPE/PP containers in Ghana and West Africa." />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
-      }}
-    }
-  </script>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' }
+      }}
+    }
+  </script>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <style>
-    html{scroll-behavior:smooth}
-    /* Soft brandy background */
-    body::before{content:"";position:fixed;inset:0;z-index:-1;background:
-      radial-gradient(40% 40% at 15% 20%, rgba(46,48,145,.06), transparent 60%),
-      radial-gradient(30% 30% at 85% 25%, rgba(237,39,36,.06), transparent 60%),
-      linear-gradient(180deg, rgba(46,48,145,.03), rgba(237,39,36,.03));}
+  <style>
+    html{scroll-behavior:smooth}
 
-    /* Logo gradient text to match mark */
-    .logo-text{font-weight:800;text-transform:uppercase;letter-spacing:.03em;
-      background:linear-gradient(90deg,#2e3091 100%,#3b55c0 0%,#76a6e9 0%);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      text-shadow:0 1px 0 rgba(0,0,0,.12);white-space:nowrap;}
-    @supports not (-webkit-background-clip:text){.logo-text{color:#2e3091}}
+    /* Enhanced animated background with parallax */
+    body::before{
+      content:"";position:fixed;inset:0;z-index:-1;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(46,48,145,.08), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(237,39,36,.08), transparent 50%),
+        radial-gradient(circle at 40% 70%, rgba(46,48,145,.06), transparent 50%),
+        linear-gradient(135deg, rgba(46,48,145,.03), rgba(237,39,36,.03));
+      animation: backgroundFloat 20s ease-in-out infinite;
+    }
 
-    /* ========= Brand-blue outline button (drop-in utility) ========= */
-    .btn-outline-brand{
-      border-width:2px; border-color:#2e3091; /* brand */
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    .btn-outline-brand:hover{ border-color:#2e3091; }
-    .btn-outline-brand:focus{
-      outline: none;
-      border-color: rgba(46,48,145,.8);
-      box-shadow: 0 0 0 3px rgba(46,48,145,.15);
-    }
-    /* ===== Clients (logo rail) ===== */
-    .clients-wrap{
-      position:relative; overflow:hidden; border-radius:1rem; border:1px solid rgba(0,0,0,.06);
-      background:#b2cadf; /* keep clean behind transparent SVGs */
-      /* fade masks on edges */
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
-    }
-    .clients-rail{
-      display:flex; align-items:center; gap:28px; padding:18px 20px;height: 180px;
-      overflow-x:auto; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
-      scrollbar-width:none; /* Firefox */
-    }
-    .clients-rail::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
-    
-    /* logo tile */
-    .client-logo{
-      flex:0 0 auto; height:44px; width:auto; opacity:.9; filter:grayscale(1) contrast(1.05);height: 120px;
-      transition:opacity .2s ease, filter .2s ease, transform .2s ease;
-    }
-    .client-logo:hover{ opacity:1; filter:none; transform:translateY(-2px); }
-    
-    /* arrow buttons (optional) */
-    .clients-nav{
-      position:absolute; inset-block:0; display:flex; align-items:center; padding:0 6px; pointer-events:none;
-    }
-    .clients-nav > button{
-      pointer-events:auto; display:grid; place-items:center;
-      width:34px; height:34px; border-radius:9999px; border:1px solid rgba(0,0,0,.12);
-      background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.08);
-    }
-    .clients-nav--left{ left:6px; }
-    .clients-nav--right{ right:6px; }
+    @keyframes backgroundFloat {
+      0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+      33% { transform: translateX(-20px) translateY(-10px) rotate(1deg); }
+      66% { transform: translateX(10px) translateY(-20px) rotate(-1deg); }
+    }
 
-    /* ========= Brand glow for images (blue + subtle red) =========
-       Wrap the img in .glow-outer -> .glow-mask, so the shadow is visible
-       but the corners stay rounded without clipping the glow. */
-    .glow-outer{
-      border-radius: 1rem; /* match rounded-2xl/rounded-lg look */
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 18px 2px rgba(46,48,145,.45),
-        0 0 36px 10px rgba(237,39,36,.20);
-      transition: box-shadow .28s ease;
-    }
-    .glow-outer:hover{
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 24px 4px rgba(46,48,145,.65),
-        0 0 44px 16px rgba(237,39,36,.28);
-    }
-    .glow-mask{ overflow:hidden; border-radius: inherit; }
-    /* =============================
-   WhatsApp Floating Button Styles
-   ============================= */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px; /* Distance from bottom */
-      left: 20px;  /* Distance from left */
-      z-index: 9999;
-      text-decoration: none;
-    }
+    /* Enhanced logo with animation */
+    .logo-text{
+      font-weight:800;text-transform:uppercase;letter-spacing:.03em;
+      background:linear-gradient(45deg,#2e3091,#3b55c0,#76a6e9,#2e3091);
+      background-size: 300% 300%;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 1px 0 rgba(0,0,0,.12);white-space:nowrap;
+      animation: gradientShift 4s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+    .logo-text:hover { transform: scale(1.05); }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @supports not (-webkit-background-clip:text){.logo-text{color:#2e3091}}
 
-    .whatsapp-icon {
-      width: 55px;
-      height: 55px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 90%;
-    }
+    /* ========= Brand-blue outline button (drop-in utility) ========= */
+    .btn-outline-brand{
+      border-width:2px; border-color:#2e3091; /* brand */
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn-outline-brand:hover{ border-color:#2e3091; }
+    .btn-outline-brand:focus{
+      outline: none;
+      border-color: rgba(46,48,145,.8);
+      box-shadow: 0 0 0 3px rgba(46,48,145,.15);
+    }
+    /* ===== Clients (logo rail) ===== */
+    .clients-wrap{
+      position:relative; overflow:hidden; border-radius:1rem; border:1px solid rgba(0,0,0,.06);
+      background:#b2cadf; /* keep clean behind transparent SVGs */
+      /* fade masks on edges */
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+    }
+    .clients-rail{
+      display:flex; align-items:center; gap:28px; padding:18px 20px;height: 180px;
+      overflow-x:auto; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none; /* Firefox */
+    }
+    .clients-rail::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
+    
+    /* logo tile */
+    .client-logo{
+      flex:0 0 auto; height:44px; width:auto; opacity:.9; filter:grayscale(1) contrast(1.05);height: 120px;
+      transition:opacity .2s ease, filter .2s ease, transform .2s ease;
+    }
+    .client-logo:hover{ opacity:1; filter:none; transform:translateY(-2px); }
+    
+    /* arrow buttons (optional) */
+    .clients-nav{
+      position:absolute; inset-block:0; display:flex; align-items:center; padding:0 6px; pointer-events:none;
+    }
+    .clients-nav > button{
+      pointer-events:auto; display:grid; place-items:center;
+      width:34px; height:34px; border-radius:9999px; border:1px solid rgba(0,0,0,.12);
+      background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    .clients-nav--left{ left:6px; }
+    .clients-nav--right{ right:6px; }
 
-    .whatsapp-icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
-  </style>
+    /* ========= Brand glow for images (blue + subtle red) =========
+       Wrap the img in .glow-outer -> .glow-mask, so the shadow is visible
+       but the corners stay rounded without clipping the glow. */
+    .glow-outer{
+      border-radius: 1rem; /* match rounded-2xl/rounded-lg look */
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 18px 2px rgba(46,48,145,.45),
+        0 0 36px 10px rgba(237,39,36,.20);
+      transition: box-shadow .28s ease;
+    }
+    .glow-outer:hover{
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 24px 4px rgba(46,48,145,.65),
+        0 0 44px 16px rgba(237,39,36,.28);
+    }
+    .glow-mask{ overflow:hidden; border-radius: inherit; }
+    /* =============================
+   WhatsApp Floating Button Styles
+   ============================= */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px; /* Distance from bottom */
+      left: 20px;   /* Distance from left */
+      z-index: 9999;
+      text-decoration: none;
+    }
+
+    .whatsapp-icon {
+      width: 55px;
+      height: 55px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 90%;
+    }
+
+    .whatsapp-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 25px rgba(37,211,102,0.4);
+    }
+
+    /* Floating animation for WhatsApp */
+    .whatsapp-float {
+      animation: floatWhatsApp 3s ease-in-out infinite;
+    }
+
+    @keyframes floatWhatsApp {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Parallax and scroll effects */
+    .parallax-container {
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .parallax-element {
+      will-change: transform;
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Scroll reveal animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Enhanced product cards */
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .product-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+
+    /* Floating elements */
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-element:nth-child(2) {
+      animation-delay: -2s;
+    }
+
+    .floating-element:nth-child(3) {
+      animation-delay: -4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-20px) rotate(2deg); }
+      50% { transform: translateY(0px) rotate(0deg); }
+      75% { transform: translateY(-10px) rotate(-1deg); }
+    }
+
+    /* Statistics enhancement */
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(46,48,145,0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .stat-card:hover::before {
+      left: 100%;
+    }
+
+    /* Smooth section transitions */
+    .section-transition {
+      position: relative;
+    }
+
+    .section-transition::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, white);
+      z-index: 1;
+    }
+  </style>
 </head>
 
 <body class="bg-white text-neutral-900 font-sans">
 
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2">
-        <img src="images/logo.png" alt="Grand-Chem" class="h-8 w-auto">
-        <span class="logo-text">Grand-Chem Limited</span>
-      </a>
+  <!-- Modern Loading Screen -->
+  <div id="loading-screen" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
+    <div class="text-center">
+      <div class="relative w-20 h-20 mx-auto mb-4">
+        <div class="absolute inset-0 border-4 border-brand/20 rounded-full"></div>
+        <div class="absolute inset-0 border-4 border-transparent border-t-brand rounded-full animate-spin"></div>
+      </div>
+      <div class="logo-text text-xl">Grand-Chem Limited</div>
+      <div class="text-sm text-bodytext mt-2">Loading your packaging solutions...</div>
+    </div>
+  </div>
 
-            <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#how" class="hover:opacity-70">How We Work</a>
-        <a href="products.html" class="hover:opacity-70">Products</a>
-        <a href="profile.html" class="hover:opacity-70">Profile</a>
-        <a href="#sustain" class="hover:opacity-70">Sustainability</a>
-        <a href="#faq" class="hover:opacity-70">FAQ</a>
-        <a href="#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
-      </nav>
+  <!-- ============ HEADER (desktop + mobile) ============ -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2">
+        <img src="images/logo.png" alt="Grand-Chem" class="h-8 w-auto">
+        <span class="logo-text">Grand-Chem Limited</span>
+      </a>
 
-            <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Open menu">
-        <i data-lucide="menu" class="w-6 h-6"></i>
-      </button>
-    </div>
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#how" class="hover:opacity-70" data-i18n="nav.how-we-work">How We Work</a>
+        <a href="products.html" class="hover:opacity-70" data-i18n="nav.products">Products</a>
+        <a href="profile.html" class="hover:opacity-70" data-i18n="nav.profile">Profile</a>
+        <a href="#sustain" class="hover:opacity-70" data-i18n="nav.sustainability">Sustainability</a>
+        <a href="#faq" class="hover:opacity-70" data-i18n="nav.faq">FAQ</a>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white" data-i18n="nav.contact-sales">Contact Sales</a>
 
-        <div id="mnav" class="md:hidden hidden border-t">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="#how" class="py-1">How it works</a>
-        <a href="products.html" class="py-1">Products</a>
-        <a href="profile.html" class="py-1">Profile</a>
-        <a href="#sustain" class="py-1">Sustainability</a>
-        <a href="#faq" class="py-1">FAQ</a>
-        <a href="#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
-      </div>
-    </div>
-  </header>
+        <!-- Language Toggle -->
+        <div class="relative">
+          <button id="langToggle" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-neutral-700 hover:text-brand transition-all duration-300">
+            <span id="currentLang" class="font-semibold">EN</span>
+            <i data-lucide="globe" class="w-4 h-4"></i>
+          </button>
+          <div id="langMenu" class="absolute right-0 top-full mt-2 bg-white rounded-lg shadow-lg border py-2 min-w-[120px] hidden z-50">
+            <button class="w-full px-4 py-2 text-left hover:bg-neutral-50 flex items-center gap-2" data-lang="en">
+              <span class="text-lg">🇬🇧</span>
+              <span>English</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left hover:bg-neutral-50 flex items-center gap-2" data-lang="fr">
+              <span class="text-lg">🇫🇷</span>
+              <span>Français</span>
+            </button>
+          </div>
+        </div>
+      </nav>
 
-    <section id="top" class="relative overflow-hidden">
-    <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h1 class="text-4xl md:text-6xl font-semibold leading-tight">
-          Packaging you can trust, made with <span class="text-accent">responsibility</span>.
-        </h1>
-        <p class="mt-5 text-lg text-bodytext max-w-xl">
-          Since 2006, we’ve delivered PET preforms, printed films, custom bags, and HDPE/PP containers across Ghana and West Africa—
-          combining modern tech, strict QA, and quick turnarounds.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a href="products.html" class="inline-flex justify-center rounded-xl px-5 py-3 bg-brand text-white">Explore products</a>
-                    <a href="#how" class="inline-flex justify-center rounded-xl px-5 py-3 border btn-outline-brand">See how it works</a>
-        </div>
-        <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
-          <i data-lucide="shield" class="w-4 h-4"></i> SEDEX certified
-          <span class="mx-1">•</span>
-          <i data-lucide="recycle" class="w-4 h-4"></i> In-house recycling
-          <span class="mx-1">•</span>
-          <i data-lucide="truck" class="w-4 h-4"></i> Regional & export reach
-        </div>
-      </div>
+      <!-- Mobile menu button -->
+      <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
 
-      <div class="rounded-3xl border shadow-sm p-4">
-                <div class="glow-outer rounded-2xl mb-4">
-          <div class="glow-mask">
-            <img src="images/hero.webp" alt="Grand-Chem production" class="w-full h-64 object-cover">
-          </div>
-        </div>
-        <div class="text-sm text-bodytext mb-3">Our scale</div>
-        <div class="grid grid-cols-3 gap-4 text-center">
-          <div class="rounded-xl border p-3">
-            <div class="text-3xl font-semibold"><span class="odometer" data-target="300">0</span>+</div>
-            <div class="text-xs text-bodytext">Customers</div>
-          </div>
-          <div class="rounded-xl border p-3">
-            <div class="text-3xl font-semibold"><span class="odometer" data-target="5">0</span>+</div>
-            <div class="text-xs text-bodytext">Countries</div>
-          </div>
-          <div class="rounded-xl border p-3">
-            <div class="text-3xl font-semibold"><span class="odometer" data-target="26890">0</span>+</div>
-            <div class="text-xs text-bodytext">Deliveries</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    <section class="mx-auto max-w-8xl px-4 py-10">
-    <div class="flex items-end justify-between mb-10">
-      <div>
-        <div class="text-sm text-neutral-500">Trusted by teams across West Africa</div>
-        <h2 class="text-2xl md:text-3xl font-semibold">Our clients</h2>
-      </div>
-    </div>
-  
-    <div class="clients-wrap">
-      <div id="clientsRail" class="clients-rail" aria-label="Client logos carousel">
-                <img src="images/clients/daaro.png"          alt="daaro"                class="client-logo" loading="lazy">
-        <img src="images/clients/ECCBC.png"        alt="Coca-Cola"             class="client-logo" loading="lazy">
-        <img src="images/clients/fanmilk.png"         alt="FanMilk"               class="client-logo" loading="lazy">
-        <img src="images/clients/voltic.webp"          alt="Voltic"                class="client-logo" loading="lazy">
-        <img src="images/clients/Healthilife.png"        alt="Healthilife"              class="client-logo" loading="lazy">
-        <img src="images/clients/miniplast.png"        alt="miniplast"              class="client-logo" loading="lazy">
-        <img src="images/clients/specialice.png"        alt="specialice"             class="client-logo" loading="lazy">
-        <img src="images/clients/decorplast.png"        alt="decorplast"              class="client-logo" loading="lazy">
-        <img src="images/clients/ACADIA.png"         alt="ACADIA"          class="client-logo" loading="lazy">
-        <img src="images/clients/indomie.jpg"         alt="Indomie"               class="client-logo" loading="lazy">
-        <img src="images/clients/TAMPICO.png"          alt="TAMPICO"                class="client-logo" loading="lazy">
-        <img src="images/clients/wilmar.jpeg"          alt="Wilmar"                class="client-logo" loading="lazy">
-              </div>
-      
-            <div class="clients-nav clients-nav--left">
-        <button type="button" id="clientsPrev" aria-label="Scroll left">
-          <i data-lucide="chevron-left" class="w-4 h-4 text-neutral-700"></i>
-        </button>
-      </div>
-      <div class="clients-nav clients-nav--right">
-        <button type="button" id="clientsNext" aria-label="Scroll right">
-          <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-700"></i>
-        </button>
-      </div>
-    </div>
-  </section>
-      <section id="how" class="bg-neutral-50 border-y">
-    <div class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-3 gap-6">
-      <div class="rounded-2xl bg-white border p-6 shadow-sm">
-        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="package-2" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
-        <h3 class="mt-2 text-xl font-semibold">Share specs or request help</h3>
-        <p class="mt-2 text-bodytext">Send a dieline, sketch, or sample. We validate dimensions, resin choice, and strength.</p>
-      </div>
-      <div class="rounded-2xl bg-white border p-6 shadow-sm">
-        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="wrench" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
-        <h3 class="mt-2 text-xl font-semibold">We engineer & prototype</h3>
-        <p class="mt-2 text-bodytext">Tooling guidance, artwork proofing, and pilot runs to de-risk full production.</p>
-      </div>
-      <div class="rounded-2xl bg-white border p-6 shadow-sm">
-        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="truck" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
-        <h3 class="mt-2 text-xl font-semibold">Manufacture & deliver</h3>
-        <p class="mt-2 text-bodytext">Real-time updates from print to dispatch. Export-ready packing on request.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Mobile drawer (keeps the CTA inside so it never blocks content) -->
+    <div id="mnav" class="md:hidden hidden border-t">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#how" class="py-1" data-i18n="nav.how-we-work">How it works</a>
+        <a href="products.html" class="py-1" data-i18n="nav.products">Products</a>
+        <a href="profile.html" class="py-1" data-i18n="nav.profile">Profile</a>
+        <a href="#sustain" class="py-1" data-i18n="nav.sustainability">Sustainability</a>
+        <a href="#faq" class="py-1" data-i18n="nav.faq">FAQ</a>
 
-    <section class="mx-auto max-w-7xl px-4 py-12 grid md:grid-cols-2 gap-6">
-        <div class="rounded-2xl border p-6">
-            <div class="glow-outer rounded-lg mb-3"><div class="glow-mask">
-        <img src="images/injection-moulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover">
-      </div></div>
-      <h3 class="mt-2 text-2xl font-semibold">Injection Moulding</h3>
-      <p class="mt-2 text-bodytext">High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance.</p>
-      <div class="mt-4 grid sm:grid-cols-2 gap-3">
-        <div class="rounded-xl border p-4"><div class="font-medium">Caps</div><div class="text-sm text-bodytext">Food-grade, tamper-evident options</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">PET Preforms</div><div class="text-sm text-bodytext">Multiple neck finishes & weights</div></div>
-        <a href="products.html" class="inline-flex justify-center rounded-xl px-5 py-3 bg-brand text-white">Explore products</a>
-      </div>
-      <div class="mt-4 flex items-center gap-3 text-sm text-bodytext">
-        <i data-lucide="flask-conical" class="w-4 h-4"></i> Food-contact & chemical-grade options available
-      </div>
-    </div>
+        <!-- Mobile Language Toggle -->
+        <div class="border-t pt-3 mt-2">
+          <div class="flex items-center justify-between">
+            <span class="text-neutral-600 text-xs" data-i18n="language">Language:</span>
+            <div class="flex gap-2">
+              <button class="flex items-center gap-1 px-3 py-1 rounded-full bg-neutral-100 hover:bg-brand hover:text-white transition-all" data-lang="en">
+                <span class="text-sm">🇬🇧</span>
+                <span class="text-xs">EN</span>
+              </button>
+              <button class="flex items-center gap-1 px-3 py-1 rounded-full bg-neutral-100 hover:bg-brand hover:text-white transition-all" data-lang="fr">
+                <span class="text-sm">🇫🇷</span>
+                <span class="text-xs">FR</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <div class="rounded-2xl border p-6">
-            <div class="glow-outer rounded-lg mb-3"><div class="glow-mask">
-        <img src="images/blow-film.webp" alt="Blown Film" class="w-full h-80 object-cover">
-      </div></div>
-      <h3 class="mt-2 text-2xl font-semibold">Blown Film</h3>
-      <p class="mt-2 text-bodytext">Custom mono and multilayer films with up to 10-color print for brands that need clarity, strength, and speed.</p>
-      <div class="mt-4 grid sm:grid-cols-2 gap-3">
-        <div class="rounded-xl border p-4"><div class="font-medium">Printed Pure Water Rolls</div><div class="text-sm text-bodytext">Crystal clarity, food-safe inks</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Shrink Film Rolls</div><div class="text-sm text-bodytext">High-hold, low haze</div></div>
-        <a href="products.html" class="inline-flex justify-center rounded-xl px-5 py-3 bg-brand text-white">Explore products</a>
-      </div>
-    </div>
+        <a href="#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white" data-i18n="nav.contact-sales">Contact Sales</a>
+      </div>
+    </div>
+  </header>
 
-        <div class="rounded-2xl border p-6">
-            <div class="glow-outer rounded-lg mb-3"><div class="glow-mask">
-        <img src="images/gallon-moulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-80 object-cover" />
-      </div></div>
-      <h3 class="mt-2 text-2xl font-semibold">Gallon Moulding (Blow)</h3>
-      <p class="mt-2 text-bodytext">Durable HDPE/PP containers in all sizes and forms, designed for safe storage and transport.</p>
-      <div class="mt-4 grid sm:grid-cols-2 gap-3">
-        <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil</div><div class="text-sm text-bodytext">Odor-neutral, food-contact compliant</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Coolants / Lubricant Oil</div><div class="text-sm text-bodytext">Chemical-resistant resins</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Liquid Soap & Detergent</div><div class="text-sm text-bodytext">Drop-tested handles</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Chemicals & Toilet Cleaner</div><div class="text-sm text-bodytext">Secure cap/liner options</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Yogurt Gallon</div><div class="text-sm text-bodytext">Dairy-safe materials</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Shampoo / Personal Care</div><div class="text-sm text-bodytext">Shelf-ready finish</div></div>
-        <a href="products.html" class="inline-flex justify-center rounded-xl px-5 py-3 bg-brand text-white">Explore products</a>
-      </div>
-    </div>
+  <!-- ============ ENHANCED HERO ============ -->
+  <section id="top" class="relative overflow-hidden parallax-container min-h-screen flex items-center">
+    <!-- Floating background elements -->
+    <div class="absolute inset-0 z-0">
+      <div class="floating-element absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand/10 to-accent/10 rounded-full blur-xl"></div>
+      <div class="floating-element absolute top-40 right-16 w-24 h-24 bg-gradient-to-br from-accent/10 to-brand/10 rounded-full blur-lg"></div>
+      <div class="floating-element absolute bottom-32 left-1/4 w-20 h-20 bg-gradient-to-br from-brand/5 to-accent/5 rounded-full blur-lg"></div>
+    </div>
 
-        <div class="rounded-2xl border p-6">
-            <div class="glow-outer rounded-lg mb-3"><div class="glow-mask">
-        <img src="images/lamination-converting.webp" alt="Lamination & Converting" class="w-full h-80 object-cover">
-      </div></div>
-      <h3 class="mt-2 text-2xl font-semibold">Lamination & Converting</h3>
-      <p class="mt-2 text-bodytext">Printed and laminated films, bags, and pouches engineered for barrier, shelf impact, and machinability.</p>
-      <div class="mt-4 grid sm:grid-cols-2 gap-3">
-        <div class="rounded-xl border p-4"><div class="font-medium">Printed Wrappers & Bags</div><div class="text-sm text-bodytext">Up to 10 colors</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Printed Pouches</div><div class="text-sm text-bodytext">Zippers, valves, spouts</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Printed Shrink Wrap</div><div class="text-sm text-bodytext">360° brand coverage</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Chocolate Wrappers</div><div class="text-sm text-bodytext">High-shine, food-safe</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Standing Pouches</div><div class="text-sm text-bodytext">Gusseted, stand-stable</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Soap Bar & Spices Pack</div><div class="text-sm text-bodytext">Tear-notch, easy-open</div></div>
-        <div class="rounded-xl border p-4"><div class="font-medium">Edible Oil Packet</div><div class="text-sm text-bodytext">Leak-proof seals</div></div>
-        <a href="products.html" class=" inline-flex justify-center px-7 py-7 rounded-xl border p-10   text-bodytext bg-brand text-white ">Explore products</a>
-      </div>
-    </div>
-  </section>
+    <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="fade-in-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 text-brand rounded-full text-sm font-medium mb-6 animate-pulse">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span data-i18n="hero.badge">Your Trusted Packaging Partner Since 2006</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-neutral-900 via-brand to-accent bg-clip-text text-transparent">
+          <span data-i18n="hero.title">Packaging you can trust, made with</span> <span class="text-accent animate-pulse" data-i18n="hero.title-highlight">responsibility</span>.
+        </h1>
+        <p class="mt-5 text-lg text-bodytext max-w-xl leading-relaxed" data-i18n="hero.subtitle">
+          Since 2006, we've delivered PET preforms, printed films, custom bags, and HDPE/PP containers across Ghana and West Africa—
+          combining modern tech, strict QA, and quick turnarounds.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="products.html" class="group inline-flex justify-center items-center rounded-xl px-6 py-4 bg-brand text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-brand/90">
+            <span data-i18n="hero.btn-primary">Explore products</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"></i>
+          </a>
+          <a href="#how" class="group inline-flex justify-center items-center rounded-xl px-6 py-4 border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition-all duration-300">
+            <span data-i18n="hero.btn-secondary">See how it works</span>
+            <i data-lucide="play-circle" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-6 text-sm">
+          <div class="flex items-center gap-2 text-neutral-600 hover:text-brand transition-colors">
+            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-4 h-4 text-green-600"></i>
+            </div>
+            <span class="font-medium" data-i18n="hero.sedex">SEDEX certified</span>
+          </div>
+          <div class="flex items-center gap-2 text-neutral-600 hover:text-brand transition-colors">
+            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+              <i data-lucide="recycle" class="w-4 h-4 text-blue-600"></i>
+            </div>
+            <span class="font-medium" data-i18n="hero.recycling">In-house recycling</span>
+          </div>
+          <div class="flex items-center gap-2 text-neutral-600 hover:text-brand transition-colors">
+            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+              <i data-lucide="truck" class="w-4 h-4 text-purple-600"></i>
+            </div>
+            <span class="font-medium" data-i18n="hero.reach">Regional & export reach</span>
+          </div>
+        </div>
+      </div>
 
-    <section class="mx-auto max-w-7xl border-blue-500 px-4 pb-4 md:pb-8">
-    <div class="mt-10 rounded-2xl border p-6 ">
-      <div class="text-sm text-neutral-500">Industries served</div>
-      <div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-neutral-700">
-        <span class="rounded-full border px-3 py-1">Food & Beverage</span>
-        <span class="rounded-full border px-3 py-1">Dairy</span>
-        <span class="rounded-full border px-3 py-1">Home & Personal Care</span>
-        <span class="rounded-full border px-3 py-1">Automotive Fluids</span>
-        <span class="rounded-full border px-3 py-1">Industrial Chemicals</span>
-        <span class="rounded-full border px-3 py-1">Retail</span>
-      </div>
-    </div>
-  </section>
+      <div class="fade-in-right">
+        <div class="relative rounded-3xl border shadow-xl p-6 bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 group">
+          <!-- Enhanced glow wrapper with parallax -->
+          <div class="glow-outer rounded-2xl mb-6 overflow-hidden group-hover:scale-105 transition-transform duration-500">
+            <div class="glow-mask relative">
+              <img src="images/hero.webp" alt="Grand-Chem production" class="w-full h-72 object-cover parallax-element" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand/20 via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-semibold text-brand">
+                ✨ Modern Facility
+              </div>
+            </div>
+          </div>
+          <div class="text-sm text-bodytext mb-4 font-medium">Our impressive scale</div>
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div class="stat-card rounded-xl border p-4 hover:border-brand/50 transition-all duration-300 group/stat">
+              <div class="text-3xl font-bold text-brand mb-1">
+                <span class="odometer" data-target="300">0</span>+
+              </div>
+              <div class="text-xs text-bodytext font-medium" data-i18n="stats.customers">Happy Customers</div>
+              <div class="w-full h-1 bg-brand/20 rounded-full mt-2 overflow-hidden">
+                <div class="w-0 h-full bg-brand rounded-full group-hover/stat:w-full transition-all duration-1000 delay-300"></div>
+              </div>
+            </div>
+            <div class="stat-card rounded-xl border p-4 hover:border-accent/50 transition-all duration-300 group/stat">
+              <div class="text-3xl font-bold text-accent mb-1">
+                <span class="odometer" data-target="5">0</span>+
+              </div>
+              <div class="text-xs text-bodytext font-medium" data-i18n="stats.countries">Countries Served</div>
+              <div class="w-full h-1 bg-accent/20 rounded-full mt-2 overflow-hidden">
+                <div class="w-0 h-full bg-accent rounded-full group-hover/stat:w-full transition-all duration-1000 delay-300"></div>
+              </div>
+            </div>
+            <div class="stat-card rounded-xl border p-4 hover:border-green-500/50 transition-all duration-300 group/stat">
+              <div class="text-3xl font-bold text-green-600 mb-1">
+                <span class="odometer" data-target="26890">0</span>+
+              </div>
+              <div class="text-xs text-bodytext font-medium" data-i18n="stats.deliveries">Successful Deliveries</div>
+              <div class="w-full h-1 bg-green-200 rounded-full mt-2 overflow-hidden">
+                <div class="w-0 h-full bg-green-500 rounded-full group-hover/stat:w-full transition-all duration-1000 delay-300"></div>
+              </div>
+            </div>
+          </div>
 
-    <section id="sustain" class="bg-neutral-50 border-y">
-    <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
-      <div class="rounded-3xl bg-white border p-6 shadow-sm">
-        <div class="text-sm text-neutral-500">Quality & Sustainability</div>
-        <ul class="mt-3 space-y-3 text-sm">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> In-house recycling plant supporting Ghana’s circular economy</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Strict QA: compression, adhesion, and moisture checks</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Water-based inks/varnishes and recycled stock on request</li>
-        </ul>
-        <div class="mt-6 rounded-xl border p-4 text-sm bg-neutral-50">
-          Continuous improvement through Total Quality Management (TQM).
-        </div>
-      </div>
-      <div>
-        <h2 class="text-3xl md:text-4xl font-semibold">Reduce. Reuse. Recycle.</h2>
-        <p class="mt-3 text-bodytext">
-          Responsible packaging isn’t optional. Our processes and materials are chosen to cut waste, improve recyclability, and protect consumers.
-        </p>
-      </div>
-    </div>
-  </section>
+          <!-- Additional trust indicators -->
+          <div class="mt-6 flex items-center justify-center gap-4 text-xs text-bodytext">
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span data-i18n="stats.production">Production Active</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span data-i18n="stats.quality">Quality Assured</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <span data-i18n="stats.export">Export Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ==================== CLIENTS SHOWCASE (place after PRODUCTS, before INDUSTRIES) ==================== -->
+  <section class="mx-auto max-w-8xl px-4 py-10">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <div class="text-sm text-neutral-500" data-i18n="clients.subtitle">Trusted by teams across West Africa</div>
+        <h2 class="text-2xl md:text-3xl font-semibold" data-i18n="clients.title">Our clients</h2>
+      </div>
+    </div>
+  
+    <div class="clients-wrap">
+      <div id="clientsRail" class="clients-rail" aria-label="Client logos carousel">
+        <!-- Tip: Use transparent SVG/PNG logos sized ~200–280px wide, ~44px tall -->
+        <img src="images/clients/daaro.png"         alt="daaro"               class="client-logo" loading="lazy">
+        <img src="images/clients/ECCBC.png"       alt="Coca-Cola"            class="client-logo" loading="lazy">
+        <img src="images/clients/fanmilk.png"        alt="FanMilk"              class="client-logo" loading="lazy">
+        <img src="images/clients/voltic.webp"         alt="Voltic"               class="client-logo" loading="lazy">
+        <img src="images/clients/Healthilife.png"       alt="Healthilife"             class="client-logo" loading="lazy">
+        <img src="images/clients/miniplast.png"       alt="miniplast"             class="client-logo" loading="lazy">
+        <img src="images/clients/specialice.png"       alt="specialice"            class="client-logo" loading="lazy">
+        <img src="images/clients/decorplast.png"       alt="decorplast"             class="client-logo" loading="lazy">
+        <img src="images/clients/ACADIA.png"        alt="ACADIA"         class="client-logo" loading="lazy">
+        <img src="images/clients/indomie.jpg"        alt="Indomie"              class="client-logo" loading="lazy">
+        <img src="images/clients/TAMPICO.png"         alt="TAMPICO"               class="client-logo" loading="lazy">
+        <img src="images/clients/wilmar.jpeg"         alt="Wilmar"               class="client-logo" loading="lazy">
+        <!-- Add as many as you want -->
+      </div>
+      
+      <!-- Optional: arrows (tap/click) -->
+      <div class="clients-nav clients-nav--left">
+        <button type="button" id="clientsPrev" aria-label="Scroll left">
+          <i data-lucide="chevron-left" class="w-4 h-4 text-neutral-700"></i>
+        </button>
+      </div>
+      <div class="clients-nav clients-nav--right">
+        <button type="button" id="clientsNext" aria-label="Scroll right">
+          <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-700"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- Replace these src paths with your actual files under images/clients/ -->
+<!-- ==================== /CLIENTS SHOWCASE ==================== -->
 
-    <section class="mx-auto max-w-7xl px-4 py-20" id="cta">
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="rounded-2xl border p-6 ring-1 ring-blue-600 border-emerald-600">
-        <div class="text-sm text-neutral-500">Samples</div>
-        <div class="mt-1 text-3xl font-semibold">Free</div>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Spec review</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Basic artwork proof</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Lead-time estimate</li>
-        </ul>
-                <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-brand">Enquire</a>
-      </div>
-      <div class="rounded-2xl border p-6 ring-1 ring-blue-600 border-emerald-600">
-        <div class="text-sm text-neutral-500">Production</div>
-        <div class="mt-1 text-3xl font-semibold">Quote</div>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Full QA reports</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Team workspace</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Priority scheduling</li>
-        </ul>
-                <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-blue-500">Enquire</a>
-      </div>
-      
-    </div>
-  </section>
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how" class="bg-neutral-50 border-y">
+    <div class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl bg-white border p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="package-2" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
+        <h3 class="mt-2 text-xl font-semibold">Share specs or request help</h3>
+        <p class="mt-2 text-bodytext">Send a dieline, sketch, or sample. We validate dimensions, resin choice, and strength.</p>
+      </div>
+      <div class="rounded-2xl bg-white border p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="wrench" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
+        <h3 class="mt-2 text-xl font-semibold">We engineer & prototype</h3>
+        <p class="mt-2 text-bodytext">Tooling guidance, artwork proofing, and pilot runs to de-risk full production.</p>
+      </div>
+      <div class="rounded-2xl bg-white border p-6 shadow-sm">
+        <div class="flex items-center gap-2 text-bodytext"><i data-lucide="truck" class="w-5 h-5"></i><span class="text-sm">Workflow</span></div>
+        <h3 class="mt-2 text-xl font-semibold">Manufacture & deliver</h3>
+        <p class="mt-2 text-bodytext">Real-time updates from print to dispatch. Export-ready packing on request.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="faq" class="bg-neutral-50 border-y">
-    <div class="mx-auto max-w-4xl px-4 py-16">
-      <h3 class="text-2xl font-semibold">Frequently asked questions</h3>
-      <div class="mt-6 divide-y">
-        <details class="group py-4">
-          <summary class="flex items-center justify-between cursor-pointer">
-            <span class="font-medium">Do you support small runs?</span>
-          </summary>
-          <p class="mt-2 text-bodytext">Yes — MOQs from ~100 units on select SKUs. Talk to our team for specifics.</p>
-        </details>
-        <details class="group py-4">
-          <summary class="flex items-center justify-between cursor-pointer">
-            <span class="font-medium">Typical lead times?</span>
-          </summary>
-          <p class="mt-2 text-bodytext">5–10 business days after artwork approval; rush options available.</p>
-        </details>
-        <details class="group py-4">
-          <summary class="flex items-center justify-between cursor-pointer">
-            <span class="font-medium">Food-grade compliance?</span>
-          </summary>
-          <p class="mt-2 text-bodytext">Closed-loop, automated lines minimize contact risk; food-safe inks and coatings offered.</p>
-        </details>
-        <details class="group py-4">
-          <summary class="flex items-center justify-between cursor-pointer">
-            <span class="font-medium">Export readiness?</span>
-          </summary>
-          <p class="mt-2 text-bodytext">We serve Ghana nationwide and export across West Africa with compliant documentation.</p>
-        </details>
-      </div>
-    </div>
-  </section>
+  <!-- ============ ENHANCED PRODUCTS SHOWCASE ============ -->
+  <section class="mx-auto max-w-7xl px-4 py-16 section-transition">
+    <div class="text-center mb-16 fade-in-up">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand/10 to-accent/10 text-brand rounded-full text-sm font-medium mb-4">
+        <i data-lucide="factory" class="w-4 h-4"></i>
+        <span data-i18n="products.badge">Our Manufacturing Excellence</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent mb-4" data-i18n="products.title">
+        Precision. Quality. Innovation.
+      </h2>
+      <p class="text-lg text-bodytext max-w-3xl mx-auto" data-i18n="products.subtitle">
+        Four specialized manufacturing lines delivering world-class packaging solutions across West Africa
+      </p>
+    </div>
 
-    <section id="contact" class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-10">
-    <div>
-      <h2 class="text-3xl md:text-4xl font-semibold">Let’s build better packaging</h2>
-      <p class="mt-3 text-bodytext">Share your spec, sketch, or idea. We’ll recommend materials, print, and timelines.</p>
-      <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
-        <div class="rounded-2xl border p-4">
-          <div class="font-medium">Head Office</div>
-          <div class="text-bodytext mt-1">Hebron, Adjacent to Hebron Prayer Camp, Nsawam Adoagyiri, Eastern Region, Ghana</div>
-          <div class="mt-1">P.O. Box NK 26, North Kaneshie, Accra</div>
-          <div class="mt-1">Digital Code: GW-0787-0667</div>
-          <a href="https://maps.app.goo.gl/1coZ4YUkZzb5eFf76" target="_blank" rel="noopener noreferrer">
-            <button class="border-2 border-blue-500 hover:border-blue-700 px-4 py-2 rounded-lg bg-white text-blue-500 font-semibold">
-            📍 View on Google Maps
-            </button>
-          </a>
-        </div>
-        <div class="rounded-2xl border p-4">
-          <div class="font-medium">Accra Branch</div>
-          <div class="text-bodytext mt-1">Kassardjian yard, 31 Dadeban Rd, Accra</div>
-        </div>
-        <div class="rounded-2xl border p-4">
-          <div class="font-medium">Kumasi Branch</div>
-          <div class="text-bodytext mt-1">ATONSU Road, Ashanti, Kumasi</div>
-        </div>
-        <div class="rounded-2xl border p-4">
-          <div class="font-medium">Reach us</div>
-          <div class="text-bodytext mt-1">Office: +233 30 397 3205 /06 </div>
-          <div class="ont-medium text-bodytext mt-1">info@grand-chem.net</div>
-          <div class="text-bodytext mt-1">www.grand-chem.net</div>
-        </div>
-      </div>
-    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+    <!-- Enhanced Injection Moulding -->
+    <div class="product-card rounded-2xl border p-6 bg-white hover:bg-gradient-to-br hover:from-white hover:to-brand/5 fade-in-left group relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand/10 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500"></div>
 
-        <div class="rounded-2xl border p-6 bg-neutral-50 flex items-center justify-center">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeIh_Ar4-3yWByYw8BcSyH6xPInXBx9OewJc8HNmFNcTd3DuQ/viewform?embedded=true" width="100%" height="1466" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </div>
-  </section>
+      <!-- Enhanced glow with category badge -->
+      <div class="relative">
+        <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
+          <div class="glow-mask relative">
+            <img src="images/injection-moulding.webp" alt="Injection Moulding" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-brand">
+              ⚡ HIGH PRECISION
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <footer class="border-t">
-    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
-      <div>© 2025 Grand-Chem Limited — SEDEX Certified • Your Packaging Partner</div>
-      <div class="md:text-right">Privacy • Terms</div>
-    </div>
-  </footer>
+      <div class="relative z-10">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors" data-i18n="injection.title">
+          Injection Moulding
+        </h3>
+        <p class="text-bodytext leading-relaxed mb-6" data-i18n="injection.desc">
+          High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance.
+        </p>
 
-    <script>lucide.createIcons();</script>
+        <div class="grid sm:grid-cols-2 gap-3 mb-6">
+          <div class="rounded-xl border p-4 hover:border-brand/30 hover:bg-brand/5 transition-all duration-300 group/item">
+            <div class="font-semibold text-brand mb-1" data-i18n="injection.caps">Caps</div>
+            <div class="text-sm text-bodytext" data-i18n="injection.caps-desc">Food-grade, tamper-evident options</div>
+            <div class="w-full h-0.5 bg-brand/20 mt-2 group-hover/item:bg-brand/40 transition-colors"></div>
+          </div>
+          <div class="rounded-xl border p-4 hover:border-brand/30 hover:bg-brand/5 transition-all duration-300 group/item">
+            <div class="font-semibold text-brand mb-1" data-i18n="injection.preforms">PET Preforms</div>
+            <div class="text-sm text-bodytext" data-i18n="injection.preforms-desc">Multiple neck finishes & weights</div>
+            <div class="w-full h-0.5 bg-brand/20 mt-2 group-hover/item:bg-brand/40 transition-colors"></div>
+          </div>
+        </div>
 
-    <script>
-    const mnavBtn = document.getElementById('mnavBtn');
-    const mnav   = document.getElementById('mnav');
-    if (mnavBtn) mnavBtn.onclick = () => {
-      mnav.classList.toggle('hidden');
-      mnavBtn.innerHTML = mnav.classList.contains('hidden')
-        ? '<i data-lucide="menu" class="w-6 h-6"></i>'
-        : '<i data-lucide="x" class="w-6 h-6"></i>';
-      lucide.createIcons();
-    };
-  </script>
+        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-brand text-white font-semibold hover:bg-brand/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>Explore products</span>
+          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </a>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      const els = document.querySelectorAll('.odometer');
-      const animate = (el)=>{
-        const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-        const dur = 18000, start = performance.now();
-        function tick(now){
-          const p = Math.min(1, (now-start)/dur);
-          const eased = 1 - Math.pow(1-p, 3);
-          el.textContent = Math.floor(eased * target).toLocaleString();
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      };
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ animate(e.target); io.unobserve(e.target);} });
-      }, { threshold: .6 });
-      els.forEach(el=> io.observe(el));
-    });
-  </script>
-      <a href="https://wa.me/233540125312?text=Hello%20Grand-Chem%20Limited%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products."
-    target="_blank"
-    class="whatsapp-float"
-     aria-label="Chat on WhatsApp">
-    <img src="images/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
-    </a>
+        <div class="mt-4 flex items-center gap-3 text-sm text-bodytext">
+          <div class="flex items-center gap-2">
+            <i data-lucide="flask-conical" class="w-4 h-4 text-green-600"></i>
+            <span>Food-contact & chemical-grade options available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Blown Film -->
+    <div class="product-card rounded-2xl border p-6 bg-white hover:bg-gradient-to-br hover:from-white hover:to-accent/5 fade-in-right group relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-accent/10 to-transparent rounded-full -translate-y-16 -translate-x-16 group-hover:scale-150 transition-transform duration-500"></div>
+
+      <!-- Enhanced glow with category badge -->
+      <div class="relative">
+        <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
+          <div class="glow-mask relative">
+            <img src="images/blow-film.webp" alt="Blown Film" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-accent">
+              🎨 10-COLOR PRINT
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors">
+          Blown Film
+        </h3>
+        <p class="text-bodytext leading-relaxed mb-6">
+          Custom mono and multilayer films with up to 10-color print for brands that need clarity, strength, and speed.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-3 mb-6">
+          <div class="rounded-xl border p-4 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 group/item">
+            <div class="font-semibold text-accent mb-1">Printed Pure Water Rolls</div>
+            <div class="text-sm text-bodytext">Crystal clarity, food-safe inks</div>
+            <div class="w-full h-0.5 bg-accent/20 mt-2 group-hover/item:bg-accent/40 transition-colors"></div>
+          </div>
+          <div class="rounded-xl border p-4 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 group/item">
+            <div class="font-semibold text-accent mb-1">Shrink Film Rolls</div>
+            <div class="text-sm text-bodytext">High-hold, low haze</div>
+            <div class="w-full h-0.5 bg-accent/20 mt-2 group-hover/item:bg-accent/40 transition-colors"></div>
+          </div>
+        </div>
+
+        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-accent text-white font-semibold hover:bg-accent/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>Explore products</span>
+          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Enhanced Gallon Moulding -->
+    <div class="product-card rounded-2xl border p-6 bg-white hover:bg-gradient-to-br hover:from-white hover:to-green-50 fade-in-left group relative overflow-hidden">
+      <div class="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-green-500/10 to-transparent rounded-full translate-y-20 translate-x-20 group-hover:scale-150 transition-transform duration-500"></div>
+
+      <!-- Enhanced glow with category badge -->
+      <div class="relative">
+        <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
+          <div class="glow-mask relative">
+            <img src="images/gallon-moulding.webp" alt="Gallon Moulding" width="1200" height="1980" loading="lazy" decoding="async" class="w-full h-80 object-cover parallax-element" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-green-600">
+              🛡️ DURABLE HDPE/PP
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+          Gallon Moulding (Blow)
+        </h3>
+        <p class="text-bodytext leading-relaxed mb-6">
+          Durable HDPE/PP containers in all sizes and forms, designed for safe storage and transport.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-2 mb-6">
+          <div class="rounded-lg border p-3 hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-green-600">Edible Oil</div>
+            <div class="text-xs text-bodytext">Odor-neutral, food-contact compliant</div>
+          </div>
+          <div class="rounded-lg border p-3 hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-green-600">Coolants / Lubricant Oil</div>
+            <div class="text-xs text-bodytext">Chemical-resistant resins</div>
+          </div>
+          <div class="rounded-lg border p-3 hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-green-600">Liquid Soap & Detergent</div>
+            <div class="text-xs text-bodytext">Drop-tested handles</div>
+          </div>
+          <div class="rounded-lg border p-3 hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-green-600">Chemicals & Toilet Cleaner</div>
+            <div class="text-xs text-bodytext">Secure cap/liner options</div>
+          </div>
+          <div class="rounded-lg border p-3 hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-green-600">Yogurt Gallon</div>
+            <div class="text-xs text-bodytext">Dairy-safe materials</div>
+          </div>
+          <div class="rounded-lg border p-3 hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-green-600">Shampoo / Personal Care</div>
+            <div class="text-xs text-bodytext">Shelf-ready finish</div>
+          </div>
+        </div>
+
+        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-green-600 text-white font-semibold hover:bg-green-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>Explore products</span>
+          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Enhanced Lamination & Converting -->
+    <div class="product-card rounded-2xl border p-6 bg-white hover:bg-gradient-to-br hover:from-white hover:to-purple-50 fade-in-right group relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-full -translate-y-18 translate-x-18 group-hover:scale-150 transition-transform duration-500"></div>
+
+      <!-- Enhanced glow with category badge -->
+      <div class="relative">
+        <div class="glow-outer rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-all duration-500">
+          <div class="glow-mask relative">
+            <img src="images/lamination-converting.webp" alt="Lamination & Converting" class="w-full h-80 object-cover parallax-element" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-bold text-purple-600">
+              📦 CUSTOM BARRIER FILMS
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+          Lamination & Converting
+        </h3>
+        <p class="text-bodytext leading-relaxed mb-6">
+          Printed and laminated films, bags, and pouches engineered for barrier, shelf impact, and machinability.
+        </p>
+
+        <div class="grid grid-cols-2 gap-2 mb-6">
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Printed Wrappers & Bags</div>
+            <div class="text-xs text-bodytext">Up to 10 colors</div>
+          </div>
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Printed Pouches</div>
+            <div class="text-xs text-bodytext">Zippers, valves, spouts</div>
+          </div>
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Printed Shrink Wrap</div>
+            <div class="text-xs text-bodytext">360° brand coverage</div>
+          </div>
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Chocolate Wrappers</div>
+            <div class="text-xs text-bodytext">High-shine, food-safe</div>
+          </div>
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Standing Pouches</div>
+            <div class="text-xs text-bodytext">Gusseted, stand-stable</div>
+          </div>
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Soap Bar & Spices</div>
+            <div class="text-xs text-bodytext">Tear-notch, easy-open</div>
+          </div>
+          <div class="rounded-lg border p-2 hover:border-purple-500/30 hover:bg-purple-50/50 transition-all duration-300 text-sm">
+            <div class="font-semibold text-purple-600 text-xs">Edible Oil Packet</div>
+            <div class="text-xs text-bodytext">Leak-proof seals</div>
+          </div>
+        </div>
+
+        <a href="products.html" class="group/btn inline-flex items-center justify-center w-full rounded-xl px-5 py-3 bg-purple-600 text-white font-semibold hover:bg-purple-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span>Explore products</span>
+          <i data-lucide="external-link" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INDUSTRIES ============ -->
+  <section class="mx-auto max-w-7xl border-blue-500 px-4 pb-4 md:pb-8">
+    <div class="mt-10 rounded-2xl border p-6 ">
+      <div class="text-sm text-neutral-500">Industries served</div>
+      <div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-neutral-700">
+        <span class="rounded-full border px-3 py-1">Food & Beverage</span>
+        <span class="rounded-full border px-3 py-1">Dairy</span>
+        <span class="rounded-full border px-3 py-1">Home & Personal Care</span>
+        <span class="rounded-full border px-3 py-1">Automotive Fluids</span>
+        <span class="rounded-full border px-3 py-1">Industrial Chemicals</span>
+        <span class="rounded-full border px-3 py-1">Retail</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUSTAINABILITY ============ -->
+  <section id="sustain" class="bg-neutral-50 border-y">
+    <div class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div class="rounded-3xl bg-white border p-6 shadow-sm">
+        <div class="text-sm text-neutral-500">Quality & Sustainability</div>
+        <ul class="mt-3 space-y-3 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> In-house recycling plant supporting Ghana’s circular economy</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Strict QA: compression, adhesion, and moisture checks</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Water-based inks/varnishes and recycled stock on request</li>
+        </ul>
+        <div class="mt-6 rounded-xl border p-4 text-sm bg-neutral-50">
+          Continuous improvement through Total Quality Management (TQM).
+        </div>
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-semibold">Reduce. Reuse. Recycle.</h2>
+        <p class="mt-3 text-bodytext">
+          Responsible packaging isn’t optional. Our processes and materials are chosen to cut waste, improve recyclability, and protect consumers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA / PRICING STYLE ============ -->
+  <section class="mx-auto max-w-7xl px-4 py-20" id="cta">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="rounded-2xl border p-6 ring-1 ring-blue-600 border-emerald-600">
+        <div class="text-sm text-neutral-500">Samples</div>
+        <div class="mt-1 text-3xl font-semibold">Free</div>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Spec review</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Basic artwork proof</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Lead-time estimate</li>
+        </ul>
+        <!-- brand-blue outlined button -->
+        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-brand">Enquire</a>
+      </div>
+      <div class="rounded-2xl border p-6 ring-1 ring-blue-600 border-emerald-600">
+        <div class="text-sm text-neutral-500">Production</div>
+        <div class="mt-1 text-3xl font-semibold">Quote</div>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Full QA reports</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Team workspace</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-accent mt-0.5"></i> Priority scheduling</li>
+        </ul>
+        <!-- brand-blue outlined button -->
+        <a href="#contact" class="mt-6 inline-flex rounded-xl px-4 py-2 border btn-outline-blue-500">Enquire</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="bg-neutral-50 border-y">
+    <div class="mx-auto max-w-4xl px-4 py-16">
+      <h3 class="text-2xl font-semibold">Frequently asked questions</h3>
+      <div class="mt-6 divide-y">
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Do you support small runs?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">Yes — MOQs from ~100 units on select SKUs. Talk to our team for specifics.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Typical lead times?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">5–10 business days after artwork approval; rush options available.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Food-grade compliance?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">Closed-loop, automated lines minimize contact risk; food-safe inks and coatings offered.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-medium">Export readiness?</span>
+          </summary>
+          <p class="mt-2 text-bodytext">We serve Ghana nationwide and export across West Africa with compliant documentation.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="mx-auto max-w-7xl px-4 py-20 grid md:grid-cols-2 gap-10">
+    <div>
+      <h2 class="text-3xl md:text-4xl font-semibold">Let’s build better packaging</h2>
+      <p class="mt-3 text-bodytext">Share your spec, sketch, or idea. We’ll recommend materials, print, and timelines.</p>
+      <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Head Office</div>
+          <div class="text-bodytext mt-1">Hebron, Adjacent to Hebron Prayer Camp, Nsawam Adoagyiri, Eastern Region, Ghana</div>
+          <div class="mt-1">P.O. Box NK 26, North Kaneshie, Accra</div>
+          <div class="mt-1">Digital Code: GW-0787-0667</div>
+          <a href="https://maps.app.goo.gl/1coZ4YUkZzb5eFf76" target="_blank" rel="noopener noreferrer">
+            <button class="border-2 border-blue-500 hover:border-blue-700 px-4 py-2 rounded-lg bg-white text-blue-500 font-semibold">
+            📍 View on Google Maps
+            </button>
+          </a>
+        </div>
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Accra Branch</div>
+          <div class="text-bodytext mt-1">Kassardjian yard, 31 Dadeban Rd, Accra</div>
+        </div>
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Kumasi Branch</div>
+          <div class="text-bodytext mt-1">ATONSU Road, Ashanti, Kumasi</div>
+        </div>
+        <div class="rounded-2xl border p-4">
+          <div class="font-medium">Reach us</div>
+          <div class="text-bodytext mt-1">Office: +233 30 397 3205 /06 </div>
+          <div class="ont-medium text-bodytext mt-1">info@grand-chem.net</div>
+          <div class="text-bodytext mt-1">www.grand-chem.net</div>
+        </div>
+      </div>
+    </div>
+
+   <form id="quoteForm" class="rounded-2xl border p-6 bg-neutral-50" autocomplete="on">
+      <div class="text-sm text-neutral-500 mb-2">Request a quote</div>
+      <div class="grid grid-cols-1 gap-3">
+        <input name="company" required class="rounded-xl border px-3 py-2"
+              placeholder="Company name" autocomplete="organization" />
+        <input name="email" type="email" required class="rounded-xl border px-3 py-2"
+            placeholder="Email" autocomplete="email" />
+       <input name="phone" class="rounded-xl border px-3 py-2"
+            placeholder="Phone" autocomplete="tel" />
+       <select name="product_family" class="rounded-xl border px-3 py-2"
+             autocomplete="off">
+         <option>Product family</option>
+         <option>Injection Moulding</option>
+         <option>Blown Film</option>
+         <option>Gallon Moulding (Blow)</option>
+          <option>Lamination & Converting</option>
+          <option>Custom order</option>
+        </select>
+        <textarea name="message" class="rounded-xl border px-3 py-2 min-h-[120px]"
+                placeholder="Specs, sizes, artwork links…" autocomplete="off"></textarea>
+       <button id="quoteSubmit" type="submit"
+                class="inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">
+          Submit
+        </button>
+        <div id="quoteNote" class="mt-3 text-sm" aria-live="polite"></div>
+      </div>
+    </form>
+
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
+      <div>© 2025 Grand-Chem Limited — SEDEX Certified • Your Packaging Partner</div>
+      <div class="md:text-right">Privacy • Terms</div>
+    </div>
+  </footer>
+
+  <!-- Icons -->
+  <script>lucide.createIcons();</script>
+
+  <!-- Internationalization System -->
+  <script>
+    // Translation data
+    const translations = {
+      en: {
+        'nav.how-we-work': 'How We Work',
+        'nav.products': 'Products',
+        'nav.profile': 'Profile',
+        'nav.sustainability': 'Sustainability',
+        'nav.faq': 'FAQ',
+        'nav.contact-sales': 'Contact Sales',
+        'language': 'Language:',
+        'hero.badge': 'Your Trusted Packaging Partner Since 2006',
+        'hero.title': 'Packaging you can trust, made with',
+        'hero.title-highlight': 'responsibility',
+        'hero.subtitle': 'Since 2006, we\'ve delivered PET preforms, printed films, custom bags, and HDPE/PP containers across Ghana and West Africa— combining modern tech, strict QA, and quick turnarounds.',
+        'hero.btn-primary': 'Explore products',
+        'hero.btn-secondary': 'See how it works',
+        'hero.sedex': 'SEDEX certified',
+        'hero.recycling': 'In-house recycling',
+        'hero.reach': 'Regional & export reach',
+        'stats.customers': 'Happy Customers',
+        'stats.countries': 'Countries Served',
+        'stats.deliveries': 'Successful Deliveries',
+        'stats.production': 'Production Active',
+        'stats.quality': 'Quality Assured',
+        'stats.export': 'Export Ready',
+        'clients.title': 'Our clients',
+        'clients.subtitle': 'Trusted by teams across West Africa',
+        'products.badge': 'Our Manufacturing Excellence',
+        'products.title': 'Precision. Quality. Innovation.',
+        'products.subtitle': 'Four specialized manufacturing lines delivering world-class packaging solutions across West Africa',
+        'injection.title': 'Injection Moulding',
+        'injection.desc': 'High-precision caps, closures, and PET preforms manufactured on automated lines for consistent performance.',
+        'injection.caps': 'Caps',
+        'injection.caps-desc': 'Food-grade, tamper-evident options',
+        'injection.preforms': 'PET Preforms',
+        'injection.preforms-desc': 'Multiple neck finishes & weights',
+        'blown-film.title': 'Blown Film',
+        'blown-film.desc': 'Custom mono and multilayer films with up to 10-color print for brands that need clarity, strength, and speed.',
+        'blown-film.water': 'Printed Pure Water Rolls',
+        'blown-film.water-desc': 'Crystal clarity, food-safe inks',
+        'blown-film.shrink': 'Shrink Film Rolls',
+        'blown-film.shrink-desc': 'High-hold, low haze',
+        'sustainability.title': 'Reduce. Reuse. Recycle.',
+        'sustainability.subtitle': 'Responsible packaging isn\'t optional. Our processes and materials are chosen to cut waste, improve recyclability, and protect consumers.',
+        'how-it-works.workflow': 'Workflow',
+        'how-it-works.share': 'Share specs or request help',
+        'how-it-works.share-desc': 'Send a dieline, sketch, or sample. We validate dimensions, resin choice, and strength.',
+        'how-it-works.engineer': 'We engineer & prototype',
+        'how-it-works.engineer-desc': 'Tooling guidance, artwork proofing, and pilot runs to de-risk full production.',
+        'how-it-works.manufacture': 'Manufacture & deliver',
+        'how-it-works.manufacture-desc': 'Real-time updates from print to dispatch. Export-ready packing on request.',
+        'explore-products': 'Explore products',
+        'faq.title': 'Frequently asked questions',
+        'faq.small-runs': 'Do you support small runs?',
+        'faq.small-runs-answer': 'Yes — MOQs from ~100 units on select SKUs. Talk to our team for specifics.',
+        'faq.lead-times': 'Typical lead times?',
+        'faq.lead-times-answer': '5–10 business days after artwork approval; rush options available.',
+        'faq.food-grade': 'Food-grade compliance?',
+        'faq.food-grade-answer': 'Closed-loop, automated lines minimize contact risk; food-safe inks and coatings offered.',
+        'faq.export': 'Export readiness?',
+        'faq.export-answer': 'We serve Ghana nationwide and export across West Africa with compliant documentation.',
+        'contact.title': 'Let\'s build better packaging',
+        'contact.subtitle': 'Share your spec, sketch, or idea. We\'ll recommend materials, print, and timelines.',
+        'contact.head-office': 'Head Office',
+        'contact.accra-branch': 'Accra Branch',
+        'contact.kumasi-branch': 'Kumasi Branch',
+        'contact.reach-us': 'Reach us',
+        'contact.request-quote': 'Request a quote',
+        'contact.company-name': 'Company name',
+        'contact.email': 'Email',
+        'contact.phone': 'Phone',
+        'contact.product-family': 'Product family',
+        'contact.message': 'Specs, sizes, artwork links…',
+        'contact.submit': 'Submit',
+        'footer.copyright': '© 2025 Grand-Chem Limited — SEDEX Certified • Your Packaging Partner'
+      },
+      fr: {
+        'nav.how-we-work': 'Comment nous travaillons',
+        'nav.products': 'Produits',
+        'nav.profile': 'Profil',
+        'nav.sustainability': 'Durabilité',
+        'nav.faq': 'FAQ',
+        'nav.contact-sales': 'Contacter les ventes',
+        'language': 'Langue:',
+        'hero.badge': 'Votre partenaire d\'emballage de confiance depuis 2006',
+        'hero.title': 'Emballage de confiance, fabriqué avec',
+        'hero.title-highlight': 'responsabilité',
+        'hero.subtitle': 'Depuis 2006, nous livrons des préformes PET, des films imprimés, des sacs personnalisés et des contenants HDPE/PP à travers le Ghana et l\'Afrique de l\'Ouest— combinant technologie moderne, contrôle qualité strict et délais rapides.',
+        'hero.btn-primary': 'Explorer les produits',
+        'hero.btn-secondary': 'Voir comment ça marche',
+        'hero.sedex': 'Certifié SEDEX',
+        'hero.recycling': 'Recyclage interne',
+        'hero.reach': 'Portée régionale et export',
+        'stats.customers': 'Clients Satisfaits',
+        'stats.countries': 'Pays Desservis',
+        'stats.deliveries': 'Livraisons Réussies',
+        'stats.production': 'Production Active',
+        'stats.quality': 'Qualité Assurée',
+        'stats.export': 'Prêt à l\'Export',
+        'clients.title': 'Nos clients',
+        'clients.subtitle': 'Fait confiance par les équipes à travers l\'Afrique de l\'Ouest',
+        'products.badge': 'Notre Excellence Manufacturière',
+        'products.title': 'Précision. Qualité. Innovation.',
+        'products.subtitle': 'Quatre lignes de fabrication spécialisées offrant des solutions d\'emballage de classe mondiale à travers l\'Afrique de l\'Ouest',
+        'injection.title': 'Moulage par Injection',
+        'injection.desc': 'Bouchons, fermetures et préformes PET haute précision fabriqués sur des lignes automatisées pour des performances constantes.',
+        'injection.caps': 'Bouchons',
+        'injection.caps-desc': 'Options alimentaires, inviolables',
+        'injection.preforms': 'Préformes PET',
+        'injection.preforms-desc': 'Multiples finitions de col et poids',
+        'blown-film.title': 'Film Soufflé',
+        'blown-film.desc': 'Films mono et multicouches personnalisés avec impression jusqu\'à 10 couleurs pour les marques nécessitant clarté, résistance et rapidité.',
+        'blown-film.water': 'Rouleaux d\'Eau Pure Imprimés',
+        'blown-film.water-desc': 'Clarté cristalline, encres alimentaires',
+        'blown-film.shrink': 'Rouleaux de Film Rétractable',
+        'blown-film.shrink-desc': 'Haute tenue, faible brume',
+        'sustainability.title': 'Réduire. Réutiliser. Recycler.',
+        'sustainability.subtitle': 'L\'emballage responsable n\'est pas optionnel. Nos processus et matériaux sont choisis pour réduire les déchets, améliorer la recyclabilité et protéger les consommateurs.',
+        'how-it-works.workflow': 'Processus',
+        'how-it-works.share': 'Partagez vos spécifications ou demandez de l\'aide',
+        'how-it-works.share-desc': 'Envoyez un plan, un croquis ou un échantillon. Nous validons les dimensions, le choix de résine et la résistance.',
+        'how-it-works.engineer': 'Nous concevons et créons un prototype',
+        'how-it-works.engineer-desc': 'Conseils d\'outillage, épreuve d\'œuvre d\'art et essais pilotes pour dérisquer la production complète.',
+        'how-it-works.manufacture': 'Fabrication et livraison',
+        'how-it-works.manufacture-desc': 'Mises à jour en temps réel de l\'impression à l\'expédition. Emballage prêt à l\'export sur demande.',
+        'explore-products': 'Explorer les produits',
+        'faq.title': 'Questions fréquemment posées',
+        'faq.small-runs': 'Supportez-vous les petites séries?',
+        'faq.small-runs-answer': 'Oui — MOQ à partir de ~100 unités sur certains SKU. Parlez à notre équipe pour les détails.',
+        'faq.lead-times': 'Délais typiques?',
+        'faq.lead-times-answer': '5-10 jours ouvrables après approbation de l\'œuvre d\'art; options rapides disponibles.',
+        'faq.food-grade': 'Conformité alimentaire?',
+        'faq.food-grade-answer': 'Les lignes automatisées en circuit fermé minimisent les risques de contact; encres et revêtements alimentaires offerts.',
+        'faq.export': 'Prêt à l\'exportation?',
+        'faq.export-answer': 'Nous servons le Ghana à l\'échelle nationale et exportons à travers l\'Afrique de l\'Ouest avec documentation conforme.',
+        'contact.title': 'Construisons un meilleur emballage',
+        'contact.subtitle': 'Partagez vos spécifications, croquis ou idée. Nous recommanderons matériaux, impression et délais.',
+        'contact.head-office': 'Siège Social',
+        'contact.accra-branch': 'Succursale d\'Accra',
+        'contact.kumasi-branch': 'Succursale de Kumasi',
+        'contact.reach-us': 'Nous joindre',
+        'contact.request-quote': 'Demander un devis',
+        'contact.company-name': 'Nom de l\'entreprise',
+        'contact.email': 'E-mail',
+        'contact.phone': 'Téléphone',
+        'contact.product-family': 'Famille de produits',
+        'contact.message': 'Spécifications, tailles, liens d\'œuvre d\'art…',
+        'contact.submit': 'Soumettre',
+        'footer.copyright': '© 2025 Grand-Chem Limited — Certifié SEDEX • Votre Partenaire d\'Emballage'
+      }
+    };
+
+    // Current language
+    let currentLanguage = localStorage.getItem('gcl-language') || 'en';
+
+    // Initialize language system
+    function initializeLanguage() {
+      updateLanguageDisplay();
+      translatePage(currentLanguage);
+    }
+
+    // Update language display
+    function updateLanguageDisplay() {
+      const currentLangSpan = document.getElementById('currentLang');
+      if (currentLangSpan) {
+        currentLangSpan.textContent = currentLanguage.toUpperCase();
+      }
+
+      // Update active state for mobile buttons
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        const lang = btn.getAttribute('data-lang');
+        if (lang === currentLanguage) {
+          btn.classList.add('bg-brand', 'text-white');
+          btn.classList.remove('bg-neutral-100');
+        } else {
+          btn.classList.remove('bg-brand', 'text-white');
+          btn.classList.add('bg-neutral-100');
+        }
+      });
+    }
+
+    // Translate page content
+    function translatePage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      // Update HTML lang attribute
+      document.documentElement.setAttribute('lang', lang);
+    }
+
+    // Switch language
+    function switchLanguage(newLang) {
+      currentLanguage = newLang;
+      localStorage.setItem('gcl-language', newLang);
+      updateLanguageDisplay();
+      translatePage(newLang);
+
+      // Close language menu if open
+      const langMenu = document.getElementById('langMenu');
+      if (langMenu) {
+        langMenu.classList.add('hidden');
+      }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeLanguage();
+
+      // Language toggle button (desktop)
+      const langToggle = document.getElementById('langToggle');
+      const langMenu = document.getElementById('langMenu');
+
+      if (langToggle && langMenu) {
+        langToggle.addEventListener('click', () => {
+          langMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!langToggle.contains(e.target) && !langMenu.contains(e.target)) {
+            langMenu.classList.add('hidden');
+          }
+        });
+      }
+
+      // Language buttons (both desktop and mobile)
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          switchLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+  <!-- Enhanced Scroll Animations & Parallax Effects -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ===== SCROLL REVEAL ANIMATIONS =====
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Add staggered delay for multiple items
+            const delay = entry.target.dataset.delay || 0;
+            entry.target.style.transitionDelay = `${delay}ms`;
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animation elements
+      document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach((el, index) => {
+        el.dataset.delay = index * 100; // Staggered animation
+        observer.observe(el);
+      });
+
+      // ===== PARALLAX SCROLL EFFECTS =====
+      let ticking = false;
+
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+
+        parallaxElements.forEach((element, index) => {
+          const rate = scrolled * -0.5; // Increased from -0.3 to -0.5 for more visible effect
+          const yPos = Math.round(rate);
+          element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+
+        // Enhanced floating elements parallax with more movement
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((element, index) => {
+          const rate = scrolled * (0.2 + index * 0.1); // Increased base rate and multiplier
+          const yPos = Math.round(rate);
+          const rotation = scrolled * 0.05; // Add slight rotation
+          element.style.transform = `translate3d(0, ${yPos}px, 0) rotate(${rotation}deg)`;
+        });
+
+        ticking = false;
+      }
+
+      function requestParallaxUpdate() {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+      // ===== SMOOTH SCROLL FOR NAVIGATION =====
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // ===== ENHANCED HOVER EFFECTS FOR PRODUCT CARDS =====
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-12px) scale(1.02)';
+          this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+          this.style.boxShadow = '';
+        });
+      });
+
+      // ===== LOADING STATE ANIMATIONS =====
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+
+        // Hide loading screen faster and trigger animations immediately
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transform = 'scale(0.95)';
+            loadingScreen.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 300);
+          }, 500); // Reduced from 1000ms to 500ms
+        }
+
+        // Trigger hero animations immediately after loading screen
+        setTimeout(() => {
+          document.querySelectorAll('.fade-in-left, .fade-in-right').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+              el.classList.add('visible');
+            }
+          });
+        }, 600); // Reduced from 1300ms to 600ms
+      });
+
+      // ===== SCROLL PROGRESS INDICATOR =====
+      const progressBar = document.createElement('div');
+      progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #2e3091, #ed2724);
+        z-index: 9999;
+        transition: width 0.1s ease;
+      `;
+      document.body.appendChild(progressBar);
+
+      window.addEventListener('scroll', () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      });
+
+      // ===== ENHANCED CLIENT LOGO CAROUSEL =====
+      const clientsRail = document.getElementById('clientsRail');
+      if (clientsRail) {
+        // Add hover pause functionality
+        let isPaused = false;
+
+        clientsRail.addEventListener('mouseenter', () => {
+          isPaused = true;
+          clientsRail.style.animationPlayState = 'paused';
+        });
+
+        clientsRail.addEventListener('mouseleave', () => {
+          isPaused = false;
+          clientsRail.style.animationPlayState = 'running';
+        });
+      }
+
+      // ===== FORM ENHANCEMENTS =====
+      const form = document.getElementById('quoteForm');
+      if (form) {
+        const inputs = form.querySelectorAll('input, select, textarea');
+
+        inputs.forEach(input => {
+          input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+          });
+
+          input.addEventListener('blur', function() {
+            if (!this.value) {
+              this.parentElement.classList.remove('focused');
+            }
+          });
+        });
+      }
+
+      // ===== PERFORMANCE OPTIMIZATION =====
+      // Reduce motion for users who prefer it
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('*').forEach(el => {
+          el.style.animationDuration = '0.01ms !important';
+          el.style.animationIterationCount = '1 !important';
+          el.style.transitionDuration = '0.01ms !important';
+        });
+      }
+    });
+
+    // ===== INTERSECTION OBSERVER FOR STATISTICS =====
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statCards = entry.target.querySelectorAll('.stat-card');
+          statCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.style.transform = 'translateY(0) scale(1)';
+              card.style.opacity = '1';
+            }, index * 150);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    // Observe stats section
+    document.addEventListener('DOMContentLoaded', () => {
+      const statsSection = document.querySelector('.fade-in-right');
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+    });
+  </script>
+
+  <!-- Mobile menu toggle -->
+  <script>
+    const mnavBtn = document.getElementById('mnavBtn');
+    const mnav    = document.getElementById('mnav');
+    if (mnavBtn) mnavBtn.onclick = () => {
+      mnav.classList.toggle('hidden');
+      mnavBtn.innerHTML = mnav.classList.contains('hidden')
+        ? '<i data-lucide="menu" class="w-6 h-6"></i>'
+        : '<i data-lucide="x" class="w-6 h-6"></i>';
+      lucide.createIcons();
+    };
+  </script>
+
+  <!-- Quote form (optional endpoint placeholder) -->
+  <script>
+    const ENDPOINT_URL = "https://formspree.io/f/xovlbdqw"; // replace with your real endpoint
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('quoteForm');
+      const btn  = document.getElementById('quoteSubmit');
+      const note = document.getElementById('quoteNote');
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); note.textContent=""; btn.disabled = true; btn.textContent = "Sending...";
+        const data = Object.fromEntries(new FormData(form).entries());
+        try {
+          const res = await fetch(ENDPOINT_URL, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(data) });
+          if (res.ok) { note.className="mt-3 text-sm text-green-600"; note.textContent="Thanks! Your request has been sent."; form.reset(); }
+          else { note.className="mt-3 text-sm text-accent"; note.textContent="Sorry, there was a problem sending your request."; }
+        } catch {
+          note.className="mt-3 text-sm text-accent"; note.textContent="Network error. Please try again.";
+        } finally { btn.disabled = false; btn.textContent = "Submit"; }
+      });
+    });
+  </script>
+
+  <!-- Odometer animation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const els = document.querySelectorAll('.odometer');
+      const animate = (el)=>{
+        const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+        const dur = 1800, start = performance.now();
+        function tick(now){
+          const p = Math.min(1, (now-start)/dur);
+          const eased = 1 - Math.pow(1-p, 3);
+          el.textContent = Math.floor(eased * target).toLocaleString();
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ animate(e.target); io.unobserve(e.target);} });
+      }, { threshold: .6 });
+      els.forEach(el=> io.observe(el));
+    });
+  </script>
+  <!-- =============================
+     WhatsApp Floating Button
+     Always stays at bottom-left corner
+     Sends message to +233540125312
+    ================================= -->
+    <a href="https://wa.me/233540125312?text=Hello%20Grand-Chem%20Limited%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products."
+    target="_blank"
+    class="whatsapp-float"
+     aria-label="Chat on WhatsApp">
+    <img src="images/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
+    </a>
+    <!-- End WhatsApp Floating Button -->
+    
+  <script>
+    /* ===== Clients rail: infinite auto-scroll + swipe + arrows ===== */
+    (function(){
+      const rail = document.getElementById('clientsRail');
+      if(!rail) return;
+      // 1) Duplicate content once to create a seamless loop
+      rail.innerHTML += rail.innerHTML;
+      
+      // 2) Auto scroll
+      let raf, speed = 0.6, paused = false;
+      function step(){
+        if(!paused){
+          rail.scrollLeft += speed;
+          // when we pass the halfway point (original width), snap back
+          const half = Math.floor(rail.scrollWidth / 2);
+          if (rail.scrollLeft >= half) rail.scrollLeft = rail.scrollLeft - half;
+        }
+        raf = requestAnimationFrame(step);
+      }
+      raf = requestAnimationFrame(step);
+      
+      // Pause on hover / focus / touch
+      const pause = ()=> paused = true;
+      const play  = ()=> paused = false;
+      rail.addEventListener('mouseenter', pause);
+      rail.addEventListener('mouseleave', play);
+      rail.addEventListener('touchstart', pause, {passive:true});
+      rail.addEventListener('touchend', play, {passive:true});
+      rail.addEventListener('focusin', pause);
+      rail.addEventListener('focusout', play);
+      
+      // 3) Drag to scroll with mouse (desktop convenience)
+      let isDown=false, startX=0, startLeft=0;
+      rail.addEventListener('mousedown', (e)=>{ isDown=true; pause(); startX=e.pageX; startLeft=rail.scrollLeft; rail.style.cursor='grabbing'; });
+      window.addEventListener('mouseup', ()=>{ if(isDown){ isDown=false; rail.style.cursor='default'; play(); }});
+      window.addEventListener('mousemove', (e)=>{ if(!isDown) return; const dx=e.pageX-startX; rail.scrollLeft = startLeft - dx; });
+      
+      // 4) Arrow buttons
+      const prev = document.getElementById('clientsPrev');
+      const next = document.getElementById('clientsNext');
+      const nudge = (dir)=>{ pause(); rail.scrollBy({ left: dir*300, behavior:'smooth' }); setTimeout(play, 600); };
+      prev?.addEventListener('click', ()=>nudge(-1));
+      next?.addEventListener('click', ()=>nudge(1));
+      
+      // Make sure new icons render
+      if (window.lucide?.createIcons) lucide.createIcons();
+    })();
+  </script>
+    
+
 </body>
 </html>
