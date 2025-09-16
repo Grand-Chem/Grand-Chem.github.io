@@ -3,7 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grand-Chem Products</title>
+  <title>Grand-Chem Products - PET Bottles, Preforms, Blown Film, Caps Ghana | Interactive Catalog</title>
+  <meta name="description" content="Explore Grand-Chem's interactive product catalog: PET bottles 140ml-1500ml, preforms, caps & closures, blown films, gallon containers. Technical specs, MOQ, pricing. Ghana & West Africa." />
+  <meta name="keywords" content="PET bottles Ghana, preforms catalog, blown film products, caps closures, gallon containers, interactive product catalog, packaging specifications Ghana" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Grand-Chem Products - Interactive Packaging Catalog Ghana">
+  <meta property="og:description" content="Explore our comprehensive packaging catalog with detailed specifications, MOQ, and pricing information.">
+  <meta property="og:url" content="https://grand-chem.com/products.html">
+  <meta property="og:image" content="https://grand-chem.com/images/gallery/grand-chem-bottle.webp">
+
+  <link rel="canonical" href="https://grand-chem.com/products.html">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +34,45 @@
 
   <style>
     html{scroll-behavior:smooth}
+
+    /* Language Switcher Styles */
+    .language-switcher {
+      position: relative;
+      display: inline-block;
+    }
+    .language-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+      min-width: 120px;
+      display: none;
+    }
+    .language-dropdown.show {
+      display: block;
+    }
+    .language-option {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    .language-option:hover {
+      background-color: #f3f4f6;
+    }
+    .language-flag {
+      width: 20px;
+      height: 15px;
+      margin-right: 8px;
+      border-radius: 2px;
+    }
 
     /* Enhanced animated background with parallax */
     body::before{
@@ -264,11 +313,31 @@
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="index.html#how" class="hover:opacity-70">How We Work</a>
-        <a href="products.html" class="hover:opacity-70">Products</a>
+        <a href="products.html" class="hover:opacity-70 text-brand font-medium">Products</a>
         <a href="profile.html" class="hover:opacity-70">Profile</a>
+        <a href="blog.html" class="hover:opacity-70">Blog</a>
         <a href="index.html#sustain" class="hover:opacity-70">Sustainability</a>
         <a href="index.html#faq" class="hover:opacity-70">FAQ</a>
-        <a href="index.html#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
+        <a href="quote-request.html" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">Request Quote</a>
+
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+          <button id="languageToggle" class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="language-flag">🇬🇧</span>
+            <span class="text-sm">EN</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </button>
+          <div id="languageDropdown" class="language-dropdown">
+            <a href="products.html" class="language-option">
+              <span class="language-flag">🇬🇧</span>
+              English
+            </a>
+            <a href="fr/products.html" class="language-option">
+              <span class="language-flag">🇫🇷</span>
+              Français
+            </a>
+          </div>
+        </div>
       </nav>
 
       <!-- Mobile button -->
@@ -283,9 +352,10 @@
         <a href="index.html#how" class="py-1">How We Work</a>
         <a href="products.html" class="py-1 text-brand font-medium">Products</a>
         <a href="profile.html" class="py-1">Profile</a>
+        <a href="blog.html" class="py-1">Blog</a>
         <a href="index.html#sustain" class="py-1">Sustainability</a>
         <a href="index.html#faq" class="py-1">FAQ</a>
-        <a href="index.html#contact" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Contact Sales</a>
+        <a href="quote-request.html" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Request Quote</a>
       </div>
     </div>
   </header>
@@ -409,6 +479,24 @@
         : '<i data-lucide="x" class="w-6 h-6"></i>';
       lucide.createIcons();
     };
+
+    /* Language switcher functionality */
+    const languageToggle = document.getElementById('languageToggle');
+    const languageDropdown = document.getElementById('languageDropdown');
+
+    if (languageToggle) {
+      languageToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('show');
+      });
+    }
+
+    // Close language dropdown when clicking outside
+    document.addEventListener('click', () => {
+      if (languageDropdown) {
+        languageDropdown.classList.remove('show');
+      }
+    });
 
     /* ------------------ DATA ------------------ */
     const IMG = (n) => `images/gallery/${n}`;
