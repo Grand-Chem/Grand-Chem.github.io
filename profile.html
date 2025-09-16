@@ -19,6 +19,45 @@
     html{scroll-behavior:smooth}
     body{font-family:Inter,system-ui,Arial,sans-serif}
 
+    /* Language Switcher Styles */
+    .language-switcher {
+      position: relative;
+      display: inline-block;
+    }
+    .language-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+      min-width: 120px;
+      display: none;
+    }
+    .language-dropdown.show {
+      display: block;
+    }
+    .language-option {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    .language-option:hover {
+      background-color: #f3f4f6;
+    }
+    .language-flag {
+      width: 20px;
+      height: 15px;
+      margin-right: 8px;
+      border-radius: 2px;
+    }
+
     /* Wordmark */
     .logo-text{font-weight:800;letter-spacing:.03em;white-space:nowrap;text-transform:uppercase;
       background:linear-gradient(90deg,#2e3091 100%,#3b55c0 0%,#76a6e9 0%);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -192,6 +231,25 @@
         <a href="index.html#contact" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">
           Contact Sales <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
+
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+          <button id="languageToggle" class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="language-flag">🇬🇧</span>
+            <span class="text-sm">EN</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </button>
+          <div id="languageDropdown" class="language-dropdown">
+            <a href="profile.html" class="language-option">
+              <span class="language-flag">🇬🇧</span>
+              English
+            </a>
+            <a href="fr/profile.html" class="language-option">
+              <span class="language-flag">🇫🇷</span>
+              Français
+            </a>
+          </div>
+        </div>
       </nav>
       <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Open menu">
         <i data-lucide="menu" class="w-6 h-6"></i>
@@ -368,6 +426,19 @@
   <!-- Scripts -->
   <script>
     lucide.createIcons();
+
+    /* Language Switcher */
+    document.getElementById('languageToggle')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dropdown = document.getElementById('languageDropdown');
+      dropdown?.classList.toggle('show');
+    });
+
+    /* Close dropdown when clicking outside */
+    document.addEventListener('click', () => {
+      const dropdown = document.getElementById('languageDropdown');
+      dropdown?.classList.remove('show');
+    });
 
     /* Mobile drawer */
     document.getElementById('mnavBtn')?.addEventListener('click', ()=>{
