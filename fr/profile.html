@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil de l'Entreprise — Grand-Chem Limited</title>
+  <meta name="description" content="Mission, vision, réseau Genius Group, feuille de route de croissance et direction de Grand-Chem Limited." />
+  <meta name="keywords" content="profil entreprise Grand-Chem, mission vision valeurs, réseau Genius Group, leadership packaging Ghana, croissance emballage Afrique" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://grand-chem.com/fr/profile.html">
+  <meta property="og:title" content="Profil de l'Entreprise — Grand-Chem Limited">
+  <meta property="og:description" content="Mission, vision, réseau Genius Group, feuille de route de croissance et direction de Grand-Chem Limited.">
+  <meta property="og:image" content="https://grand-chem.com/images/hero.webp">
+  <meta property="og:site_name" content="Grand-Chem Limited">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- SEO -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Grand-Chem Limited">
+  <meta name="geo.region" content="GH">
+  <meta name="geo.placename" content="Ghana">
+  <link rel="canonical" href="https://grand-chem.com/fr/profile.html">
+  <link rel="alternate" hreflang="en" href="https://grand-chem.com/profile.html">
+  <link rel="alternate" hreflang="fr" href="https://grand-chem.com/fr/profile.html">
+
+  <!-- Tailwind (brand palette) -->
+  <script>
+    tailwind = { theme: { extend: { colors: { brand:'#2e3091', accent:'#ed2724', bodytext:'#5658a7' } } } };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Language Switcher Styles -->
+  <style>
+    .language-switcher {
+      position: relative;
+    }
+
+    .language-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      min-width: 120px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      z-index: 50;
+    }
+
+    .language-dropdown.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .language-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #374151;
+      transition: background-color 0.2s ease;
+    }
+
+    .language-option:hover {
+      background-color: #f3f4f6;
+    }
+
+    .language-flag {
+      font-size: 16px;
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,Arial,sans-serif}
+
+    /* Wordmark */
+    .logo-text{font-weight:800;letter-spacing:.03em;white-space:nowrap;text-transform:uppercase;
+      background:linear-gradient(90deg,#2e3091 100%,#3b55c0 0%,#76a6e9 0%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    @supports not (-webkit-background-clip:text){.logo-text{color:#2e3091}}
+
+    /* Pretty card shell + reveal */
+    .ph{background:linear-gradient(180deg,#f6f8ff,#ffffff);border:1px solid rgba(0,0,0,.06);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+    .reveal.in{opacity:1;transform:none}
+
+
+
+    /* ===== Map image (no borders) ===== */
+    .map-shell{position:relative;border-radius:1.5rem;overflow:hidden}
+    .map-img{display:block;width:100%;height:460px;object-fit:cover}
+
+    /* ===== Leadership glow (brand blue + soft red) ===== */
+    .glow-wrap{position:relative;border-radius:12px;overflow:hidden}
+    .glow-img{display:block;width:100%;height:100%;object-fit:cover;
+      box-shadow:0 0 0 2px #fff,0 0 28px 2px rgba(46,48,145,.45),0 0 14px 8px rgba(237,39,36,.25);
+      transition:box-shadow .28s ease}
+    .glow-wrap:hover .glow-img{box-shadow:0 0 0 2px #fff,0 0 40px 4px rgba(46,48,145,.65),0 0 20px 14px rgba(237,39,36,.35)}
+
+    /* ===== Enhanced Animated Journey ===== */
+    .journey-wrap{position:relative;overflow:hidden;}
+
+    .journey-track{
+      display:flex;gap:30px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:24px;
+      padding:30px 24px 60px;border-radius:20px;
+      background:linear-gradient(135deg, #ffffff, #f8fafc);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 20px 40px rgba(0,0,0,.06);
+    }
+
+    .journey-card{
+      flex:0 0 580px;scroll-snap-align:center;position:relative;
+      border-radius:20px;
+      background:linear-gradient(145deg, #ffffff, #f7f9fc);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 15px 35px rgba(0,0,0,.08);
+      overflow:hidden;
+      transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity:0;
+      transform:translateY(40px) scale(0.95);
+    }
+
+    .journey-card.visible {
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .journey-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow:0 25px 50px rgba(0,0,0,.15);
+      border-color:rgba(46,48,145,.2);
+    }
+
+    @media (max-width:768px){ .journey-card{flex-basis:90vw} }
+
+    .journey-img{
+      width:100%;aspect-ratio:16/9;object-fit:cover;
+      background:linear-gradient(135deg,#eaf1ff,#f8faff);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .journey-img::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(45deg, transparent, rgba(46,48,145,0.1), transparent);
+      transform:translateX(-100%);
+      transition:transform 0.6s ease;
+    }
+
+    .journey-card:hover .journey-img::before {
+      transform:translateX(100%);
+    }
+
+    .journey-body{padding:20px 24px 24px}
+    .journey-year{
+      font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+      color:#ed2724;font-weight:600;
+      display:inline-block;
+      padding:4px 12px;
+      background:rgba(237,39,36,.1);
+      border-radius:20px;
+      margin-bottom:8px;
+    }
+    .journey-title{font-weight:700;font-size:1.1rem;color:#2e3091;margin-bottom:8px;}
+    .journey-txt{color:#5658a7;font-size:.95rem;line-height:1.5}
+
+    /* Enhanced Timeline */
+    .journey-baseline{
+      position:absolute;left:24px;right:24px;
+      top:calc(20px + 8vw);height:6px;
+      background:linear-gradient(90deg, #2e3091, #ed2724, #2e3091);
+      border-radius:9999px;
+      box-shadow:0 2px 10px rgba(46,48,145,.3);
+      overflow:hidden;
+    }
+
+    .journey-baseline::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transform:translateX(-100%);
+      animation:timelineShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes timelineShimmer {
+      0%, 100% { transform:translateX(-100%); }
+      50% { transform:translateX(100%); }
+    }
+
+    @media (min-width:768px){ .journey-baseline{top:240px} }
+
+    /* Enhanced Dots */
+    .journey-card::after{
+      content:"";position:absolute;left:50%;transform:translateX(-50%);
+      top:calc(20px + 8vw + 3px);
+      width:16px;height:16px;border-radius:50%;
+      background:linear-gradient(45deg, #2e3091, #ed2724);
+      border:3px solid #fff;
+      box-shadow:0 0 0 6px rgba(46,48,145,.15), 0 4px 12px rgba(0,0,0,.2);
+      transition:all 0.3s ease;
+    }
+
+    .journey-card:hover::after {
+      transform:translateX(-50%) scale(1.2);
+      box-shadow:0 0 0 8px rgba(46,48,145,.25), 0 6px 16px rgba(0,0,0,.3);
+    }
+
+    @media (min-width:768px){ .journey-card::after{top:243px} }
+
+    /* Floating Animation */
+    .journey-card {
+      animation:float 6s ease-in-out infinite;
+    }
+
+    .journey-card:nth-child(even) {
+      animation-delay:-3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform:translateY(0px) scale(1); }
+      50% { transform:translateY(-5px) scale(1); }
+    }
+
+    .journey-card:hover {
+      animation-play-state:paused;
+    }
+  </style>
+</head>
+<body class="bg-white text-neutral-900">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html#top" class="flex items-center gap-2">
+        <img src="../images/logo.png" alt="Grand-Chem" class="h-8 w-auto">
+        <span class="logo-text">Grand-Chem Limited</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html#comment-nous-travaillons" class="hover:opacity-70">Comment Nous Travaillons</a>
+        <a href="products.html" class="hover:opacity-70">Produits</a>
+        <a href="profile.html" class="hover:opacity-70">Profil</a>
+        <a href="blog.html" class="hover:opacity-70">Blog</a>
+        <a href="index.html#durabilite" class="hover:opacity-70">Durabilité</a>
+        <a href="index.html#faq" class="hover:opacity-70">FAQ</a>
+
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+          <button id="languageToggle" class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="language-flag">🇫🇷</span>
+            <span class="text-sm">FR</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </button>
+          <div id="languageDropdown" class="language-dropdown">
+            <a href="../profile.html" class="language-option">
+              <span class="language-flag">🇬🇧</span>
+              English
+            </a>
+            <a href="profile.html" class="language-option">
+              <span class="language-flag">🇫🇷</span>
+              Français
+            </a>
+          </div>
+        </div>
+
+        <a href="quote-request.html" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">
+          Demander un Devis <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </nav>
+      <button id="mnavBtn" class="md:hidden p-2 rounded-lg hover:bg-neutral-100" aria-label="Ouvrir le menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div id="mnav" class="md:hidden hidden border-t">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="index.html#comment-nous-travaillons" class="py-1">Comment Nous Travaillons</a>
+        <a href="products.html" class="py-1">Produits</a>
+        <a href="profile.html" class="py-1">Profil</a>
+        <a href="blog.html" class="py-1">Blog</a>
+        <a href="index.html#durabilite" class="py-1">Durabilité</a>
+        <a href="index.html#faq" class="py-1">FAQ</a>
+        <a href="quote-request.html" class="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2 bg-brand text-white">Demander un Devis</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-0">
+
+    <!-- 1) Mission / Vision / Values (BLUE section + WHITE icons) -->
+    <section class="relative bg-brand">
+
+      <div class="relative max-w-7xl mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="rounded-3xl p-8 ph bg-white reveal">
+            <div class="flex items-center gap-2 text-sm text-red-500"><i data-lucide="target" class="w-5 h-5"></i> Mission</div>
+            <h2 class="mt-3 text-3xl md:text-4xl font-extrabold text-blue-500">Emballage fiable et responsable pour l'Afrique</h2>
+            <p class="mt-3 text-blue-500">Emballage innovant, sûr et efficace avec une qualité mesurable.</p>
+          </div>
+          <div class="rounded-3xl p-8 ph bg-white reveal">
+            <div class="flex items-center gap-2 text-sm text-red-500"><i data-lucide="sparkles" class="w-5 h-5"></i> Vision</div>
+            <h2 class="mt-3 text-3xl md:text-4xl font-extrabold text-blue-500">Référence en durabilité &amp; service</h2>
+            <p class="mt-3 text-blue-500">Diriger la région en qualité, circularité et confiance client.</p>
+          </div>
+          <div class="rounded-3xl p-8 ph bg-white reveal">
+            <div class="flex items-center gap-2 text-sm text-red-500"><i data-lucide="badge-check" class="w-5 h-5"></i> Valeurs</div>
+            <h2 class="mt-3 text-3xl md:text-4xl font-extrabold text-blue-500">Qualité • Sécurité & Rapidité</h2>
+            <p class="mt-3 text-blue-500">Culture TQM, encres alimentaires et délais rapides.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Map (WHITE section + BLUE icons behind until Leadership) -->
+    <section class="relative bg-white">
+
+      <div class="relative max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-brand-500">Genius Group — Notre Réseau</h2>
+        <div class="map-shell reveal">
+          <img src="../images/world-map.webp" class="map-img" alt="Ghana • Inde • EAU" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Our Journey (HORIZONTAL with image holders) -->
+    <section class="relative bg-white">
+
+      <div class="relative max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-blue-500">Notre Parcours</h2>
+
+        <div class="journey-wrap">
+          <div class="journey-baseline"></div>
+          <div id="journeyTrack" class="journey-track"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Leadership (Enhanced single leader showcase) -->
+    <section class="relative bg-white border-y">
+      <div class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-red-500 mb-8">Direction</h2>
+
+        <!-- Featured Leader - Chandra Sekhar Chaganti -->
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Leader Image -->
+            <div class="relative">
+              <div class="aspect-[4/3] glow-wrap cursor-pointer leader"
+                   data-name="Chandra Sekhar Chaganti"
+                   data-role="Fondateur & Directeur Général"
+                   data-bio="Entrepreneur de première génération avec plus de 15 ans d'expérience dans la fabrication d'emballages. Chandra Sekhar a fondé Grand-Chem Limited avec la vision de fournir des solutions d'emballage de classe mondiale à travers l'Afrique de l'Ouest. Sous sa direction, l'entreprise a évolué d'une petite unité de fabrication de bouteilles PET vers un fournisseur complet de solutions d'emballage, servant plus de 300 clients dans 5 pays. Son focus sur l'innovation, l'excellence opérationnelle et les pratiques durables a positionné Grand-Chem comme partenaire de confiance pour les marques leaders au Ghana et au-delà. Chandra Sekhar s'engage à créer de la valeur à long terme par la fabrication de qualité, la responsabilité environnementale et l'autonomisation des communautés locales."
+                   data-img="../images/leaders/leader-1.webp">
+                <img src="../images/leaders/leader-1.webp" alt="Chandra Sekhar Chaganti" class="glow-img">
+                <!-- Floating elements around image -->
+                <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-brand/10 to-accent/10 rounded-full blur-sm animate-pulse"></div>
+                <div class="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-accent/10 to-brand/10 rounded-full blur-sm animate-pulse delay-1000"></div>
+              </div>
+            </div>
+
+            <!-- Leader Info -->
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Chandra Sekhar Chaganti</h3>
+                <p class="text-lg text-brand font-semibold mb-4">Fondateur & Directeur Général</p>
+                <p class="text-bodytext leading-relaxed">
+                  Entrepreneur de première génération axé sur l'innovation, l'excellence opérationnelle et la création de valeur à long terme.
+                  Dirigeant la mission de Grand-Chem pour fournir des solutions d'emballage de classe mondiale à travers l'Afrique de l'Ouest.
+                </p>
+              </div>
+
+              <!-- Key Achievements -->
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gradient-to-br from-brand/5 to-transparent p-4 rounded-xl border border-brand/10">
+                  <div class="text-2xl font-bold text-brand">15+</div>
+                  <div class="text-sm text-bodytext">Années d'Expérience</div>
+                </div>
+                <div class="bg-gradient-to-br from-accent/5 to-transparent p-4 rounded-xl border border-accent/10">
+                  <div class="text-2xl font-bold text-accent">300+</div>
+                  <div class="text-sm text-bodytext">Clients Servis</div>
+                </div>
+                <div class="bg-gradient-to-br from-green-500/5 to-transparent p-4 rounded-xl border border-green-500/10">
+                  <div class="text-2xl font-bold text-green-600">5</div>
+                  <div class="text-sm text-bodytext">Pays Atteints</div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-500/5 to-transparent p-4 rounded-xl border border-purple-500/10">
+                  <div class="text-2xl font-bold text-purple-600">2006</div>
+                  <div class="text-sm text-bodytext">Entreprise Fondée</div>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                <button class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 bg-brand text-white font-semibold hover:bg-brand/90 transition-all duration-300 cursor-pointer leader"
+                        data-name="Chandra Sekhar Chaganti"
+                        data-role="Fondateur & Directeur Général"
+                        data-bio="Entrepreneur de première génération avec plus de 15 ans d'expérience dans la fabrication d'emballages. Chandra Sekhar a fondé Grand-Chem Limited avec la vision de fournir des solutions d'emballage de classe mondiale à travers l'Afrique de l'Ouest. Sous sa direction, l'entreprise a évolué d'une petite unité de fabrication de bouteilles PET vers un fournisseur complet de solutions d'emballage, servant plus de 300 clients dans 5 pays. Son focus sur l'innovation, l'excellence opérationnelle et les pratiques durables a positionné Grand-Chem comme partenaire de confiance pour les marques leaders au Ghana et au-delà. Chandra Sekhar s'engage à créer de la valeur à long terme par la fabrication de qualité, la responsabilité environnementale et l'autonomisation des communautés locales."
+                        data-img="../images/leaders/leader-1.webp">
+                  <i data-lucide="user-circle" class="w-5 h-5"></i>
+                  Voir le Profil Complet
+                </button>
+                <a href="index.html#contact" class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 border border-brand text-brand font-semibold hover:bg-brand hover:text-white transition-all duration-300">
+                  <i data-lucide="message-circle" class="w-5 h-5"></i>
+                  Contacter la Direction
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto max-w-7xl px-4 py-10 text-sm text-bodytext grid md:grid-cols-2 gap-6">
+      <div>© 2025 Grand-Chem Limited — Certifié SEDEX • Votre Partenaire Emballage</div>
+      <div class="md:text-right">Confidentialité • Conditions</div>
+    </div>
+  </footer>
+
+  <!-- Leadership Modal -->
+  <div id="leaderModal" class="fixed inset-0 hidden z-[60]">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div class="w-full max-w-3xl rounded-2xl bg-white border shadow-xl overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b">
+          <div><div id="lmName" class="text-xl font-semibold"></div><div id="lmRole" class="text-sm text-neutral-500"></div></div>
+          <button id="lmClose" class="p-2 rounded-lg hover:bg-neutral-100" aria-label="Fermer"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="grid md:grid-cols-2">
+          <div class="p-5"><div class="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
+            <img id="lmImg" src="" alt="" class="w-full h-full object-cover"></div></div>
+          <div class="p-5">
+            <div id="lmBio" class="text-neutral-700 leading-relaxed"></div>
+            <a href="index.html#contact" class="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-white">
+              Contacter Notre Équipe <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+
+    /* Language Switcher */
+    document.getElementById('languageToggle')?.addEventListener('click', () => {
+      const dropdown = document.getElementById('languageDropdown');
+      dropdown?.classList.toggle('show');
+    });
+
+    /* Close dropdown when clicking outside */
+    document.addEventListener('click', (e) => {
+      const switcher = document.querySelector('.language-switcher');
+      const dropdown = document.getElementById('languageDropdown');
+      if (switcher && !switcher.contains(e.target)) {
+        dropdown?.classList.remove('show');
+      }
+    });
+
+    /* Mobile drawer */
+    document.getElementById('mnavBtn')?.addEventListener('click', ()=>{
+      document.getElementById('mnav')?.classList.toggle('hidden');
+      const open = !document.getElementById('mnav')?.classList.contains('hidden');
+      document.getElementById('mnavBtn').innerHTML = open
+        ? '<i data-lucide="x" class="w-6 h-6"></i>' : '<i data-lucide="menu" class="w-6 h-6"></i>';
+      lucide.createIcons();
+    });
+
+    /* Reveal on view */
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    /* Leadership modal */
+    const modal = document.getElementById('leaderModal');
+    const lmName = document.getElementById('lmName');
+    const lmRole = document.getElementById('lmRole');
+    const lmBio  = document.getElementById('lmBio');
+    const lmImg  = document.getElementById('lmImg');
+    document.querySelectorAll('.leader').forEach(card=>{
+      card.addEventListener('click', ()=>{
+        lmName.textContent = card.dataset.name || '';
+        lmRole.textContent = card.dataset.role || '';
+        lmBio.textContent  = card.dataset.bio  || '';
+        lmImg.src          = card.dataset.img  || card.querySelector('img')?.src || '';
+        modal.classList.remove('hidden'); lucide.createIcons();
+      });
+    });
+    document.getElementById('lmClose')?.addEventListener('click', ()=> modal.classList.add('hidden'));
+    modal.addEventListener('click', (e)=>{ if(e.target === modal.firstElementChild) modal.classList.add('hidden'); });
+
+
+    /* ===== Enhanced Animated Journey builder ===== */
+    (function(){
+      const roadmap = [
+        { year:'2025', title:'Ligne 5 couches', text:'Nouvelle extrusion poly 5 couches mise en service avec technologie avancée pour une qualité de film supérieure.', img:'../images/roadmap/2025.webp', icon:'🚀' },
+        { year:'2024', title:'Montée en Puissance Majeure', text:'Nouvelle installation de 8 350 m² terminée ; capacité annuelle >9 000 MT atteinte.', img:'../images/roadmap/2024.webp', icon:'🏭' },
+        { year:'2023', title:'Révolution Verte', text:'Usine de recyclage interne mise en service, soutenant l\'économie circulaire du Ghana.', img:'../images/roadmap/2023.webp', icon:'♻️' },
+        { year:'2018', title:'Renforcement', text:'Capacités préformes & flexo étendues avec nouvelles lignes d\'équipement.', img:'../images/roadmap/2018.webp', icon:'💪' },
+        { year:'2017', title:'Bond Technologique', text:'3 lignes multicouches, presses 10 couleurs, moulage par injection haute capacité déployés.', img:'../images/roadmap/2017.webp', icon:'⚡' },
+        { year:'2014–2015', title:'Ère Fondatrice', text:'Construction de notre première installation de 2 200 m² établissant la base de fabrication.', img:'../images/roadmap/2015.webp', icon:'🏗️' },
+        { year:'2009', title:'Innovation Film', text:'Machines d\'extrusion film monocouche introduites, élargissant la gamme de produits.', img:'../images/roadmap/2009.webp', icon:'🎬' },
+        { year:'2006', title:'Les Débuts', text:'Fabrication de soufflage PET commence - Grand-Chem Limited fondée.', img:'../images/roadmap/2006.webp', icon:'🌟' },
+      ];
+
+      const track = document.getElementById('journeyTrack');
+      track.innerHTML = roadmap.map((m, index) => `
+        <article class="journey-card" data-index="${index}">
+          <div class="journey-img" style="background-image: url('${m.img}'); background-size: cover; background-position: center;">
+            <div style="position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; backdrop-filter: blur(10px);">
+              ${m.icon}
+            </div>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.3), transparent 60%);"></div>
+          </div>
+          <div class="journey-body">
+            <div class="journey-year">${m.year}</div>
+            <div class="journey-title">${m.title}</div>
+            <p class="journey-txt">${m.text}</p>
+          </div>
+        </article>`).join('');
+
+      // Enhanced scroll-triggered animations
+      const journeyCards = document.querySelectorAll('.journey-card');
+      const journeyTrack = document.getElementById('journeyTrack');
+
+      // Intersection Observer for scroll-triggered animations
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 150);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '50px'
+      });
+
+      // Observe each journey card
+      journeyCards.forEach(card => {
+        cardObserver.observe(card);
+      });
+
+      // Enhanced scroll interaction
+      let isScrolling = false;
+      journeyTrack.addEventListener('scroll', () => {
+        if (!isScrolling) {
+          isScrolling = true;
+
+          // Add parallax effect to cards while scrolling
+          const scrollLeft = journeyTrack.scrollLeft;
+          journeyCards.forEach((card, index) => {
+            const cardLeft = card.offsetLeft;
+            const distance = Math.abs(scrollLeft - cardLeft + 300);
+            const scale = Math.max(0.85, 1 - distance / 2000);
+            const opacity = Math.max(0.3, 1 - distance / 1500);
+
+            if (!card.matches(':hover')) {
+              card.style.transform = `scale(${scale}) translateY(${(1-scale) * 20}px)`;
+              card.style.opacity = opacity;
+            }
+          });
+
+          // Clear scrolling flag
+          setTimeout(() => {
+            isScrolling = false;
+          }, 150);
+        }
+      });
+
+      // Auto-scroll showcase (optional)
+      let autoScrollInterval;
+      const startAutoScroll = () => {
+        autoScrollInterval = setInterval(() => {
+          if (!journeyTrack.matches(':hover')) {
+            const scrollAmount = 300;
+            const maxScroll = journeyTrack.scrollWidth - journeyTrack.clientWidth;
+
+            if (journeyTrack.scrollLeft >= maxScroll) {
+              journeyTrack.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+              journeyTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+          }
+        }, 4000);
+      };
+
+      const stopAutoScroll = () => {
+        clearInterval(autoScrollInterval);
+      };
+
+      // Pause auto-scroll on hover
+      journeyTrack.addEventListener('mouseenter', stopAutoScroll);
+      journeyTrack.addEventListener('mouseleave', startAutoScroll);
+
+      // Start auto-scroll after initial load
+      setTimeout(startAutoScroll, 3000);
+
+    })();
+  </script>
+</body>
+</html>
